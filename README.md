@@ -8,9 +8,9 @@ PES University, Bengaluru | B.Tech CSE (AIML) 2024 batch, Section F
 | Name | SRN | Ownership |
 | --- | --- | --- |
 | Kundhan Vudutha | PES1UG24AM327 | Authentication and RBAC, Administration and Audit log, CI/CD, security validation |
-| Tarun J | | Course, section and timetable management, Notifications |
+| Tarun J | PES1UG24AM304 | Course, section and timetable management, Notifications |
 | Tejaswini S | PES1UG25AM815 | Attendance marking, Correction request workflow |
-| Anish | | Student attendance view, Reports and Defaulter list, CSV/PDF export |
+| Anish | PES1UG24AM348 | Student attendance view, Reports and Defaulter list, CSV/PDF export |
 
 ## About
 
