@@ -1,0 +1,12 @@
+erDiagram
+  USER ||--o{ ENROLLMENT : has
+  SECTION ||--o{ ENROLLMENT : contains
+  COURSE ||--o{ SECTION : offers
+  SECTION ||--o{ TIMETABLE_SLOT : scheduled
+  USER ||--o{ TIMETABLE_SLOT : teaches
+  TIMETABLE_SLOT ||--o{ CLASS_SESSION : generates
+  CLASS_SESSION ||--o{ ATTENDANCE_RECORD : records
+  USER ||--o{ ATTENDANCE_RECORD : for
+  ATTENDANCE_RECORD ||--o{ CORRECTION_REQUEST : contested_by
+  ATTENDANCE_RECORD ||--o{ AUDIT_LOG : tracked_in
+  USER ||--o{ NOTIFICATION : receives

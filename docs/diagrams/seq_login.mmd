@@ -1,0 +1,22 @@
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant UI as Login Page
+  participant API as API Router
+  participant AUTH as AuthModule
+  participant DB as PostgreSQL
+  U->>UI: Enter institute ID + password
+  UI->>API: POST /api/auth/login/
+  API->>AUTH: authenticate(id, password)
+  AUTH->>DB: SELECT user by institute_id
+  alt account locked
+    AUTH-->>API: 423 Locked (retry after)
+  else bad password
+    AUTH->>DB: failed_attempts += 1 (lock at 5)
+    AUTH-->>API: 401 Invalid credentials
+  else valid
+    AUTH->>DB: reset failed_attempts
+    AUTH-->>API: access + refresh JWT, role
+  end
+  API-->>UI: response
+  UI-->>U: Role dashboard or error

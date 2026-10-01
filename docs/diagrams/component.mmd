@@ -1,0 +1,31 @@
+flowchart TB
+  subgraph Client["Presentation Layer (Browser)"]
+    SUI["Student Dashboard"]
+    FUI["Faculty Marking Screen"]
+    AUI["Admin Console"]
+  end
+  subgraph API["API Layer (Django REST Framework)"]
+    GW["API Router + Auth Middleware<br/>(JWT / session, RBAC check)"]
+  end
+  subgraph Services["Service Layer (Django apps)"]
+    AUTH["AuthModule<br/>accounts"]
+    COURSE["CourseModule<br/>courses, sections, timetable"]
+    ATT["AttendanceModule<br/>sessions, records, corrections"]
+    REP["ReportModule<br/>reports, defaulters, export"]
+    NOTIF["NotifyModule<br/>email + in-app"]
+    AUD["AuditModule<br/>append-only edit log"]
+  end
+  subgraph Data["Data Layer"]
+    DB[("PostgreSQL 14")]
+    Q[["Celery worker + Redis broker"]]
+  end
+  SMTP(["SMTP provider"])
+  SUI & FUI & AUI -->|HTTPS / JSON| GW
+  GW --> AUTH & COURSE & ATT & REP
+  ATT --> AUD
+  ATT --> NOTIF
+  REP --> NOTIF
+  ATT --> COURSE
+  REP --> ATT
+  AUTH & COURSE & ATT & REP & NOTIF & AUD --> DB
+  NOTIF --> Q --> SMTP

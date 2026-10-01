@@ -1,0 +1,31 @@
+sequenceDiagram
+  autonumber
+  actor F as Faculty
+  participant UI as Faculty Marking Screen
+  participant API as API Router + RBAC
+  participant ATT as AttendanceModule
+  participant CRS as CourseModule
+  participant AUD as AuditModule
+  participant DB as PostgreSQL
+  F->>UI: Open today's session
+  UI->>API: GET /api/sessions/today/
+  API->>API: Validate JWT, role = FACULTY
+  API->>CRS: slots_for(faculty, today)
+  CRS->>DB: SELECT timetable slots + roster
+  DB-->>CRS: slots, enrolled students
+  CRS-->>API: session list with roll lists
+  API-->>UI: 200 OK
+  F->>UI: Mark P / A / OD, click Submit
+  UI->>API: POST /api/sessions/{id}/attendance/
+  API->>ATT: submit(session_id, records)
+  alt session already submitted
+    ATT-->>API: 409 Conflict (use edit endpoint)
+    API-->>UI: Show "already submitted" banner
+  else first submission
+    ATT->>DB: BEGIN, INSERT records, mark session submitted
+    ATT->>AUD: log(CREATE, session_id, editor)
+    AUD->>DB: INSERT audit_log
+    DB-->>ATT: COMMIT
+    ATT-->>API: 201 Created + summary
+    API-->>UI: Show saved count
+  end

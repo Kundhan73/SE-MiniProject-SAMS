@@ -1,0 +1,29 @@
+sequenceDiagram
+  autonumber
+  actor S as Student
+  actor F as Faculty
+  participant API as API Router + RBAC
+  participant ATT as AttendanceModule
+  participant NOT as NotifyModule
+  participant AUD as AuditModule
+  participant DB as PostgreSQL
+  S->>API: POST /api/corrections/ {record_id, reason}
+  API->>ATT: create_request(student, record_id, reason)
+  ATT->>DB: Check record belongs to student, no open request
+  ATT->>DB: INSERT correction_request (PENDING)
+  ATT->>NOT: notify(faculty, "pending correction")
+  NOT->>DB: INSERT notification
+  NOT-)NOT: enqueue email (Celery)
+  API-->>S: 201 Created
+  F->>API: PATCH /api/corrections/{id}/ {decision}
+  API->>ATT: decide(request_id, faculty, decision)
+  alt approved
+    ATT->>DB: UPDATE attendance_record.status
+    ATT->>AUD: log(EDIT, old, new, faculty)
+    AUD->>DB: INSERT audit_log
+    ATT->>DB: UPDATE request = APPROVED
+  else rejected
+    ATT->>DB: UPDATE request = REJECTED, note
+  end
+  ATT->>NOT: notify(student, decision)
+  API-->>F: 200 OK

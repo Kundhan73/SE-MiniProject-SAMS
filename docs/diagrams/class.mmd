@@ -1,0 +1,85 @@
+classDiagram
+  class User {
+    +int id
+    +string institute_id
+    +string name
+    +string email
+    +string password_hash
+    +Role role
+    +int failed_attempts
+    +datetime locked_until
+    +authenticate(password) bool
+    +lock()
+  }
+  class Course {
+    +int id
+    +string code
+    +string title
+    +int credits
+  }
+  class Section {
+    +int id
+    +string name
+    +string semester
+    +roster() List~User~
+  }
+  class Enrollment {
+    +int id
+    +date enrolled_on
+  }
+  class TimetableSlot {
+    +int id
+    +Weekday day
+    +time start_time
+    +time end_time
+    +string room
+  }
+  class ClassSession {
+    +int id
+    +date date
+    +bool submitted
+    +datetime submitted_at
+    +submit(records)
+  }
+  class AttendanceRecord {
+    +int id
+    +Status status
+    +datetime marked_at
+    +update(status, editor)
+  }
+  class CorrectionRequest {
+    +int id
+    +string reason
+    +Status requested_status
+    +ReqState state
+    +approve(faculty)
+    +reject(faculty, note)
+  }
+  class AuditLog {
+    +int id
+    +string old_value
+    +string new_value
+    +datetime timestamp
+  }
+  class Notification {
+    +int id
+    +string channel
+    +string message
+    +bool read
+  }
+  class SystemConfig {
+    +float min_attendance_pct
+    +int session_timeout_min
+  }
+  Course "1" --> "*" Section
+  Section "1" --> "*" Enrollment
+  User "1" --> "*" Enrollment : student
+  Section "1" --> "*" TimetableSlot
+  User "1" --> "*" TimetableSlot : faculty
+  TimetableSlot "1" --> "*" ClassSession
+  ClassSession "1" --> "*" AttendanceRecord
+  User "1" --> "*" AttendanceRecord : student
+  AttendanceRecord "1" --> "*" CorrectionRequest
+  AttendanceRecord "1" --> "*" AuditLog
+  User "1" --> "*" AuditLog : editor
+  User "1" --> "*" Notification

@@ -1,0 +1,12 @@
+flowchart LR
+  B["Browser<br/>(desktop / mobile)"] -->|HTTPS 443, TLS 1.2+| N["Nginx<br/>reverse proxy + static files"]
+  subgraph Docker["Docker Compose host (Linux VM)"]
+    N --> G["Gunicorn<br/>Django + DRF"]
+    G --> P[("PostgreSQL 14")]
+    G --> R[("Redis")]
+    W["Celery worker + beat"] --> R
+    W --> P
+  end
+  W -->|SMTP/TLS| M(["Mail provider"])
+  J["Jenkins CI/CD"] -->|build, test, SonarQube, deploy| Docker
+  GH["GitHub repo"] -->|webhook| J
