@@ -28,9 +28,9 @@ SAMS is a web application for recording student attendance per class session and
 
 | Deliverable | Due | File |
 | --- | --- | --- |
-| Software Requirements Specification | 06-09-2026 | `docs/SAMS_SRS.docx` |
-| Software Architecture and Design (component design) | 30-09-2026 | [`docs/SAMS_SAD.pdf`](docs/SAMS_SAD.pdf) ([docx](docs/SAMS_SAD.docx)) |
-| Test Plan | 02-10-2026 | [`docs/SAMS_Test_Plan.pdf`](docs/SAMS_Test_Plan.pdf) ([docx](docs/SAMS_Test_Plan.docx)) |
+| Software Requirements Specification | 06-09-2026 | [`docs/SAMS_SRS.pdf`](docs/SAMS_SRS.pdf) |
+| Software Architecture and Design (component design) | 30-09-2026 | [`docs/SAMS_SAD.pdf`](docs/SAMS_SAD.pdf) |
+| Test Plan | 02-10-2026 | [`docs/SAMS_Test_Plan.pdf`](docs/SAMS_Test_Plan.pdf) |
 
 UML sources (Mermaid) and rendered diagrams are in [`docs/diagrams`](docs/diagrams).
 
