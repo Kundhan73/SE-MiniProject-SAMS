@@ -16,7 +16,7 @@
 | F-010 per-student report | reports/services.py | UT_REP_03, private-view tests |
 | F-011 per-course report | report API course/section filters | UT_REP_03, IT_REP_01/02 |
 | F-012 date-range report | inclusive date filters | UT_REP_04, invalid-date tests |
-| F-013 defaulters/export | threshold comparison, CSV/PDF | UT_REP_01/05/06, equality, CSV safety, PDF pagination |
+| F-013 defaulters/export | threshold comparison, CSV/PDF | UT_REP_01/05/06, equality, CSV safety, PDF pagination, #45 missing/numeric percentage export regressions |
 | F-014 courses/sections | courses models/admin API | UT_CRS_01, IT_CRS_01–03 |
 | F-015 timetable | courses/services.py | UT_CRS_02–04 |
 | F-016 faculty/roll linkage | Section, session faculty snapshot | UT_ATT_01/02, other-faculty-denied tests |
@@ -36,3 +36,5 @@
 | SR-003 inactivity/logout | Django idle cookies, LoginSession JWT family | Expired access/idle checks and both logout paths |
 | SR-004 server RBAC | role and ownership checks | Cross-role and IDOR rejection tests |
 | SR-005 append-only edits | audit service/model/DB triggers | ORM/API/raw SQL immutability and edit/correction history |
+
+Report assurance: issue #46 is covered by `test_system_report_labels_separately_supplied_evidence` in `tests/test_validation_regressions.py`. Current backend results are distinguished from separately supplied browser/load artifacts, including unavailable provenance. See [tester handoff](TESTER_HANDOFF.md) for independent retesting of both fixes.

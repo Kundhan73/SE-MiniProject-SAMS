@@ -112,7 +112,8 @@ def export_report(rows, output):
                 pdf.showPage()
                 y = 555
             pdf.setFont("Helvetica", 10)
-            text = f"{row['srn']} | {row['course']} / {row['section']} | {row['attended']}/{row['held']} | {row['percentage'] if row['percentage'] is not None else 'No classes'}%"
+            percentage = f"{row['percentage']}%" if row["percentage"] is not None else "No classes"
+            text = f"{row['srn']} | {row['course']} / {row['section']} | {row['attended']}/{row['held']} | {percentage}"
             pdf.drawString(40, y, text[:140])
             y -= 20
         pdf.save()

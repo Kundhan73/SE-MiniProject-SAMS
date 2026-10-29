@@ -61,6 +61,8 @@ pip-audit
 
 With the local demo server running, `python scripts/browser_smoke.py` exercises all three roles in Chromium. Install the browser once with `playwright install chromium`. Use an isolated demo database: this test submits attendance and approves a correction.
 
+For the fixes found during Tarun's test execution and the next independent retest, see the [tester handoff](docs/TESTER_HANDOFF.md).
+
 ## CI and delivery
 
 Every PR runs linting, migration validation, SQLite and PostgreSQL tests, coverage gates, a dependency audit, real browser workflows, and a Docker build/health test. Reports are downloadable from the Actions run. `Required checks` summarizes the gate.

@@ -57,3 +57,9 @@ Before freeze: all mandatory automated checks pass, no unresolved critical/high 
 ## Current test responsibilities
 
 Kundhan (Developer) implements features and fixes and provides automated regression tests with code changes. Tarun (Tester) owns independent execution of UC-01 through UC-09 plus security, accessibility and performance scenarios, records actual results and retests fixes. Anish (QA) reviews the plan, checks requirement-to-evidence coverage, audits reports and assesses release readiness. Test execution, QA review and faculty UAT are separate sign-offs; none is inferred from assigning a task.
+
+## Defects from the 29 October local test session
+
+Issues #45 (PDF `No classes%`) and #46 (report evidence provenance) were reproduced against `824fb57ad44531bb6489b49e8c94af1112503aec`. Both failing regressions were reproduced again during developer integration before applying the supplied fixes. `tests/test_validation_regressions.py` adds three executions: missing percentage, numeric percentage, and separation of current backend results from supplied browser/performance artifacts.
+
+Tarun's attached archive records Codex-assisted execution on his Windows/SQLite/Opera environment, including targeted local retests; it does not assert a personal tester, QA or faculty sign-off. The integrated branch requires a new independent retest against its actual GitHub commit. The [tester handoff](TESTER_HANDOFF.md) gives the steps and identifies remaining validation.
