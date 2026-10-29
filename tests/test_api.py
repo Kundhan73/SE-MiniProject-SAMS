@@ -350,3 +350,26 @@ def test_roster_query_count_does_not_grow_per_student(client, world, django_asse
     client.force_authenticate(world["faculty"])
     with django_assert_max_num_queries(12):
         assert len(client.get("/api/sessions/today/").data[0]["roster"]) == 61
+
+
+@pytest.mark.parametrize("url", ["/api/auth/logout/", "/logout/"])
+def test_cookie_logout_revokes_tokens_too(client, users, url):
+    tokens = login(client).data
+    response = client.post(url, {"refresh": tokens["refresh"]}, format="json")
+    assert response.status_code in [205, 302]
+    client.credentials(HTTP_AUTHORIZATION="Bearer " + tokens["access"])
+    assert client.get("/api/me/").status_code == 401
+    client.credentials()
+    assert client.post("/api/auth/refresh/", {"refresh": tokens["refresh"]}).status_code == 401
+
+
+def test_submitted_roster_preserves_actual_marks_after_new_enrollment(client, world):
+    from accounts.models import User
+    from courses.models import Enrollment
+
+    marked(world)
+    new = User.objects.create_user(username="late-enrollment", role="STUDENT")
+    Enrollment.objects.create(section=world["section"], student=new)
+    client.force_authenticate(world["faculty"])
+    roster = client.get("/api/sessions/today/").data[0]["roster"]
+    assert len(roster) == 1 and roster[0]["status"] == "A" and roster[0]["record_id"]

@@ -3,6 +3,7 @@ from django.utils import timezone
 from core.errors import DomainError
 from core.permissions import require_role
 from courses.services import roster
+from courses.models import Section
 from audit.models import AuditLog
 from notifications.tasks import notify
 from .models import ClassSession, AttendanceRecord, CorrectionRequest
@@ -22,6 +23,7 @@ def submit(user, session_id, records):
     require_role(user, "FACULTY")
     session = ClassSession.objects.select_for_update().get(pk=session_id)
     can_edit(user, session)
+    Section.objects.select_for_update().get(pk=session.section_id)
     if session.date > timezone.localdate():
         raise DomainError("FUTURE_SESSION", "Cannot mark attendance before the class date.")
     if session.submitted:

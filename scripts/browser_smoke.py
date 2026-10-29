@@ -38,7 +38,7 @@ def main():
     errors = []
     checks = []
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, channel="chromium")
         context = browser.new_context(viewport={"width": 1440, "height": 1000})
         page = context.new_page()
         page.on("pageerror", lambda e: errors.append(str(e)))
@@ -94,7 +94,7 @@ def main():
         nav(page, "Academic setup")
         expect(page.get_by_text("Weekly timetable", exact=True)).to_be_visible()
         nav(page, "People")
-        expect(page.get_by_text("Create account", exact=True)).to_be_visible()
+        expect(page.get_by_role("heading", name="Create account", exact=True)).to_be_visible()
         page.set_viewport_size({"width": 360, "height": 800})
         nav(page, "Overview")
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")

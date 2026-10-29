@@ -107,15 +107,18 @@ def login(request):
     )
     user, tokens = auth.authenticate(**data)
     django_login(request._request, user, backend="django.contrib.auth.backends.ModelBackend")
+    request.session["jwt_session_id"] = RefreshToken(tokens["refresh"])["sid"]
     return Response({**tokens, "user": user_data(user)})
 
 
 @endpoint(["POST"])
 def logout(request):
+    ids = {request.session.get("jwt_session_id")}
     if request.auth:
-        LoginSession.objects.filter(pk=request.auth.get("sid"), user=request.user).update(
-            active=False
-        )
+        ids.add(request.auth.get("sid"))
+    LoginSession.objects.filter(pk__in=[sid for sid in ids if sid], user=request.user).update(
+        active=False
+    )
     django_logout(request._request)
     return Response(status=205)
 
@@ -167,7 +170,12 @@ def me(request):
 def today(request):
     result = []
     for session in courses.slots_for(request.user):
-        marks = {r.student_id: r for r in session.records.all()}
+        marks = {r.student_id: r for r in session.records.select_related("student")}
+        students = (
+            [r.student for r in marks.values()]
+            if session.submitted
+            else courses.roster(session.section)
+        )
         result.append(
             {
                 "session_id": session.pk,
@@ -184,7 +192,7 @@ def today(request):
                         "status": marks[s.pk].status if s.pk in marks else "P",
                         "record_id": marks[s.pk].pk if s.pk in marks else None,
                     }
-                    for s in courses.roster(session.section)
+                    for s in students
                 ],
             }
         )

@@ -55,7 +55,9 @@ def slots_for(faculty, day=None):
     )
 
 
+@transaction.atomic
 def bulk_enroll(section, content):
+    Section.objects.select_for_update().get(pk=section.pk)
     reader = csv.DictReader(io.StringIO(content))
     if not reader.fieldnames or "institute_id" not in reader.fieldnames:
         raise DomainError("INVALID_CSV", "CSV needs an institute_id header.")
