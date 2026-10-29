@@ -1,0 +1,38 @@
+from django.urls import path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from core import api, web
+
+urlpatterns = [
+    path("", web.dashboard),
+    path("login/", web.signin),
+    path("logout/", web.signout),
+    path("reset/", web.reset_password),
+    path("api/health/", api.health),
+    path("api/auth/login/", api.login),
+    path("api/auth/logout/", api.logout),
+    path("api/auth/refresh/", api.refresh),
+    path("api/auth/password-reset/", api.password_reset),
+    path("api/auth/password-reset/confirm/", api.password_confirm),
+    path("api/me/", api.me),
+    path("api/sessions/today/", api.today),
+    path("api/sessions/<int:session_id>/attendance/", api.submit),
+    path("api/records/<int:record_id>/", api.record_edit),
+    path("api/students/me/attendance/", api.student_attendance),
+    path("api/students/me/records/", api.student_records),
+    path("api/corrections/", api.corrections),
+    path("api/corrections/<int:request_id>/", api.correction_decide),
+    path("api/reports/<str:kind>/", api.report),
+    path("api/admin/courses/", api.course_list),
+    path("api/admin/sections/", api.sections),
+    path("api/admin/timetable/", api.timetable),
+    path("api/admin/sections/<int:section_id>/enroll/", api.enroll),
+    path("api/admin/users/", api.users),
+    path("api/admin/users/<int:user_id>/", api.user_edit),
+    path("api/admin/config/", api.config),
+    path("api/audit/", api.audit),
+    path("api/notifications/", api.notifications),
+    path("api/notifications/<int:notification_id>/read/", api.notification_read),
+    path("api/admin/email-failures/", api.email_failures),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
+]

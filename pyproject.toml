@@ -1,0 +1,22 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "sams.settings"
+python_files = ["test_*.py"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["accounts", "courses", "attendance", "reports", "notifications", "audit", "core"]
+omit = ["*/migrations/*", "*/management/*", "*/apps.py"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+
+[tool.ruff]
+line-length = 100
+exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = ["E402"]

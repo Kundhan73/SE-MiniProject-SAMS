@@ -1,0 +1,140 @@
+# Unit and integration test report
+
+Generated from actual execution at 2026-10-29T09:51:49.970079+00:00. Database: SQLite.
+
+Executed: 130 automated test instances. Failed/error: 0.
+
+The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
+
+| Automated case | Result |
+| --- | --- |
+| test_ST_SEC_04_student_forbidden[admin/users/] | PASS |
+| test_ST_SEC_04_student_forbidden[admin/courses/] | PASS |
+| test_ST_SEC_04_student_forbidden[admin/sections/] | PASS |
+| test_ST_SEC_04_student_forbidden[admin/timetable/] | PASS |
+| test_ST_SEC_04_student_forbidden[admin/config/] | PASS |
+| test_ST_SEC_04_student_forbidden[audit/] | PASS |
+| test_ST_SEC_04_student_forbidden[admin/email-failures/] | PASS |
+| test_ST_SEC_04_student_forbidden[sessions/today/] | PASS |
+| test_ST_SEC_04_student_forbidden[reports/summary/] | PASS |
+| test_anonymous_denied[admin/users/] | PASS |
+| test_anonymous_denied[audit/] | PASS |
+| test_anonymous_denied[students/me/attendance/] | PASS |
+| test_anonymous_denied[corrections/] | PASS |
+| test_anonymous_denied[notifications/] | PASS |
+| test_IT_AUTH_03_expired_access | PASS |
+| test_IT_AUTH_04_logout_revokes_both | PASS |
+| test_inactivity_timeout | PASS |
+| test_refresh_and_bad_token | PASS |
+| test_IT_PWR_01_02_03_reset_endpoints | PASS |
+| test_reset_weak_returns_400 | PASS |
+| test_login_validation[payload0] | PASS |
+| test_login_validation[payload1] | PASS |
+| test_login_validation[payload2] | PASS |
+| test_IT_ATT_01_02_session_marking_and_conflict | PASS |
+| test_IT_COR_01_02_approval_and_student_view | PASS |
+| test_IT_ADM_01_edit_and_audit_filters | PASS |
+| test_IT_REP_01_02_exports[csv-text/csv] | PASS |
+| test_IT_REP_01_02_exports[pdf-application/pdf] | PASS |
+| test_IT_REP_01_02_exports[json-application/json] | PASS |
+| test_IT_CRS_01_02_03_admin_setup | PASS |
+| test_IT_ADM_03_user_creation_and_roles | PASS |
+| test_config_validation | PASS |
+| test_notifications_scoped | PASS |
+| test_csrf_browser_login_and_logout | PASS |
+| test_web_invalid_login_and_reset | PASS |
+| test_health_redis_outage | PASS |
+| test_unknown_records_and_malformed_json | PASS |
+| test_roster_query_count_does_not_grow_per_student | PASS |
+| test_UT_AUTH_02_counter | PASS |
+| test_UT_AUTH_04_expired_lock | PASS |
+| test_UT_AUTH_05_invalid[-pass] | PASS |
+| test_UT_AUTH_05_invalid[student-] | PASS |
+| test_UT_AUTH_05_invalid[unknown-x] | PASS |
+| test_inactive_cannot_login | PASS |
+| test_UT_PWR_01_hashed_token | PASS |
+| test_UT_PWR_02_expiry | PASS |
+| test_UT_PWR_03_single_use_and_revocation | PASS |
+| test_UT_PWR_04_weak_password | PASS |
+| test_UT_PWR_05_no_enumeration | PASS |
+| test_UT_ATT_03_mark_status_and_initial_audit[P] | PASS |
+| test_UT_ATT_03_mark_status_and_initial_audit[A] | PASS |
+| test_UT_ATT_03_mark_status_and_initial_audit[OD] | PASS |
+| test_UT_ATT_06_invalid_roster_atomic[records0] | PASS |
+| test_UT_ATT_06_invalid_roster_atomic[records1] | PASS |
+| test_UT_ATT_06_invalid_roster_atomic[records2] | PASS |
+| test_UT_ATT_06_invalid_roster_atomic[records3] | PASS |
+| test_UT_ATT_06_invalid_roster_atomic[records4] | PASS |
+| test_UT_ATT_05_invalid_status | PASS |
+| test_UT_ATT_04_duplicate_guard | PASS |
+| test_duplicate_student_rejected | PASS |
+| test_future_session_rejected | PASS |
+| test_UT_ATT_07_edit_audited | PASS |
+| test_edit_validation[X-Reason] | PASS |
+| test_edit_validation[P-] | PASS |
+| test_edit_validation[P-  ] | PASS |
+| test_other_faculty_cannot_mark_or_edit | PASS |
+| test_UT_COR_01_request_notifies_faculty | PASS |
+| test_UT_COR_02_own_records_only | PASS |
+| test_UT_COR_03_validation[X-Reason] | PASS |
+| test_UT_COR_03_validation[P- ] | PASS |
+| test_UT_COR_03_validation[P-None] | PASS |
+| test_one_open_correction | PASS |
+| test_UT_COR_04_and_05_decision[APPROVE-APPROVED-OD] | PASS |
+| test_UT_COR_04_and_05_decision[REJECT-REJECTED-A] | PASS |
+| test_UT_COR_06_repeat_and_invalid | PASS |
+| test_UT_VIEW_01_and_02_percentage[P-100] | PASS |
+| test_UT_VIEW_01_and_02_percentage[A-0] | PASS |
+| test_UT_VIEW_01_and_02_percentage[OD-100] | PASS |
+| test_UT_VIEW_03_zero_sessions | PASS |
+| test_UT_VIEW_04_privacy | PASS |
+| test_UT_ADM_02_threshold_valid[0] | PASS |
+| test_UT_ADM_02_threshold_valid[75] | PASS |
+| test_UT_ADM_02_threshold_valid[100] | PASS |
+| test_UT_ADM_02_threshold_valid[74.99] | PASS |
+| test_threshold_invalid[-1] | PASS |
+| test_threshold_invalid[101] | PASS |
+| test_threshold_invalid[NaN] | PASS |
+| test_threshold_invalid[Infinity] | PASS |
+| test_threshold_invalid[bad] | PASS |
+| test_threshold_invalid[] | PASS |
+| test_UT_REP_01_strict_threshold[0-False] | PASS |
+| test_UT_REP_01_strict_threshold[100-True] | PASS |
+| test_UT_REP_01_strict_threshold[75-True] | PASS |
+| test_threshold_equality | PASS |
+| test_UT_REP_04_date_inclusive | PASS |
+| test_report_bad_dates[params0] | PASS |
+| test_report_bad_dates[params1] | PASS |
+| test_report_bad_dates[params2] | PASS |
+| test_UT_REP_03_filters_and_scoping | PASS |
+| test_UT_REP_05_and_06_exports[csv-text/csv] | PASS |
+| test_UT_REP_05_and_06_exports[pdf-application/pdf] | PASS |
+| test_csv_formula_injection | PASS |
+| test_invalid_export | PASS |
+| test_pdf_pagination | PASS |
+| test_UT_CRS_01_unique_code | PASS |
+| test_UT_CRS_02_invalid_slot[-1-10:00-11:00] | PASS |
+| test_UT_CRS_02_invalid_slot[7-10:00-11:00] | PASS |
+| test_UT_CRS_02_invalid_slot[0-11:00-10:00] | PASS |
+| test_UT_CRS_02_invalid_slot[0-bad-11:00] | PASS |
+| test_UT_CRS_03_clashes | PASS |
+| test_UT_CRS_04_adjacent_valid | PASS |
+| test_invalid_section_faculty | PASS |
+| test_UT_CRS_05_csv_partial_success | PASS |
+| test_csv_invalid_header | PASS |
+| test_UT_ATT_01_and_02_timetable_and_roster | PASS |
+| test_UT_ADM_03_and_04_audit_immutable[save] | PASS |
+| test_UT_ADM_03_and_04_audit_immutable[delete] | PASS |
+| test_UT_ADM_03_and_04_audit_immutable[update] | PASS |
+| test_UT_ADM_03_and_04_audit_immutable[bulk_update] | PASS |
+| test_UT_ADM_03_and_04_audit_immutable[query_delete] | PASS |
+| test_UT_NOT_01_and_02_daily_dedup | PASS |
+| test_no_low_alert_for_good_attendance | PASS |
+| test_email_after_commit_and_idempotent | PASS |
+| test_UT_NOT_03_email_failure_deadletter | PASS |
+| test_raw_sql_cannot_change_audit[UPDATE audit_auditlog SET reason='tampered'] | PASS |
+| test_raw_sql_cannot_change_audit[DELETE FROM audit_auditlog] | PASS |
+| test_IT_AUTH_01_login | PASS |
+| test_UT_AUTH_03_lockout | PASS |
+| test_IT_AUTH_02_student_cannot_admin | PASS |
+| test_anonymous_health_only | PASS |

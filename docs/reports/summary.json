@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-10-29T09:51:49.970079+00:00",
+  "database": "SQLite",
+  "tests": 130,
+  "failures": 0,
+  "line_percent": 99.86,
+  "branch_percent": 97.02
+}
