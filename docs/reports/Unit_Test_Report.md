@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-10-29T10:02:13.264597+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T10:08:46.165802+00:00. Database: SQLite.
 
-Executed: 133 automated test instances. Failed/error: 0.
+Executed: 135 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -49,6 +49,7 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_cookie_logout_revokes_tokens_too[/api/auth/logout/] | PASS |
 | test_cookie_logout_revokes_tokens_too[/logout/] | PASS |
 | test_submitted_roster_preserves_actual_marks_after_new_enrollment | PASS |
+| test_response_clickjacking_and_request_headers | PASS |
 | test_UT_AUTH_02_counter | PASS |
 | test_UT_AUTH_04_expired_lock | PASS |
 | test_UT_AUTH_05_invalid[-pass] | PASS |
@@ -137,6 +138,7 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_UT_NOT_03_email_failure_deadletter | PASS |
 | test_raw_sql_cannot_change_audit[UPDATE audit_auditlog SET reason='tampered'] | PASS |
 | test_raw_sql_cannot_change_audit[DELETE FROM audit_auditlog] | PASS |
+| test_ST_SEC_02_production_password_hash_is_salted | PASS |
 | test_IT_AUTH_01_login | PASS |
 | test_UT_AUTH_03_lockout | PASS |
 | test_IT_AUTH_02_student_cannot_admin | PASS |

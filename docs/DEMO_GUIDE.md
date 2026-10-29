@@ -17,7 +17,7 @@ Use only synthetic demo data. Password for ADM001, FAC001 and STU001 is `DemoPas
 - 90–110 s: ADM001 → Audit trail; show editor, previous/new status, timestamp and reason.
 - 110–120 s: Show actual passing CI and generated report files.
 
-Record the working application with the normal macOS screen recorder. New recordings made on/after 29 October must be labelled retrospective, especially the first sprint whose original window has ended. Do not describe current recordings as historical sprint evidence. Suggested paths: `docs/demos/sprint-1-retrospective.webm` and `docs/demos/sprint-2-demo.webm` (or `.mp4`).
+Actual silent Chromium recordings are included at `docs/demos/sprint-1-retrospective.webm` (60 seconds) and `docs/demos/sprint-2-demo.webm` (120 seconds). They show real application interactions on synthetic data, recorded on 29 October 2026. They do not show historical sprint progress or a narrated team presentation. Use the normal macOS screen recorder if you want to add team narration or show GitHub Actions. New recordings made on/after 29 October must be labelled retrospective, especially the first sprint whose original window has ended. Do not describe current recordings as historical sprint evidence. Suggested paths: `docs/demos/sprint-1-retrospective.webm` and `docs/demos/sprint-2-demo.webm` (or `.mp4`).
 
 Use a separate browser profile or separate sessions to keep roles clear. Never record a real password, SMTP secret, personal student data or an authentication token. The synthetic demo password is intentionally public.
 

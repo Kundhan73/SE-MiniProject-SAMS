@@ -373,3 +373,9 @@ def test_submitted_roster_preserves_actual_marks_after_new_enrollment(client, wo
     client.force_authenticate(world["faculty"])
     roster = client.get("/api/sessions/today/").data[0]["roster"]
     assert len(roster) == 1 and roster[0]["status"] == "A" and roster[0]["record_id"]
+
+
+def test_response_clickjacking_and_request_headers(client):
+    response = client.get("/login/")
+    assert response["X-Frame-Options"] == "DENY"
+    assert len(response["X-Request-ID"]) == 32

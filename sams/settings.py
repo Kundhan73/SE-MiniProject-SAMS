@@ -27,6 +27,8 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "accounts.User"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "core.middleware.RequestLogMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -126,3 +128,10 @@ SPECTACULAR_SETTINGS = {"TITLE": "SAMS API", "VERSION": "1.0.0", "SERVE_INCLUDE_
 REST_FRAMEWORK["URL_FORMAT_OVERRIDE"] = None
 INSTALLED_APPS += ["core"]
 LOGIN_URL = "/login/"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {"sams.requests": {"handlers": ["console"], "level": "INFO", "propagate": False}},
+}

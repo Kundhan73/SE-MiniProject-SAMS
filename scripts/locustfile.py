@@ -1,10 +1,12 @@
 """Run only against your isolated synthetic demo; never against real student data."""
 
 import os
+from itertools import cycle
 from locust import HttpUser, task, between
 
 
 class FacultyUser(HttpUser):
+    identities = cycle(f"FAC{i:03}" for i in range(1, 101))
     wait_time = between(1, 3)
 
     def on_start(self):
@@ -13,7 +15,7 @@ class FacultyUser(HttpUser):
         self.client.post(
             "/api/auth/login/",
             json={
-                "institute_id": os.getenv("LOAD_USER", "FAC001"),
+                "institute_id": os.getenv("LOAD_USER") or next(self.identities),
                 "password": os.getenv("DEMO_PASSWORD", "DemoPass@1234"),
             },
             headers={"X-CSRFToken": csrf},

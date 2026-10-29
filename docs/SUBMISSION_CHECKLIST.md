@@ -16,7 +16,7 @@
 - [ ] Linked GitHub Project board: blocked by missing `project` authorization; run the documented setup after access is granted.
 - [ ] Assign Tejaswini/Anish: verified GitHub collaborator accounts needed.
 - [ ] Another team member's actual review of PR #1 and owner merge after green checks.
-- [ ] Sprint 1 one-minute and Sprint 2 two-minute recordings checked and uploaded; any new recording is retrospective.
+- [x] Actual working-product recordings: one-minute Sprint 1 retrospective and two-minute Sprint 2 demo in docs/demos. Recorded on 29 October, using synthetic data; silent browser demonstrations.
 - [x] Deviations from earlier SRS/SAD/STP documented.
 - [ ] Development freeze after review and required external validation.
 

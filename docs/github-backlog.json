@@ -406,5 +406,17 @@
     "status": "Blocked: Projects authorization",
     "number": 35,
     "url": "https://github.com/Kundhan73/SE-MiniProject-SAMS/issues/35"
+  },
+  {
+    "jira": null,
+    "title": "SAMS-NF-002: monitor working-hours uptime and prove availability",
+    "description": "Configure external uptime monitoring for 8am\u20136pm Mon\u2013Sat and retain a semester report targeting 99% availability excluding announced maintenance. Health checks are implemented; actual semester evidence remains pending. SRS SAMS-NF-002.",
+    "points": 3,
+    "owner": "Kundhan Vudutha",
+    "assignee": "Kundhan73",
+    "sprint": "Testing (2\u20136 Nov)",
+    "status": "Pending operational evidence",
+    "number": 36,
+    "url": "https://github.com/Kundhan73/SE-MiniProject-SAMS/issues/36"
   }
 ]

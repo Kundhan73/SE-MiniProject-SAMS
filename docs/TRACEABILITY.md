@@ -25,12 +25,12 @@
 | F-019 user/role admin | user APIs | IT_ADM_03, self-lockout and role-in-use checks |
 | F-020 threshold setting | SystemConfig | UT_ADM_02, numeric boundary/NaN tests |
 | F-021 audit | AuditLog + triggers + read-only API | UT_ADM_03/04, IT_ADM_01, raw SQL mutation tests |
-| NF-001 latency | bounded roster queries, bulk inserts | Query budget regression; full concurrency performance pending on staging |
+| NF-001 latency | bounded roster queries, bulk inserts | Query budget regression and actual PostgreSQL CI load test (20 concurrent users, 2,000/100 dataset); staging capacity validation remains separate |
 | NF-002 uptime | health DB/Redis checks | Health success/outage tests; semester uptime pending |
 | NF-003 salted hashing/HTTPS | Django hashing, production flags, TLS Nginx | Hash regression; live TLS verification pending |
 | NF-004 year retention | persistent PostgreSQL/audit, no purge | Immutability tests; year-long retention review pending |
 | NF-005 responsive/accessibility | role templates/custom CSS | 360px Chromium overflow test; full Lighthouse/keyboard/cross-browser audit pending |
-| NF-006 2,000 students/100 faculty | --full synthetic seed, same models | Seed command provided; actual target-load report must name deployment and concurrency |
+| NF-006 2,000 students/100 faculty | --full synthetic seed, same models | Actual full seed verified; CI performance.json names PostgreSQL runner, dataset and concurrency |
 | SR-001 TLS 1.2+ | docker/nginx-tls.conf | Configuration supplied; live test pending |
 | SR-002 password protection | Django hash store, restricted API outputs | No-password-response regression, production-hash test |
 | SR-003 inactivity/logout | Django idle cookies, LoginSession JWT family | Expired access/idle checks and both logout paths |
