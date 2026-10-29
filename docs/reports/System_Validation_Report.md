@@ -1,8 +1,8 @@
 # System validation report
 
-Report generated at 2026-10-29T13:45:25.202436+00:00. Current backend database: SQLite.
+Report generated at 2026-10-29T17:09:32.850185+00:00. Current backend database: SQLite.
 
-Current backend execution: 138 test instances, 0 failures/errors, 99.87% statement coverage and 97.06% branch coverage. Sources: `junit.xml` and `coverage.xml`. Report generation does not execute tests.
+Current backend execution: 141 test instances, 0 failures/errors, 100.0% statement coverage and 98.24% branch coverage. Sources: `junit.xml` and `coverage.xml`. Report generation does not execute tests.
 
 ## Separately supplied browser evidence
 

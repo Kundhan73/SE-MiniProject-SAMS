@@ -40,7 +40,7 @@ Jenkins can run the included Jenkinsfile with Python, Docker and (optionally) `s
 
 ## Data protection and maintenance
 
-Back up PostgreSQL daily to an access-controlled location: `docker compose exec -T db sh -c 'pg_dump -U "$POSTGRES_USER" "$POSTGRES_DB"' > sams-backup.sql`. Keep backups out of Git. Rehearse restore into a separate database before relying on backups.
+Back up PostgreSQL daily to an access-controlled location: `docker compose exec -T db sh -c 'pg_dump -U "$POSTGRES_USER" "$POSTGRES_DB"' > sams-backup.sql`. Keep backups out of Git. Rehearse restore into a separate database before relying on backups. For the complete operational runbook covering backups, disaster recovery, updates, monitoring, and team maintenance responsibilities, see the [Product Maintenance Plan](MAINTENANCE_PLAN.md).
 
 Audit rows have no update/delete API and database triggers reject update/delete even through raw SQL. Database owners retain administrative power; use separate migration/runtime roles and protect backup access in a deployed institution. Retain records for the current academic year and document any archival process. The project does not auto-purge audit data.
 

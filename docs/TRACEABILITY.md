@@ -37,4 +37,4 @@
 | SR-004 server RBAC | role and ownership checks | Cross-role and IDOR rejection tests |
 | SR-005 append-only edits | audit service/model/DB triggers | ORM/API/raw SQL immutability and edit/correction history |
 
-Report assurance: issue #46 is covered by `test_system_report_labels_separately_supplied_evidence` in `tests/test_validation_regressions.py`. Current backend results are distinguished from separately supplied browser/load artifacts, including unavailable provenance. See [tester handoff](TESTER_HANDOFF.md) for independent retesting of both fixes.
+Report assurance: issue #46 is covered by `test_system_report_labels_separately_supplied_evidence` in `tests/test_validation_regressions.py`. Current backend results are distinguished from separately supplied browser/load artifacts, including unavailable provenance. See [tester handoff](TESTER_HANDOFF.md) for independent retesting of both fixes. Maintenance assurance (issue #32 / SAM-45) is covered by the [Product Maintenance Plan](MAINTENANCE_PLAN.md), spanning backups, recovery, updates, monitoring, and operational responsibilities.

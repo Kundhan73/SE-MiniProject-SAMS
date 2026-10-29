@@ -59,3 +59,42 @@ def test_system_report_labels_separately_supplied_evidence(monkeypatch, tmp_path
     assert "Browser execution timestamp: unavailable" in report
     assert "2026-10-28T10:00:00+00:00" in report
     assert "Source commit: unavailable" in report
+
+
+def test_session_jwt_spec_security_definition():
+    from core.schema import SessionJWTSpec
+
+    spec = SessionJWTSpec(None)
+    assert spec.get_security_definition(None) == {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+    }
+
+
+@pytest.mark.django_db
+def test_admin_user_query_filter_and_corrections_unfiltered(client, world):
+    from accounts.models import User
+
+    admin = User.objects.create_user(username="qa_admin", role="ADMIN")
+    client.force_authenticate(admin)
+
+    # Search with matching q filter
+    res = client.get("/api/admin/users/?q=qa_admin")
+    assert res.status_code == 200
+    assert any(u["institute_id"] == "qa_admin" for u in res.data)
+
+    # Search with non-matching q filter
+    res_empty = client.get("/api/admin/users/?q=nonexistent_xyz")
+    assert res_empty.status_code == 200
+    assert len(res_empty.data) == 0
+
+    # Admin access to corrections without role filtering
+    res_corr = client.get("/api/corrections/")
+    assert res_corr.status_code == 200
+
+
+def test_signout_without_active_session_redirects(client):
+    res = client.post("/logout/")
+    assert res.status_code == 302
+    assert res.url == "/login/"

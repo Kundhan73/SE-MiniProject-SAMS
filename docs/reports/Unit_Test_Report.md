@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-10-29T13:45:25.202436+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T17:09:32.850185+00:00. Database: SQLite.
 
-Executed: 138 automated test instances. Failed/error: 0.
+Executed: 141 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -139,6 +139,7 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_raw_sql_cannot_change_audit[UPDATE audit_auditlog SET reason='tampered'] | PASS |
 | test_raw_sql_cannot_change_audit[DELETE FROM audit_auditlog] | PASS |
 | test_ST_SEC_02_production_password_hash_is_salted | PASS |
+| test_admin_user_query_filter_and_corrections_unfiltered | PASS |
 | test_IT_AUTH_01_login | PASS |
 | test_UT_AUTH_03_lockout | PASS |
 | test_IT_AUTH_02_student_cannot_admin | PASS |
@@ -146,3 +147,5 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[None-No classes] | PASS |
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[100.0-100.0%] | PASS |
 | test_system_report_labels_separately_supplied_evidence | PASS |
+| test_session_jwt_spec_security_definition | PASS |
+| test_signout_without_active_session_redirects | PASS |
