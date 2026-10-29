@@ -62,6 +62,10 @@ def main():
         )
     else:
         system += "Browser execution evidence is supplied separately by the Browser workflows CI job. This local report does not assert that browser tests ran.\n\n"
+    performance = OUT / "performance.json"
+    if performance.exists():
+        perf = json.loads(performance.read_text())
+        system += f"PostgreSQL CI load test: {perf['dataset_students']} students, {perf['dataset_faculty']} faculty, {perf['concurrent_users']} concurrent users, {perf['requests']} requests, {perf['failures']} failures, p95 {perf['p95_ms']} ms. This is a measured runner result, not a semester uptime or production-capacity guarantee.\n\n"
     system += "Automated backend validation covers authentication, idle expiry, logout, reset, roles, ownership, marking, duplicate prevention, corrections, timetable validation, reporting, notification retries and append-only audit storage.\n\nPending deployment/UAT evidence: live TLS certificate verification, full-scale concurrent Locust run on staging, ZAP/Lighthouse audits, faculty sign-off, academic-year retention and semester uptime. These are not marked passed by unit tests. See `docs/TEST_PLAN_ADDENDUM.md`.\n"
     (OUT / "System_Validation_Report.md").write_text(system)
     print(json.dumps(summary, indent=2))

@@ -1,6 +1,6 @@
 # System validation report
 
-Generated from actual execution at 2026-10-29T10:08:46.165802+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T10:09:44.862333+00:00. Database: SQLite.
 
 Chromium browser workflow results:
 
@@ -14,6 +14,8 @@ Chromium browser workflow results:
 - 360px mobile layout has no page overflow
 
 JavaScript errors: 0.
+
+PostgreSQL CI load test: 2000 students, 100 faculty, 20 concurrent users, 393 requests, 0 failures, p95 1400.0 ms. This is a measured runner result, not a semester uptime or production-capacity guarantee.
 
 Automated backend validation covers authentication, idle expiry, logout, reset, roles, ownership, marking, duplicate prevention, corrections, timetable validation, reporting, notification retries and append-only audit storage.
 
