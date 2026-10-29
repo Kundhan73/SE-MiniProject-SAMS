@@ -49,3 +49,18 @@ Real external mailbox delivery and a full-day production timing observation rema
 - Tarun must review evidence and post his own honest tester conclusion. Anish/planetai05 must provide actual QA review. Only faculty may waive required external validation.
 
 Local SQLite audit-login refresh encountered a database-lock 500 under concurrent activity. This is recorded as an environment limitation; successful PostgreSQL checks are not a claim that the SQLite failure was fixed.
+
+## Selected screenshots
+
+These are assisted-execution screenshots. Each case and tested commit is recorded in the archive.
+
+![45-no-classes.png](screenshots/45-no-classes.png)
+
+![admin-enrollment-form-retest.jpg](screenshots/admin-enrollment-form-retest.jpg)
+
+![mailpit-recovered-email.jpg](screenshots/mailpit-recovered-email.jpg)
+
+![csp-student-browser-retest.jpg](screenshots/csp-student-browser-retest.jpg)
+
+![lighthouse-docker-student-360.webp](screenshots/lighthouse-docker-student-360.webp)
+
