@@ -1,7 +1,7 @@
 # Branch coverage report
 
-Generated from actual execution at 2026-10-29T09:51:49.970079+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T10:02:13.264597+00:00. Database: SQLite.
 
-Branches covered: **163/168 (97.02%)**. Target: 70%.
+Branches covered: **165/170 (97.06%)**. Target: 70%.
 
 Branches are measured by coverage.py with branch measurement enabled. Each observed control-flow destination counts as a branch. Source: `coverage.xml`.

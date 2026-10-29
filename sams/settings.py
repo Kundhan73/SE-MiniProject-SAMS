@@ -49,7 +49,12 @@ TEMPLATES = [
     }
 ]
 WSGI_APPLICATION = "sams.wsgi.application"
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.getenv("SQLITE_PATH", BASE_DIR / "db.sqlite3"),
+    }
+}
 if os.getenv("POSTGRES_HOST"):
     DATABASES["default"] = {
         "ENGINE": "django.db.backends.postgresql",

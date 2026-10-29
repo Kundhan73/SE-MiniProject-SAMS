@@ -448,3 +448,16 @@ def test_raw_sql_cannot_change_audit(world, statement):
         with connection.cursor() as cursor:
             cursor.execute(statement)
     assert AuditLog.objects.count() == 1
+
+
+def test_ST_SEC_02_production_password_hash_is_salted(users, settings):
+    settings.PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
+    from django.contrib.auth.hashers import make_password, check_password
+
+    first = make_password("StrongPassword@987")
+    second = make_password("StrongPassword@987")
+    assert (
+        first.startswith("pbkdf2_sha256$")
+        and first != second
+        and check_password("StrongPassword@987", first)
+    )

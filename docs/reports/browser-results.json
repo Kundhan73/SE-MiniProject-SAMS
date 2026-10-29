@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Faculty login and role dashboard",
+    "Faculty submits real class roll with P/A/OD controls",
+    "Student sees own percentages",
+    "Student creates correction request",
+    "Faculty approval persists and notifies student",
+    "Faculty downloads PDF and CSV reports",
+    "Admin sees immutable correction history",
+    "360px mobile layout has no page overflow"
+  ],
+  "count": 8,
+  "javascript_errors": [],
+  "passed": true
+}

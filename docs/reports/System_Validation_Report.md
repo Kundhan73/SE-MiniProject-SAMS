@@ -1,8 +1,19 @@
 # System validation report
 
-Generated from actual execution at 2026-10-29T09:51:49.970079+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T10:02:13.264597+00:00. Database: SQLite.
 
-Browser execution evidence is supplied separately by the Browser workflows CI job. This local report does not assert that browser tests ran.
+Chromium browser workflow results:
+
+- Faculty login and role dashboard
+- Faculty submits real class roll with P/A/OD controls
+- Student sees own percentages
+- Student creates correction request
+- Faculty approval persists and notifies student
+- Faculty downloads PDF and CSV reports
+- Admin sees immutable correction history
+- 360px mobile layout has no page overflow
+
+JavaScript errors: 0.
 
 Automated backend validation covers authentication, idle expiry, logout, reset, roles, ownership, marking, duplicate prevention, corrections, timetable validation, reporting, notification retries and append-only audit storage.
 

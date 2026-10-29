@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-10-29T09:51:49.970079+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-29T10:02:13.264597+00:00. Database: SQLite.
 
-Executed: 130 automated test instances. Failed/error: 0.
+Executed: 133 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -46,6 +46,9 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_health_redis_outage | PASS |
 | test_unknown_records_and_malformed_json | PASS |
 | test_roster_query_count_does_not_grow_per_student | PASS |
+| test_cookie_logout_revokes_tokens_too[/api/auth/logout/] | PASS |
+| test_cookie_logout_revokes_tokens_too[/logout/] | PASS |
+| test_submitted_roster_preserves_actual_marks_after_new_enrollment | PASS |
 | test_UT_AUTH_02_counter | PASS |
 | test_UT_AUTH_04_expired_lock | PASS |
 | test_UT_AUTH_05_invalid[-pass] | PASS |
