@@ -1,10 +1,22 @@
-## Change
+## Requirement and implementation — Developer: Kundhan73
 
-Describe the requirement and resulting behavior. Link the GitHub issue and original SAM Jira story.
+Link the requirement/issue, describe the resulting behavior and provide the exact tested commit.
 
-## Verification
+## Test execution — Tester: DarkTJ7
 
-- [ ] Automated checks pass
-- [ ] Manual flow checked for the affected role
-- [ ] Test cases / traceability updated
-- [ ] Another team member reviewed this PR
+- [ ] Relevant cases executed with actual results attached
+- [ ] Bugs reproduced, fixes retested and regression impact checked
+
+## Quality review — QA: planetai05
+
+- [ ] Requirement traceability and evidence checked
+- [ ] No unresolved critical/high defect blocks release
+- [ ] Documentation and release checklist reviewed
+- [ ] Actual peer review recorded before merge
+
+## Automated verification
+
+- [ ] Required CI checks pass
+- [ ] Test cases and traceability updated where needed
+
+Leave sign-offs pending until the responsible person performs them.

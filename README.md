@@ -67,28 +67,28 @@ Every PR runs linting, migration validation, SQLite and PostgreSQL tests, covera
 
 After a reviewed PR merges to `main` and main-branch CI succeeds, Delivery publishes `ghcr.io/kundhan73/se-miniproject-sams:sha-<commit>` and `:latest`. This is continuous delivery of a tested image. Deployment to a college VM needs a provisioned host/domain and remains an operator step. Jenkins and SonarQube configuration are also included for the submitted architecture; Jenkins requires an external server and SonarQube credentials.
 
-## Team and ownership
+## Team and roles
 
-| Member | SRN in submitted SRS/SAD | Responsibility |
-| --- | --- | --- |
-| Kundhan Vudutha | PES1UG24AM327 | Authentication, RBAC, administration, audit, CI/CD and security |
-| Tarun J | PES1UG24AM304 | Courses, timetable, enrollment and notifications |
-| Tejaswini S | PES1UG25AM815 | Attendance marking and corrections |
-| Anish | PES1UG24AM348 | Student view, reports, performance and accessibility |
+| Member | SRN | GitHub | Project role | Responsibility |
+| --- | --- | --- | --- | --- |
+| Kundhan Vudutha | PES1UG24AM327 | Kundhan73 | Developer | All application modules, bug fixes, migrations, CI/CD and deployment configuration |
+| Tarun J | PES1UG24AM304 | DarkTJ7 | Tester | Test design/execution, defect reports and retesting, browser/security/performance checks |
+| Anish | PES1UG24AM348 | planetai05 | QA | Requirements and coverage review, traceability, evidence review, PR quality and release readiness |
 
-The old README listed Anish's SRN as AM343; the submitted SRS/SAD consistently use AM348. Verify the source documents with the team before the final submission if that is incorrect.
+Implementation stories are assigned to the Developer. Separate testing tasks belong to the Tester; QA and release-review tasks belong to QA. These project responsibilities are separate from the application's Student/Faculty/Admin access roles. GitHub is the current assignment system; Jira is retained as a reference backlog.
 
 ## Assignment and tracking
 
 The teacher's required windows are Sprint 1: **19–23 October**, Sprint 2: **26–30 October**, and testing/optional Sprint 3: **2–6 November 2026**. The older Jira board used different two-week windows. [GitHub issues](https://github.com/Kundhan73/SE-MiniProject-SAMS/issues) and [milestones](https://github.com/Kundhan73/SE-MiniProject-SAMS/milestones) hold the recovery backlog, points and verified assignees. Tracking created on 29 October does not represent historical work during the earlier sprint.
 
-The teacher requires a linked GitHub Project. Setup is reproducible with `python scripts/sync_github_backlog.py --project` after `gh auth refresh -s project`. The current login lacks that permission. Tejaswini and Anish also need verified GitHub collaborator accounts before their issues can be assigned to them.
+The [linked GitHub Project](https://github.com/users/Kundhan73/projects/1) contains the backlog, story points, assignees, project roles and teacher-aligned sprint fields. Use `python scripts/sync_github_backlog.py --project` to synchronize it from `docs/backlog.json`. See [team responsibilities](docs/TEAM_ROLES.md) for testing and QA handoffs.
+
 
 ## Documents
 
-- Original submissions: [SRS](docs/SAMS_SRS.pdf), [architecture and design](docs/SAMS_SAD.pdf), [test plan](docs/SAMS_Test_Plan.pdf)
+- Project specifications: [SRS](docs/SAMS_SRS.pdf), [architecture and design](docs/SAMS_SAD.pdf), [test plan](docs/SAMS_Test_Plan.pdf)
 - Current implementation: [API](docs/API.md), [design deviations](docs/DEVIATIONS.md), [test-plan addendum](docs/TEST_PLAN_ADDENDUM.md), [traceability matrix](docs/TRACEABILITY.md)
 - Submission status: [delivery checklist](docs/SUBMISSION_CHECKLIST.md), [demo guide](docs/DEMO_GUIDE.md)
 - Actual execution evidence: [reports](docs/reports), [Actions](https://github.com/Kundhan73/SE-MiniProject-SAMS/actions)
 
-Original PDFs remain the submitted baseline. Addenda describe the actual implementation and remaining validation; they do not imply teacher approval or UAT sign-off.
+The current PDFs include the revised three-member team allocation. Technical requirements remain the baseline; addenda describe implementation and remaining validation. Review and UAT signatures are pending actual approval.

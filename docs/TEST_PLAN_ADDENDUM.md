@@ -1,12 +1,12 @@
 # Test Plan addendum · 29 October 2026
 
-This document updates the submitted IEEE-style STP without overwriting the original PDF. Scope and requirement IDs remain those of the original SRS. The teacher's Part 3 testing window is **2–6 November 2026**; development and preparation checks are being executed earlier.
+This document updates the submitted IEEE-style STP alongside the revised PDF. Scope and requirement IDs remain those of the original SRS. The teacher's Part 3 testing window is **2–6 November 2026**; development and preparation checks are being executed earlier.
 
 ## Test items, features and exclusions
 
 Test items are the accounts, courses, attendance, reports, notifications, audit and core/API modules plus the three role dashboards. Functional, error, authorization, boundary and regression scenarios are implemented in `tests/test_domain.py`, `tests/test_api.py` and `tests/test_workflows.py`.
 
-External ERP, biometric hardware, fees and grading remain excluded. Semester uptime, academic-year retention and human UAT cannot be demonstrated by an instantaneous automated run. The original 89 designed case IDs remain the baseline: automated test names reference relevant IDs; parametrized executions increase the execution count but are not represented as 89 original cases all individually signed off.
+External ERP, biometric hardware, fees and grading remain excluded. Semester uptime, academic-year retention and human UAT cannot be demonstrated by an instantaneous automated run. The baseline 89 designed case IDs remain the baseline: automated test names reference relevant IDs; parametrized executions increase the execution count but are not represented as 89 original cases all individually signed off.
 
 ## Approach and environment
 
@@ -53,3 +53,7 @@ Browser checks use real Chromium login, marking, student correction, faculty app
 Run commands in the README. `scripts/test_reports.py` writes the four requested reports under `docs/reports/`; raw evidence is retained alongside them. CI uploads separate database reports and browser evidence. Consult each artifact's timestamp and commit rather than assuming an earlier report covers newer changes.
 
 Before freeze: all mandatory automated checks pass, no unresolved critical/high bugs, peer review completed, every FR traced, and remaining external checks either executed or explicitly waived by faculty. The actual CI target-scale load evidence is in `docs/reports/performance.json` (PostgreSQL; 2,000 students, 100 faculty; 20 concurrent users). Staging capacity confirmation, UAT, complete accessibility, ZAP/TLS and semester uptime remain **pending until actually performed**. No human approval is inferred from an automated pass.
+
+## Current test responsibilities
+
+Kundhan (Developer) implements features and fixes and provides automated regression tests with code changes. Tarun (Tester) owns independent execution of UC-01 through UC-09 plus security, accessibility and performance scenarios, records actual results and retests fixes. Anish (QA) reviews the plan, checks requirement-to-evidence coverage, audits reports and assesses release readiness. Test execution, QA review and faculty UAT are separate sign-offs; none is inferred from assigning a task.

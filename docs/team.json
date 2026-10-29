@@ -1,0 +1,9 @@
+{
+  "updated_on": "2026-10-29",
+  "assignment_system": "GitHub",
+  "members": [
+    {"name":"Kundhan Vudutha","srn":"PES1UG24AM327","github":"Kundhan73","role":"Developer","responsibility":"Implement and fix all application modules, database changes, CI/CD and deployment configuration."},
+    {"name":"Tarun J","srn":"PES1UG24AM304","github":"DarkTJ7","role":"Tester","responsibility":"Design and execute unit, integration, browser, security, accessibility and performance tests; report and retest defects."},
+    {"name":"Anish","srn":"PES1UG24AM348","github":"planetai05","role":"QA","responsibility":"Review requirements and test coverage, maintain traceability, audit evidence, review PRs and assess release readiness."}
+  ]
+}
