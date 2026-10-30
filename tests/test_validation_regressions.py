@@ -59,3 +59,10 @@ def test_system_report_labels_separately_supplied_evidence(monkeypatch, tmp_path
     assert "Browser execution timestamp: unavailable" in report
     assert "2026-10-28T10:00:00+00:00" in report
     assert "Source commit: unavailable" in report
+
+
+@pytest.mark.django_db
+def test_swagger_initialization_is_served_as_an_external_script(client):
+    response = client.get("/api/docs/?script=")
+    assert response.status_code == 200
+    assert response["Content-Type"].startswith("application/javascript")
