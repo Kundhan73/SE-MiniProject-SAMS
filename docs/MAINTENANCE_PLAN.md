@@ -118,7 +118,7 @@ A failed restore or schema check must stop recovery. Use the image/source releas
 - Application images are built deterministically and tagged with Git commit SHAs: `ghcr.io/kundhan73/se-miniproject-sams:sha-<commit>`.
 - **Application rollback with downtime:** The base Compose file builds locally and does not read `IMAGE_TAG`. Select a reviewed published image with an explicit override for every application service, including the migration job:
   ```bash
-  export SAMS_IMAGE=ghcr.io/kundhan73/se-miniproject-sams:sha-<previous-commit>
+  export SAMS_IMAGE="ghcr.io/kundhan73/se-miniproject-sams:sha-<previous-commit>"
   cat > /tmp/sams-image-override.yml <<'YAML'
   services:
     migrate:
