@@ -34,8 +34,6 @@ jobs:
           PY
           docker compose -p sams-ux up --build -d nginx mailpit
           docker compose -p sams-ux exec -T web python manage.py seed_demo --full
-          # Audit instrumentation served from the allowed same-origin static location in CI only.
-          docker compose -p sams-ux cp validation-ux/node_modules/axe-core/axe.min.js web:/app/staticfiles/axe-audit.js
       - name: Execute four core screens across browsers, mobile widths and Lighthouse snapshots
         working-directory: validation-ux
         env:

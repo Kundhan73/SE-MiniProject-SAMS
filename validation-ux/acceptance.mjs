@@ -3,6 +3,9 @@ import {chromium, firefox, webkit} from 'playwright';
 import puppeteer from 'puppeteer-core';
 import {snapshot, generateReport} from 'lighthouse';
 import fs from 'node:fs/promises';
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
+const axeSource = await fs.readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
 const url = 'http://localhost:8000';
 const dest = new URL('./results/', import.meta.url);
 await fs.mkdir(dest, {recursive:true});
@@ -61,7 +64,7 @@ for(const spec of [
       const geometry=await page.evaluate(()=>({viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,
         horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,
         controls:[...document.querySelectorAll('input:not([type=hidden]),select,textarea,button,a')].filter(el=>el.getClientRects().length).length}));
-      await page.addScriptTag({url:url+'/static/axe-audit.js'});
+      await page.addScriptTag({content:axeSource});
       const axe=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
       await write(name+'-axe.json',axe);
       await write(name+'-keyboard.json',keyboard);
