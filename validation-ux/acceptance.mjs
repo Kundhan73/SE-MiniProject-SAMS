@@ -64,7 +64,8 @@ for(const spec of [
       const geometry=await page.evaluate(()=>({viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,
         horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,
         controls:[...document.querySelectorAll('input:not([type=hidden]),select,textarea,button,a')].filter(el=>el.getClientRects().length).length}));
-      await page.addScriptTag({content:axeSource});
+      // Automation injects the audit engine without weakening the application's CSP.
+      await page.evaluate(axeSource);
       const axe=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
       await write(name+'-axe.json',axe);
       await write(name+'-keyboard.json',keyboard);
