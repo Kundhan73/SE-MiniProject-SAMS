@@ -13,8 +13,10 @@ Usage:
 import argparse
 from datetime import datetime, timezone, timedelta
 import json
+import os
 from pathlib import Path
 import sys
+import tempfile
 import time
 import urllib.request
 import urllib.error
@@ -73,8 +75,20 @@ def probe_health(endpoint: str = DEFAULT_ENDPOINT, timeout: float = 3.0) -> dict
             status_code = resp.status
             elapsed_ms = round((time.perf_counter() - start) * 1000, 2)
             response_body = resp.read().decode("utf-8", errors="replace")
-            if status_code == 200:
-                is_up = True
+            if resp.geturl().rstrip("/") != endpoint.rstrip("/"):
+                error_message = "Health endpoint redirected; use its canonical URL."
+            else:
+                try:
+                    payload = json.loads(response_body)
+                except ValueError:
+                    payload = None
+                is_up = (
+                    status_code == 200
+                    and isinstance(payload, dict)
+                    and payload.get("status") == "ok"
+                )
+                if not is_up:
+                    error_message = "Unexpected health response; expected HTTP 200 with status ok."
     except urllib.error.HTTPError as e:
         status_code = e.code
         elapsed_ms = round((time.perf_counter() - start) * 1000, 2)
@@ -106,14 +120,25 @@ def record_probe(probe_data: dict, log_path: Path):
     log_path.parent.mkdir(parents=True, exist_ok=True)
     records = []
     if log_path.exists():
-        try:
-            records = json.loads(log_path.read_text(encoding="utf-8"))
-            if not isinstance(records, list):
-                records = []
-        except Exception:
-            records = []
+        records = json.loads(log_path.read_text(encoding="utf-8"))
+        if not isinstance(records, list):
+            raise ValueError("Monitoring history must be a JSON list; original file preserved.")
     records.append(probe_data)
-    log_path.write_text(json.dumps(records, indent=2), encoding="utf-8")
+    # One monitor process owns each log. Replace atomically so interruption cannot
+    # leave a truncated history that is mistaken for an empty observation period.
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=log_path.parent, delete=False
+        ) as output:
+            temporary = Path(output.name)
+            json.dump(records, output, indent=2)
+            output.flush()
+            os.fsync(output.fileno())
+        os.replace(temporary, log_path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def calculate_uptime_summary(records: list) -> dict:
@@ -126,8 +151,8 @@ def calculate_uptime_summary(records: list) -> dict:
     down_probes = [r for r in working_hour_probes if not r.get("is_up")]
 
     total_wh = len(working_hour_probes)
-    uptime_pct = round((len(up_probes) / total_wh) * 100, 2) if total_wh > 0 else 100.0
-    sla_met = uptime_pct >= TARGET_SLA_PERCENT
+    uptime_pct = round((len(up_probes) / total_wh) * 100, 2) if total_wh > 0 else None
+    sla_met = uptime_pct >= TARGET_SLA_PERCENT if uptime_pct is not None else None
 
     latencies = [r["latency_ms"] for r in up_probes if "latency_ms" in r]
     avg_latency = round(sum(latencies) / len(latencies), 2) if latencies else 0.0
@@ -141,6 +166,7 @@ def calculate_uptime_summary(records: list) -> dict:
         "target_sla_percent": TARGET_SLA_PERCENT,
         "sla_met": sla_met,
         "average_latency_ms": avg_latency,
+        "scope": "Recorded working-hour probes only; unobserved intervals and semester availability are not established.",
     }
 
 
@@ -148,13 +174,20 @@ def main():
     parser = argparse.ArgumentParser(description="SAMS Uptime Monitor")
     parser.add_argument("--host", default="http://127.0.0.1:8000", help="Base URL of SAMS")
     parser.add_argument("--endpoint", default="/api/health/", help="Health endpoint path")
-    parser.add_argument("--check-once", action="store_true", help="Perform single probe check")
-    parser.add_argument("--summary", action="store_true", help="Print summary from log file")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check-once", action="store_true", help="Perform single probe check")
+    mode.add_argument("--summary", action="store_true", help="Print summary from log file")
+    mode.add_argument(
+        "--daemon", action="store_true", help="Probe repeatedly and record every result"
+    )
+    parser.add_argument("--interval", type=float, default=60, help="Seconds between daemon probes")
     parser.add_argument(
         "--log-file", type=Path, default=DEFAULT_LOG_PATH, help="Path to JSON probe log"
     )
     parser.add_argument("--record", action="store_true", help="Record probe in log file")
     args = parser.parse_args()
+    if args.interval <= 0:
+        parser.error("--interval must be positive")
 
     full_url = args.host.rstrip("/") + "/" + args.endpoint.lstrip("/")
 
@@ -167,17 +200,23 @@ def main():
         print(json.dumps(summary, indent=2))
         return
 
-    probe = probe_health(full_url)
-    print(
-        f"Probe Result: [{probe['status_code']}] {'UP' if probe['is_up'] else 'DOWN'} "
-        f"({probe['latency_ms']} ms) | Working Hours: {probe['in_working_hours']} | Maintenance: {probe['in_maintenance']}"
-    )
-    if probe["error"]:
-        print(f"Error: {probe['error']}")
-
-    if args.record:
-        record_probe(probe, args.log_file)
-        print(f"Recorded probe to {args.log_file}")
+    try:
+        while True:
+            probe = probe_health(full_url)
+            print(
+                f"Probe Result: [{probe['status_code']}] {'UP' if probe['is_up'] else 'DOWN'} "
+                f"({probe['latency_ms']} ms) | Working Hours: {probe['in_working_hours']} | Maintenance: {probe['in_maintenance']}"
+            )
+            if probe["error"]:
+                print(f"Error: {probe['error']}")
+            if args.record or args.daemon:
+                record_probe(probe, args.log_file)
+                print(f"Recorded probe to {args.log_file}")
+            if not args.daemon:
+                return
+            time.sleep(args.interval)
+    except KeyboardInterrupt:
+        print("Monitor stopped; recorded history retained.")
 
 
 if __name__ == "__main__":

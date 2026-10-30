@@ -90,7 +90,8 @@ The [linked GitHub Project](https://github.com/users/Kundhan73/projects/1) conta
 
 - Project specifications: [SRS](docs/SAMS_SRS.pdf), [architecture and design](docs/SAMS_SAD.pdf), [test plan](docs/SAMS_Test_Plan.pdf)
 - Current implementation: [API](docs/API.md), [design deviations](docs/DEVIATIONS.md), [test-plan addendum](docs/TEST_PLAN_ADDENDUM.md), [traceability matrix](docs/TRACEABILITY.md)
-- Submission status: [delivery checklist](docs/SUBMISSION_CHECKLIST.md), [demo guide](docs/DEMO_GUIDE.md), [maintenance plan](docs/MAINTENANCE_PLAN.md)
+- Submission status: [release status](docs/RELEASE_STATUS.md), [delivery checklist](docs/SUBMISSION_CHECKLIST.md), [final report](docs/FINAL_PROJECT_REPORT.md), [15-minute presentation outline](docs/DEMO_PRESENTATION.md), [demo guide](docs/DEMO_GUIDE.md), [maintenance plan](docs/MAINTENANCE_PLAN.md)
 - Actual execution evidence: [reports](docs/reports), [Actions](https://github.com/Kundhan73/SE-MiniProject-SAMS/actions)
+- Tester evidence: [29 October](docs/testing/tarun-2026-10-29/README.md), [30 October](docs/testing/tarun-2026-10-30/README.md). Each records its own source commit and limitations.
 
 The current PDFs include the revised three-member team allocation. Technical requirements remain the baseline; addenda describe implementation and remaining validation. Review and UAT signatures are pending actual approval.

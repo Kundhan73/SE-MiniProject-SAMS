@@ -32,3 +32,14 @@
 - [ ] Preserve semester uptime and academic-year retention evidence over time.
 
 Unchecked items are not represented as completed merely because configuration or a test script exists. See current Actions run and timestamps in reports for executed evidence.
+
+## 30 October integration review
+
+- [x] Combine QA PR #48, application/browser fixes PR #50 and archived validation/tooling PR #53, preserving their history and evidence.
+- [x] Correct the final report/demo claims and monitoring false-positive/history/CLI issues found during integration review.
+- [x] Strengthen browser acceptance to reject failed API/application screens and include a mocked-500 negative control.
+- [ ] Obtain Tarun's actual personal conclusion and Anish's review of the final integrated commit; earlier approval at 05ce028 does not cover these additions.
+- [ ] Resolve or obtain an explicit faculty assessment of the supplied 300-user latency miss; distinguish ramp-inclusive aggregate from sustained-only latency.
+- [ ] Complete public staging/external email and required human/device checks, or record the evaluator's explicit scope decision.
+
+See [release status](RELEASE_STATUS.md) for the current handoff and [final report](FINAL_PROJECT_REPORT.md) for evidence scope. The 2–6 November testing window remains future work as of this review date.

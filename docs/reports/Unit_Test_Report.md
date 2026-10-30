@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-10-30T15:38:57.099981+00:00. Database: SQLite.
+Generated from actual execution at 2026-10-30T17:05:12.912476+00:00. Database: SQLite.
 
-Executed: 144 automated test instances. Failed/error: 0.
+Executed: 154 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -141,10 +141,19 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_raw_sql_cannot_change_audit[DELETE FROM audit_auditlog] | PASS |
 | test_ST_SEC_02_production_password_hash_is_salted | PASS |
 | test_admin_user_query_filter_and_corrections_unfiltered | PASS |
+| test_swagger_initialization_is_served_as_an_external_script | PASS |
 | test_IT_AUTH_01_login | PASS |
 | test_UT_AUTH_03_lockout | PASS |
 | test_IT_AUTH_02_student_cannot_admin | PASS |
 | test_anonymous_health_only | PASS |
+| test_no_working_hour_observations_cannot_pass_sla[records0] | PASS |
+| test_no_working_hour_observations_cannot_pass_sla[records1] | PASS |
+| test_probe_checks_health_contract_and_final_url[{"status":"ok"}-http://127.0.0.1:8000/api/health/-True] | PASS |
+| test_probe_checks_health_contract_and_final_url[{"status":"unavailable"}-http://127.0.0.1:8000/api/health/-False] | PASS |
+| test_probe_checks_health_contract_and_final_url[<html>Sign in</html>-http://127.0.0.1:8000/api/health/-False] | PASS |
+| test_probe_checks_health_contract_and_final_url[{"status":"ok"}-http://127.0.0.1:8000/login/-False] | PASS |
+| test_corrupt_monitoring_history_is_not_overwritten | PASS |
+| test_daemon_records_repeated_probes_and_stops_cleanly | PASS |
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[None-No classes] | PASS |
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[100.0-100.0%] | PASS |
 | test_system_report_labels_separately_supplied_evidence | PASS |
@@ -152,3 +161,4 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_signout_without_active_session_redirects | PASS |
 | test_uptime_working_hours_and_maintenance_window | PASS |
 | test_uptime_summary_calculation_and_recording | PASS |
+| test_swagger_resources_are_local_and_do_not_require_inline_style | PASS |

@@ -13,3 +13,5 @@ media/
 docker/certs/
 
 docs/demos/raw/
+# macOS directory metadata
+.DS_Store

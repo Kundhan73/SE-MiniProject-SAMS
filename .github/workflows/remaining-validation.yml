@@ -1,5 +1,11 @@
 name: Remaining acceptance validation
 on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: 'Optional exact application commit; empty tests this workflow commit'
+        required: false
+        default: ''
   push:
     branches: [codex/sams-remaining-validation]
     paths: ['validation/**', '.github/workflows/remaining-validation.yml']
@@ -14,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
-      SAMS_SOURCE_SHA: 05ce0282959ab2084b553bcd1e43aa312961d21c
+      SAMS_SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
         with:

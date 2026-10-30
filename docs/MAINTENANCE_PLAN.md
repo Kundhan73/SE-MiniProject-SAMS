@@ -151,7 +151,7 @@ A failed restore or schema check must stop recovery. Use the image/source releas
   - Cache/Broker connectivity: Issues `.ping()` to Redis when Celery is not in eager mode.
 - **Responses:**
   - HTTP `200 OK`: `{"status": "ok"}`
-  - HTTP `503 Service Unavailable`: `{"status": "unavailable"}` for a caught Redis failure. A database exception is handled by the global API error handler; treat every non-200 response and timeout as an outage rather than assuming the same response body.
+  - HTTP `503 Service Unavailable`: `{"status": "unavailable"}` for a caught database or Redis failure. Treat every non-200 response, invalid health response and timeout as an outage.
 
 ### 5.2 Working-Hours Uptime Monitoring (Issue #36 / SAMS-NF-002)
 - **Schedule:** 8:00 AM – 6:00 PM IST, Monday through Saturday.
@@ -185,3 +185,7 @@ A failed restore or schema check must stop recovery. Use the image/source releas
 - [ ] Configure an external monitor and retain actual uptime/alert evidence; backend health tests alone do not prove monitoring is installed.
 - [x] Maintenance window policy defined to preserve SAMS-NF-002 SLA boundaries.
 - [x] Operational roles delineated across Developer, Tester, QA, and SysAdmin.
+
+## Probe utility
+
+Run one monitor process from an external supervisor: `python scripts/monitor_uptime.py --host https://<staging-host> --daemon --interval 60 --log-file /protected/path/sams-probes.json`. Use the canonical HTTPS host. The daemon records every result and stops cleanly on interruption; corrupt history fails visibly rather than being overwritten. `--summary --log-file /protected/path/sams-probes.json` reports recorded working-hour samples; an empty observation window is unmeasured, not 100% uptime. Alert delivery and accounting for missing probe intervals require the external monitoring service.
