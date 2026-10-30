@@ -18,7 +18,11 @@ const screens=[
   {name:'admin-reports', user:'ADM001', view:'reports'},
 ];
 async function ready(page){
-  if (!page.url().includes('/login/')) await page.locator('#content[aria-busy="false"]').waitFor({timeout:90000});
+  if (!page.url().includes('/login/')) {
+    await page.locator('#content[aria-busy="false"]').waitFor({timeout:90000});
+    // Inspect the settled UI rather than a partially transparent fade-in frame.
+    await page.locator('#content').evaluate(async el=>await Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));
+  }
 }
 async function signIn(page,user){
   await page.goto(url+'/login/');
@@ -64,6 +68,16 @@ for(const spec of [
       const geometry=await page.evaluate(()=>({viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,
         horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,
         controls:[...document.querySelectorAll('input:not([type=hidden]),select,textarea,button,a')].filter(el=>el.getClientRects().length).length}));
+      const scrollChecks=[];
+      for(const region of await page.locator('.table-wrap').all()){
+        const dimensions=await region.evaluate(el=>({client:el.clientWidth,scroll:el.scrollWidth}));
+        if(dimensions.scroll>dimensions.client+1){
+          await region.focus();
+          await page.keyboard.press('ArrowRight');
+          await page.waitForFunction(()=>document.activeElement?.scrollLeft>0);
+          scrollChecks.push(await region.evaluate(el=>({focused:document.activeElement===el,scrollLeft:el.scrollLeft,label:el.getAttribute('aria-label')})));
+        }
+      }
       // Automation injects the audit engine without weakening the application's CSP.
       await page.evaluate(axeSource);
       const axe=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
@@ -72,7 +86,7 @@ for(const spec of [
       await write(name+'-semantics.yml',await page.locator('body').ariaSnapshot());
       await page.screenshot({path:new URL(name+'.png',dest).pathname,fullPage:false});
       const failures=axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}));
-      const result={name,browser:browser.version(),title,geometry,keyboard_navigation:screen.view==='overview'?'Login keyboard flow only':screen.view?'Tab then Enter to requested view':'Login name/role snapshot',violations:failures,js_errors:errors,
+      const result={name,browser:browser.version(),title,geometry,scrollChecks,keyboard_navigation:screen.view==='overview'?'Login keyboard flow only':screen.view?'Tab then Enter to requested view':'Login name/role snapshot',violations:failures,js_errors:errors,
         result:!geometry.horizontalOverflow&&!failures.length&&!errors.length?'PASS':'FAIL'};
       cases.push(result);
     }catch(error){cases.push({name,browser:browser.version(),result:'ERROR',error:error.message});}
