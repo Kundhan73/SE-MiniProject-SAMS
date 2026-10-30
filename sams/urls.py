@@ -1,5 +1,5 @@
 from django.urls import path
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerSplitView
 from core import api, web
 
 urlpatterns = [
@@ -34,5 +34,9 @@ urlpatterns = [
     path("api/notifications/<int:notification_id>/read/", api.notification_read),
     path("api/admin/email-failures/", api.email_failures),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerSplitView.as_view(url_name="schema", template_name="api/swagger.html"),
+        name="docs",
+    ),
 ]

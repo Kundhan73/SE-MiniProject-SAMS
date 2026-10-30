@@ -96,6 +96,19 @@ for(const spec of [
   await browser.close();
 }
 const chrome=await puppeteer.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+{
+  const context=await chrome.createBrowserContext();
+  const page=await context.newPage();
+  const errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(url+'/api/docs/');
+  await page.waitForSelector('.swagger-ui .opblock',{timeout:90000});
+  const operations=await page.$$eval('.swagger-ui .opblock',rows=>rows.length);
+  await page.screenshot({path:new URL('api-docs-strict-csp.png',dest).pathname});
+  await write('api-docs-strict-csp.json',{operations,js_errors:errors,result:operations>0&&!errors.length?'PASS':'FAIL'});
+  if(!operations||errors.length) process.exitCode=1;
+  await context.close();
+}
 const lighthouse=[];
 for(const screen of screens){
   const context=await chrome.createBrowserContext();

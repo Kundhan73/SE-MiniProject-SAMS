@@ -66,3 +66,13 @@ def test_swagger_initialization_is_served_as_an_external_script(client):
     response = client.get("/api/docs/?script=")
     assert response.status_code == 200
     assert response["Content-Type"].startswith("application/javascript")
+
+
+def test_swagger_resources_are_local_and_do_not_require_inline_style(client):
+    response = client.get("/api/docs/")
+    html = response.content.decode()
+    assert response.status_code == 200
+    assert "/static/drf_spectacular_sidecar/swagger-ui-dist/swagger-ui-bundle.js" in html
+    assert '<script src="/api/docs/?script="></script>' in html
+    assert "<style>" not in html
+    assert "cdn.jsdelivr.net" not in html
