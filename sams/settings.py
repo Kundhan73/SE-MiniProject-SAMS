@@ -124,7 +124,12 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
-SPECTACULAR_SETTINGS = {"TITLE": "SAMS API", "VERSION": "1.0.0", "SERVE_INCLUDE_SCHEMA": False}
+SPECTACULAR_SETTINGS = {
+    "TITLE": "SAMS API",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {"deepLinking": True, "validatorUrl": None},
+}
 REST_FRAMEWORK["URL_FORMAT_OVERRIDE"] = None
 INSTALLED_APPS += ["core"]
 LOGIN_URL = "/login/"
