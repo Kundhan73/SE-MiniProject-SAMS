@@ -1,0 +1,9 @@
+{
+  "students": 2000,
+  "faculty": 100,
+  "courses": 20,
+  "sections": 20,
+  "slots": 20,
+  "attendance_records": 12000,
+  "data": "Synthetic, isolated local SQLite seed. This checks data volume, not concurrent production throughput."
+}

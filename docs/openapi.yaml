@@ -1,0 +1,3558 @@
+openapi: 3.0.3
+info:
+  title: SAMS API
+  version: 1.0.0
+paths:
+  /api/admin/config/:
+    get:
+      operationId: admin_config_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - config
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    patch:
+      operationId: admin_config_partial_update
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - config
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                threshold:
+                  type: number
+              required:
+              - threshold
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/courses/:
+    get:
+      operationId: admin_courses_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - course
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    post:
+      operationId: admin_courses_create
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - course
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                title:
+                  type: string
+              required:
+              - code
+              - title
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/email-failures/:
+    get:
+      operationId: admin_email_failures_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - email
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/sections/:
+    get:
+      operationId: admin_sections_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - sections
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    post:
+      operationId: admin_sections_create
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - sections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                course_id:
+                  type: integer
+                faculty_id:
+                  type: integer
+                name:
+                  type: string
+              required:
+              - course_id
+              - faculty_id
+              - name
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/sections/{section_id}/enroll/:
+    post:
+      operationId: admin_sections_enroll_create
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: section_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - enroll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                csv:
+                  type: string
+              required:
+              - csv
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/timetable/:
+    get:
+      operationId: admin_timetable_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - timetable
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    post:
+      operationId: admin_timetable_create
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - timetable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: integer
+                weekday:
+                  type: integer
+                start:
+                  type: string
+                end:
+                  type: string
+              required:
+              - section_id
+              - weekday
+              - start
+              - end
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/users/:
+    get:
+      operationId: admin_users_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - users
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    post:
+      operationId: admin_users_create
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                institute_id:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                  enum:
+                  - STUDENT
+                  - FACULTY
+                  - ADMIN
+              required:
+              - institute_id
+              - name
+              - email
+              - password
+              - role
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/admin/users/{user_id}/:
+    patch:
+      operationId: admin_users_partial_update
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  enum:
+                  - STUDENT
+                  - FACULTY
+                  - ADMIN
+                is_active:
+                  type: boolean
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/audit/:
+    get:
+      operationId: audit_retrieve
+      description: 'Allowed roles: ADMIN. Errors use the standard error envelope.'
+      tags:
+      - audit
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      description: 'Allowed roles: Public. Errors use the standard error envelope.'
+      tags:
+      - login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                institute_id:
+                  type: string
+                password:
+                  type: string
+              required:
+              - institute_id
+              - password
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      tags:
+      - logout
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/auth/password-reset/:
+    post:
+      operationId: auth_password_reset_create
+      description: 'Allowed roles: Public. Errors use the standard error envelope.'
+      tags:
+      - password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+              required:
+              - email
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/auth/password-reset/confirm/:
+    post:
+      operationId: auth_password_reset_confirm_create
+      description: 'Allowed roles: Public. Errors use the standard error envelope.'
+      tags:
+      - password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                new_password:
+                  type: string
+              required:
+              - token
+              - new_password
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/auth/refresh/:
+    post:
+      operationId: auth_refresh_create
+      description: 'Allowed roles: Public. Errors use the standard error envelope.'
+      tags:
+      - refresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh:
+                  type: string
+              required:
+              - refresh
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/corrections/:
+    get:
+      operationId: corrections_retrieve
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      tags:
+      - corrections
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+    post:
+      operationId: corrections_create
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      tags:
+      - corrections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                record_id:
+                  type: integer
+                requested_status:
+                  type: string
+                  enum:
+                  - P
+                  - A
+                  - OD
+                reason:
+                  type: string
+              required:
+              - record_id
+              - requested_status
+              - reason
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/corrections/{request_id}/:
+    patch:
+      operationId: corrections_partial_update
+      description: 'Allowed roles: FACULTY. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: request_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - correction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  enum:
+                  - APPROVE
+                  - REJECT
+                note:
+                  type: string
+              required:
+              - decision
+              - note
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/health/:
+    get:
+      operationId: health_retrieve
+      description: 'Allowed roles: Public. Errors use the standard error envelope.'
+      tags:
+      - health
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/me/:
+    get:
+      operationId: me_retrieve
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      tags:
+      - me
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/notifications/:
+    get:
+      operationId: notifications_retrieve
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      tags:
+      - notifications
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/notifications/{notification_id}/read/:
+    post:
+      operationId: notifications_read_create
+      description: 'Allowed roles: Any authenticated role. Errors use the standard
+        error envelope.'
+      parameters:
+      - in: path
+        name: notification_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - notification
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/records/{record_id}/:
+    patch:
+      operationId: records_partial_update
+      description: 'Allowed roles: FACULTY, ADMIN. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: record_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - P
+                  - A
+                  - OD
+                reason:
+                  type: string
+              required:
+              - status
+              - reason
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/reports/{kind}/:
+    get:
+      operationId: reports_retrieve
+      description: 'Allowed roles: FACULTY, ADMIN. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: kind
+        schema:
+          type: string
+        required: true
+      tags:
+      - report
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/sessions/{session_id}/attendance/:
+    post:
+      operationId: sessions_attendance_create
+      description: 'Allowed roles: FACULTY. Errors use the standard error envelope.'
+      parameters:
+      - in: path
+        name: session_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - submit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                records:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      student_id:
+                        type: integer
+                      status:
+                        type: string
+                        enum:
+                        - P
+                        - A
+                        - OD
+                    required:
+                    - student_id
+                    - status
+              required:
+              - records
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/sessions/today/:
+    get:
+      operationId: sessions_today_retrieve
+      description: 'Allowed roles: FACULTY. Errors use the standard error envelope.'
+      tags:
+      - today
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/students/me/attendance/:
+    get:
+      operationId: students_me_attendance_retrieve
+      description: 'Allowed roles: STUDENT. Errors use the standard error envelope.'
+      tags:
+      - student
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+  /api/students/me/records/:
+    get:
+      operationId: students_me_records_retrieve
+      description: 'Allowed roles: STUDENT. Errors use the standard error envelope.'
+      tags:
+      - student
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Successful response; see docs/API.md for the resource shape.
+        '201':
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: object
+                    required:
+                    - code
+                    - message
+                    - details
+                required:
+                - error
+          description: ''
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

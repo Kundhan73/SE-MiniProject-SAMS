@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-10-29T10:06:59.709333+00:00",
+  "dataset_students": 2000,
+  "dataset_faculty": 100,
+  "concurrent_users": 20,
+  "duration_seconds": 40,
+  "requests": 393,
+  "failures": 0,
+  "p95_ms": 1400.0,
+  "passed": true,
+  "scope": "GitHub-hosted runner, PostgreSQL, 20 concurrent faculty sessions and reports; not a semester uptime or production capacity guarantee."
+}

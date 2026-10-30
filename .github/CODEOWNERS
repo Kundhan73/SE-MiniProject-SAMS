@@ -1,0 +1,6 @@
+# QA reviews all changes. Test-related changes also involve the Tester.
+* @planetai05
+/tests/ @DarkTJ7 @planetai05
+/scripts/browser_smoke.py @DarkTJ7 @planetai05
+/scripts/locustfile.py @DarkTJ7 @planetai05
+/scripts/check_performance.py @DarkTJ7 @planetai05

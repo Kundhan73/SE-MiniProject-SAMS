@@ -1,0 +1,51 @@
+name: Browser and accessibility acceptance
+on:
+  push:
+    branches: [main, implementation/sams-ci-delivery, codex/admin-select-labels]
+    paths: ['validation-ux/**', 'static/**', 'templates/**', 'docker/**', 'sams/**', 'core/**', 'docker-compose*.yml', '.github/workflows/accessibility-validation.yml']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install pinned audit tools and browser engines
+        working-directory: validation-ux
+        run: |
+          npm install --ignore-scripts
+          npx playwright install --with-deps chrome msedge firefox webkit
+      - name: Start isolated synthetic application
+        run: |
+          cp .env.example .env
+          python - <<'PY'
+          import pathlib,secrets
+          p=pathlib.Path('.env')
+          s=p.read_text()
+          import re
+          for key in ['DJANGO_SECRET_KEY','POSTGRES_PASSWORD']:
+              s=re.sub(r'^'+key+r'=.*$',key+'='+secrets.token_urlsafe(40),s,flags=re.M)
+          p.write_text(s)
+          PY
+          docker compose -p sams-ux up --build -d nginx mailpit
+          docker compose -p sams-ux exec -T web python manage.py seed_demo --full
+      - name: Execute four core screens across browsers, mobile widths and Lighthouse snapshots
+        working-directory: validation-ux
+        env:
+          AUDIT_SOURCE_COMMIT: ${{ github.sha }}
+        run: node acceptance.mjs
+      - name: Retain redacted evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-accessibility-acceptance
+          path: validation-ux/results/
+      - name: Retain application logs
+        if: always()
+        run: docker compose -p sams-ux logs --no-color --tail 80

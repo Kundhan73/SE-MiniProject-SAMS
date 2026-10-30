@@ -1,0 +1,99 @@
+name: Remaining acceptance validation
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: 'Optional exact application commit; empty tests this workflow commit'
+        required: false
+        default: ''
+  push:
+    branches: [codex/sams-remaining-validation]
+    paths: ['validation/**', '.github/workflows/remaining-validation.yml']
+permissions:
+  contents: read
+concurrency:
+  group: remaining-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  performance:
+    name: ST_PERF 100 users 10 min and 300-user scale
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      SAMS_SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: tooling
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SAMS_SOURCE_SHA }}
+          path: app
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Record and configure the target budget
+        shell: bash
+        run: |
+          mkdir -p evidence
+          chmod 777 evidence
+          test "$(nproc)" -ge 4
+          python - <<'PY'
+          import json,os,secrets,pathlib,platform
+          p=pathlib.Path('app/.env')
+          values={k:v for k,v in (line.split('=',1) for line in pathlib.Path('app/.env.example').read_text().splitlines() if '=' in line)}
+          values['DJANGO_SECRET_KEY']=secrets.token_urlsafe(64)
+          values['POSTGRES_PASSWORD']=secrets.token_urlsafe(32)
+          p.write_text('\n'.join(k+'='+v for k,v in values.items())+'\n')
+          pathlib.Path('evidence/environment.json').write_text(json.dumps({'source_commit':os.environ['SAMS_SOURCE_SHA'],'os':platform.platform(),'host_cpus':os.cpu_count(),'sut_cpus':'0,1','load_client_cpus':'2,3','sut_memory_budget':'<=4GiB; separate container caps','source_branch':'implementation/sams-ci-delivery','scope':'Ephemeral isolated Linux validation environment, no public endpoint or external mailbox'},indent=2))
+          PY
+          git -C app rev-parse HEAD > evidence/source-commit.txt
+          git -C tooling rev-parse HEAD > evidence/harness-commit.txt
+      - name: Build, start and seed the isolated app
+        working-directory: app
+        shell: bash
+        run: |
+          docker compose -p sams-acceptance -f docker-compose.yml -f ../tooling/validation/compose-budget.yml up --build -d nginx
+          docker compose -p sams-acceptance exec -T web python manage.py seed_demo --full
+          docker cp ../tooling/validation/prepare_performance_fixture.py sams-acceptance-web-1:/tmp/fixture.py
+          docker exec sams-acceptance-web-1 python /tmp/fixture.py > ../evidence/dataset.json
+          docker pull locustio/locust:2.47.0
+          for service in web db redis nginx; do docker inspect "sams-acceptance-$service-1" --format '{{json .HostConfig.CpusetCpus}} {{json .HostConfig.Memory}}'; done > ../evidence/container-budget.txt
+      - name: Run 100 concurrent users for at least 600 seconds
+        id: normal
+        continue-on-error: true
+        shell: bash
+        run: |
+          docker stats --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1 > evidence/perf100-resources.jsonl &
+          monitor=$!
+          trap 'kill "$monitor" 2>/dev/null || true' EXIT
+          docker run --name perf100-client --cpuset-cpus 2,3 --memory 768m --network container:sams-acceptance-nginx-1 -e VALIDATION_PROFILE=perf100 -e VALIDATION_SECONDS=600 -v "$PWD/tooling/validation:/mnt/locust:ro" -v "$PWD/evidence:/evidence" locustio/locust:2.47.0 -f /mnt/locust/acceptance_locust.py --headless --host http://127.0.0.1:80 -u 100 -r 0.5 --csv /evidence/perf100 --html /evidence/perf100.html --only-summary > evidence/perf100.log 2>&1
+          python tooling/validation/summarize_load.py evidence perf100 --users 100 --seconds 600 --require-marking
+      - name: Run the 300-user scale profile
+        id: scale
+        continue-on-error: true
+        shell: bash
+        run: |
+          docker stats --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1 > evidence/perf300-resources.jsonl &
+          monitor=$!
+          trap 'kill "$monitor" 2>/dev/null || true' EXIT
+          docker run --name perf300-client --cpuset-cpus 2,3 --memory 768m --network container:sams-acceptance-nginx-1 -e VALIDATION_PROFILE=perf300 -e VALIDATION_SECONDS=120 -v "$PWD/tooling/validation:/mnt/locust:ro" -v "$PWD/evidence:/evidence" locustio/locust:2.47.0 -f /mnt/locust/acceptance_locust.py --headless --host http://127.0.0.1:80 -u 300 -r 0.5 --csv /evidence/perf300 --html /evidence/perf300.html --only-summary > evidence/perf300.log 2>&1
+          python tooling/validation/summarize_load.py evidence perf300 --users 300 --seconds 120
+      - name: Retain actual logs and results
+        if: always()
+        shell: bash
+        run: |
+          docker logs sams-acceptance-web-1 > evidence/server.log 2>&1 || true
+          docker logs perf100-client > evidence/perf100-container.log 2>&1 || true
+          docker logs perf300-client > evidence/perf300-container.log 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: remaining-performance-acceptance
+          path: evidence/
+      - name: Acceptance gate
+        if: always()
+        env:
+          NORMAL: ${{ steps.normal.outcome }}
+          SCALE: ${{ steps.scale.outcome }}
+        run: test "$NORMAL" = success && test "$SCALE" = success

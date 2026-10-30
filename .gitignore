@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
+db.sqlite3
+.env
+staticfiles/
+media/
+*.log
+docker/certs/
+
+docs/demos/raw/
+# macOS directory metadata
+.DS_Store
