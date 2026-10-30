@@ -1,0 +1,25 @@
+services:
+  db:
+    cpuset: '0,1'
+    mem_limit: 1g
+  redis:
+    cpuset: '0,1'
+    mem_limit: 128m
+  web:
+    cpuset: '0,1'
+    mem_limit: 2g
+  nginx:
+    cpuset: '0,1'
+    mem_limit: 128m
+    ports: !override ['127.0.0.1:8003:80']
+  worker:
+    cpuset: '0,1'
+    mem_limit: 512m
+    command: celery -A sams worker --loglevel=info --concurrency=2
+  beat:
+    cpuset: '0,1'
+    mem_limit: 64m
+  mailpit:
+    cpuset: '0,1'
+    mem_limit: 128m
+    ports: !override ['127.0.0.1:8026:8025']
