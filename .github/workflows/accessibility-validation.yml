@@ -1,8 +1,9 @@
 name: Browser and accessibility acceptance
 on:
   push:
-    branches: [codex/admin-select-labels]
-    paths: ['validation-ux/**', '.github/workflows/accessibility-validation.yml']
+    branches: [main, implementation/sams-ci-delivery, codex/admin-select-labels]
+    paths: ['validation-ux/**', 'static/**', 'templates/**', 'docker/**', 'sams/**', 'core/**', 'docker-compose*.yml', '.github/workflows/accessibility-validation.yml']
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read

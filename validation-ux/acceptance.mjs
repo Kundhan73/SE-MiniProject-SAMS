@@ -16,13 +16,18 @@ const screens=[
   {name:'student-attendance', user:'STU001', view:'overview'},
   {name:'faculty-roster', user:'FAC001', view:'attendance'},
   {name:'admin-reports', user:'ADM001', view:'reports'},
+  {name:'admin-setup', user:'ADM001', view:'setup'},
+  {name:'admin-people', user:'ADM001', view:'users'},
 ];
 async function ready(page){
   if (!page.url().includes('/login/')) {
     await page.locator('#content[aria-busy="false"]').waitFor({timeout:90000});
-    // Inspect the settled UI rather than a partially transparent fade-in frame.
-    await page.locator('#content').evaluate(async el=>await Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));
+    // Audit the settled UI, after its entrance animation has finished.
+    await page.locator('#content').evaluate(el => Promise.all(
+      el.getAnimations({subtree:true}).map(animation => animation.finished.catch(()=>{}))));
   }
+  await page.waitForLoadState('networkidle');
+  await page.evaluate(() => document.fonts.ready);
 }
 async function signIn(page,user){
   await page.goto(url+'/login/');
@@ -62,6 +67,24 @@ for(const spec of [
       if(screen.user) await signIn(page,screen.user); else await page.goto(url+'/login/');
       const keyboard=screen.view ? await keyboardView(page,screen.view) : [];
       await ready(page);
+      if(screen.view==='setup'){
+        const controls=page.locator('#slot-form select[name="section_id"], #enroll-form select[name="section_id"]');
+        if(await controls.count()!==2 || !await controls.evaluateAll(els=>new Set(els.map(e=>e.id)).size===2 && els.every(e=>e.labels.length===1))) throw Error('Section controls need unique IDs and labels');
+        await page.locator('#enroll-form textarea').fill('institute_id\nSTU001');
+        await page.locator('#enroll-form button').click();
+        await page.locator('#notice').filter({hasText:'enrolled.'}).waitFor();
+        await ready(page);
+      }
+      if(screen.view==='users'){
+        const controls=page.locator('#user-form select[name="role"], #access-form select[name="role"]');
+        if(await controls.count()!==2 || !await controls.evaluateAll(els=>new Set(els.map(e=>e.id)).size===2 && els.every(e=>e.labels.length===1))) throw Error('Role controls need unique IDs and labels');
+        await page.locator('#access-form select[name="user_id"]').selectOption({label:'STU001'});
+        await page.locator('#access-form select[name="role"]').selectOption('STUDENT');
+        await page.locator('#access-form select[name="is_active"]').selectOption('true');
+        await page.locator('#access-form button').click();
+        await page.locator('#notice').filter({hasText:'Saved successfully.'}).waitFor();
+        await ready(page);
+      }
       const title=screen.user ? await page.locator('#page-title').textContent() : await page.title();
       if(screen.view==='attendance' && title!=='Take attendance') throw Error('Wrong roster view');
       if(screen.view==='reports' && title!=='Reports') throw Error('Wrong report view');
@@ -85,7 +108,7 @@ for(const spec of [
       await write(name+'-keyboard.json',keyboard);
       await write(name+'-semantics.yml',await page.locator('body').ariaSnapshot());
       await page.screenshot({path:new URL(name+'.png',dest).pathname,fullPage:false});
-      const failures=axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}));
+      const failures=axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}));
       const result={name,browser:browser.version(),title,geometry,scrollChecks,keyboard_navigation:screen.view==='overview'?'Login keyboard flow only':screen.view?'Tab then Enter to requested view':'Login name/role snapshot',violations:failures,js_errors:errors,
         result:!geometry.horizontalOverflow&&!failures.length&&!errors.length?'PASS':'FAIL'};
       cases.push(result);
@@ -95,6 +118,27 @@ for(const spec of [
   }
   await browser.close();
 }
+const docsBrowser=await chromium.launch({headless:true,channel:'chrome'});
+try {
+  const page=await docsBrowser.newPage();
+  const errors=[];
+  page.on('pageerror',err=>errors.push(err.message));
+  const response=await page.goto(url+'/api/docs/');
+  await page.locator('#swagger-ui .opblock').first().waitFor({timeout:60000});
+  const schema=await page.request.get(url+'/api/schema/',{headers:{Accept:'application/json'}});
+  const parsed=await schema.json();
+  const script=await page.request.get(url+'/api/docs/?script=');
+  const dashboard=await page.request.get(url+'/login/');
+  const policy=dashboard.headers()['content-security-policy']||'';
+  if(response.status()!==200 || !parsed.paths?.['/api/health/'] ||
+      !script.headers()['content-type']?.startsWith('application/javascript') ||
+      !policy.includes("script-src 'self';") || policy.includes('unsafe-inline') ||
+      !response.headers()['x-content-type-options'] || errors.length) throw Error('Swagger/schema/CSP regression: '+JSON.stringify(errors));
+  cases.push({name:'api-docs-through-nginx',result:'PASS',operations:await page.locator('#swagger-ui .opblock').count()});
+  await page.screenshot({path:new URL('api-docs.png',dest).pathname,fullPage:false});
+} catch(error) { cases.push({name:'api-docs-through-nginx',result:'ERROR',error:error.message}); }
+finally { await docsBrowser.close(); }
+await write('browser-cases.json',{commit_tested:process.env.AUDIT_SOURCE_COMMIT,executed_at_utc:new Date().toISOString(),execution:'Automated isolated CI; no physical-device or human screen-reader claim',cases});
 const chrome=await puppeteer.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
 {
   const context=await chrome.createBrowserContext();
