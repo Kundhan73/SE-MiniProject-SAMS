@@ -1,6 +1,6 @@
 # SAMS Product Maintenance Plan
 
-**Document Version:** 1.0  
+**Document Version:** 1.1 (developer review corrections, 30 October 2026)  
 **Effective Date:** 29 October 2026  
 **Accountable QA Owner:** Anish (`planetai05`), QA Engineer  
 **Related Backlog Issue:** [#32](https://github.com/Kundhan73/SE-MiniProject-SAMS/issues/32) (SAM-45)  
@@ -23,29 +23,37 @@ The Student Attendance Management System (SAMS) provides automated attendance ma
 
 ### 2.1 Backup Methodology and Tooling
 - **Primary Database Engine:** PostgreSQL 16 (in Docker or hosted staging/production).
-- **Tool:** Standard logical backup via `pg_dump` with gzip compression.
+- **Tool:** PostgreSQL custom-format logical archive via `pg_dump -Fc` (built-in archive compression). The commands below are procedures to rehearse; no automated backup job is installed by this document.
 - **Backup Command:**
   ```bash
-  docker compose exec -T db sh -c 'pg_dump -U "$POSTGRES_USER" --clean --if-exists --format=c "$POSTGRES_DB"' > /var/backups/sams/sams_backup_$(date +%Y%m%d_%H%M%S).dump
+  # Run from the deployment checkout. Set an existing protected host directory.
+  set -eu
+  backup_dir="${SAMS_BACKUP_DIR:?Set SAMS_BACKUP_DIR outside the repository}"
+  backup_name="sams_backup_$(date -u +%Y%m%d_%H%M%S).dump"
+  umask 077
+  docker compose exec -T db sh -c 'pg_dump -U "$POSTGRES_USER" --format=c "$POSTGRES_DB"' > "$backup_dir/$backup_name.partial"
+  test -s "$backup_dir/$backup_name.partial"
+  mv "$backup_dir/$backup_name.partial" "$backup_dir/$backup_name"
+  (cd "$backup_dir" && shasum -a 256 "$backup_name" > "$backup_name.sha256")
   ```
 - **Scope:** Complete database schema, user accounts, timetables, course sections, attendance records, correction history, and append-only audit tables (`audit_auditlog`).
 
 ### 2.2 Schedule and Automation
-- **Frequency:** Automated daily backups executed at 02:00 AM IST (off-peak hours) via system cron or container scheduler.
+- **Required frequency:** Daily at 02:00 AM IST via an operator-configured scheduler. Installation, timezone, successful execution logs, failed-backup alerts and encryption/offsite transfer must be verified on the selected host. This repository does not yet provide that scheduled service.
 - **Pre-Migration Backups:** A mandatory ad-hoc backup must be created immediately prior to executing any Django database migration (`python manage.py migrate`).
 
 ### 2.3 Storage and Encryption
 - **Location:** Backups are stored in an isolated, access-controlled directory outside the application directory. Under no circumstances are backup files committed to Git.
-- **Encryption:** Backup dumps are encrypted at rest using AES-256 before transfer to secure offsite secondary storage.
+- **Encryption requirement:** Configure encrypted storage and authenticated offsite transfer before institutional use. The command above creates an unencrypted logical archive; it does not implement encryption or offsite copying.
 - **Retention Schedule:**
   - Daily backups: Retained for 14 days.
   - Weekly snapshots (Sunday 02:00 IST): Retained for 8 weeks.
   - Monthly snapshots (1st of month): Retained for 12 months (1 full academic year) per SAMS-NF-004.
 
 ### 2.4 Integrity Verification
-- **Automated Restore Testing:** Every Sunday at 04:00 AM IST, the latest backup is restored into an ephemeral test container. Automated sanity scripts verify:
+- **Required restore rehearsal:** Schedule an isolated restore test every Sunday at 04:00 AM IST after the operator implements it. No automated restore job is installed or verified by this PR. Record the archive checksum, matching source-release SHA and source snapshot counts, then verify:
   1. Successful database restoration without errors.
-  2. Table row counts match source database.
+  2. Table row counts match counts captured at the backup snapshot (a later live database may legitimately differ).
   3. Append-only triggers are active on `audit_auditlog`.
   4. Migration status is cleanly reported by `python manage.py showmigrations`.
 
@@ -60,26 +68,32 @@ The Student Attendance Management System (SAMS) provides automated attendance ma
 ### 3.2 Step-by-Step Restoration Procedure
 1. **Isolate and Stop Application:**
    ```bash
-   docker compose stop web worker beat
+   docker compose stop nginx web worker beat
    ```
 2. **Verify Backup File Integrity:**
    ```bash
-   # Verify archive checksum
-   sha256sum -c /var/backups/sams/sams_backup_<timestamp>.dump.sha256
+   backup_dir="${SAMS_BACKUP_DIR:?Set the protected host backup directory}"
+   backup_name="sams_backup_<timestamp>.dump"  # Select a known-good archive.
+   (cd "$backup_dir" && shasum -a 256 -c "$backup_name.sha256")
    ```
 3. **Restore Database:**
    ```bash
-   docker compose exec -T db pg_restore -U "$POSTGRES_USER" -d "$POSTGRES_DB" --clean --if-exists /var/backups/sams/sams_backup_<timestamp>.dump
+   # Destructive: rehearse on an isolated database first.
+   # The archive stays on the host; credentials expand inside the db container.
+   docker compose up -d db redis
+   docker compose exec -T db sh -c 'pg_restore --exit-on-error --clean --if-exists --no-owner -U "$POSTGRES_USER" -d "$POSTGRES_DB"' < "$backup_dir/$backup_name"
    ```
-4. **Validate Schema & Apply Pending Migrations:**
+4. **Validate the matching release schema:**
    ```bash
-   docker compose run --rm web python manage.py migrate --check
+   docker compose run --rm --no-deps web python manage.py migrate --check
    ```
 5. **Restart Services & Smoke Test:**
    ```bash
-   docker compose start web worker beat
+   docker compose up -d web worker beat nginx
    curl --fail http://localhost:8000/api/health/
    ```
+
+A failed restore or schema check must stop recovery. Use the image/source release matching the backup; do not automatically run forward migrations before deciding schema compatibility. Record a full restore rehearsal before relying on the stated RTO/RPO.
 
 ### 3.3 Rehearsals
 - Disaster recovery procedures must be rehearsed once per semester in a staging environment to validate runbooks and verify team readiness.
@@ -102,13 +116,29 @@ The Student Attendance Management System (SAMS) provides automated attendance ma
 
 ### 4.3 Container-Based Deployment and Rollback
 - Application images are built deterministically and tagged with Git commit SHAs: `ghcr.io/kundhan73/se-miniproject-sams:sha-<commit>`.
-- **Zero-Downtime Rollback:**
-  If a newly deployed image exhibits unforeseen runtime defects, rollback to the previous known good commit tag is instantaneous:
+- **Application rollback with downtime:** The base Compose file builds locally and does not read `IMAGE_TAG`. Select a reviewed published image with an explicit override for every application service, including the migration job:
   ```bash
-  export IMAGE_TAG=sha-<previous-commit>
-  docker compose up -d web worker beat
+  export SAMS_IMAGE=ghcr.io/kundhan73/se-miniproject-sams:sha-<previous-commit>
+  cat > /tmp/sams-image-override.yml <<'YAML'
+  services:
+    migrate:
+      image: ${SAMS_IMAGE:?Set SAMS_IMAGE to a reviewed SHA tag}
+    web:
+      image: ${SAMS_IMAGE:?Set SAMS_IMAGE to a reviewed SHA tag}
+    worker:
+      image: ${SAMS_IMAGE:?Set SAMS_IMAGE to a reviewed SHA tag}
+    beat:
+      image: ${SAMS_IMAGE:?Set SAMS_IMAGE to a reviewed SHA tag}
+  YAML
+  docker compose -f docker-compose.yml -f /tmp/sams-image-override.yml config --images
+  docker compose -f docker-compose.yml -f /tmp/sams-image-override.yml pull migrate web worker beat
+  docker compose stop nginx web worker beat
+  docker compose -f docker-compose.yml -f /tmp/sams-image-override.yml run --rm --no-deps web python manage.py migrate --check
+  docker compose -f docker-compose.yml -f /tmp/sams-image-override.yml up -d --no-build --force-recreate migrate web worker beat nginx
+  curl --fail http://localhost:8000/api/health/
   ```
-- If backward-incompatible database migrations were applied, the database must be restored from the pre-migration backup before pointing to the earlier container image.
+- The checks must succeed before continuing. Rehearse the override on staging and record the actual container image IDs, health and all three role flows. Include the TLS overlay in every Compose command when that deployment uses it.
+- If migrations are incompatible with the previous release, stop and follow the approved database recovery procedure with a pre-migration backup. Application image rollback alone cannot undo schema/data changes. This runbook does not establish zero downtime or a successful rollback rehearsal.
 
 ---
 
@@ -121,13 +151,13 @@ The Student Attendance Management System (SAMS) provides automated attendance ma
   - Cache/Broker connectivity: Issues `.ping()` to Redis when Celery is not in eager mode.
 - **Responses:**
   - HTTP `200 OK`: `{"status": "ok"}`
-  - HTTP `503 Service Unavailable`: `{"status": "unavailable"}` when Redis or DB is unreachable.
+  - HTTP `503 Service Unavailable`: `{"status": "unavailable"}` for a caught Redis failure. A database exception is handled by the global API error handler; treat every non-200 response and timeout as an outage rather than assuming the same response body.
 
 ### 5.2 Working-Hours Uptime Monitoring (Issue #36 / SAMS-NF-002)
 - **Schedule:** 8:00 AM – 6:00 PM IST, Monday through Saturday.
 - **Probe Interval:** 60-second synthetic HTTP GET to `/api/health/`.
 - **Target SLA:** 99.0% uptime over the semester.
-- **Tracking Log:** Semester-long latency and status logs stored in monitoring service dashboard; monthly summary reports generated for compliance.
+- **Required tracking:** Provision an external monitor and retain working-hours latency/status logs, with monthly summaries. No semester-long availability result or externally configured monitor is established by this plan.
 
 ### 5.3 Asynchronous Task and Notification Alerting
 - Failed email deliveries are captured in the database with retry counters, timestamps, and exact exception details (`email_error` and `email_attempts`).
@@ -147,11 +177,11 @@ The Student Attendance Management System (SAMS) provides automated attendance ma
 
 ---
 
-## 7. Compliance Verification Checklist
+## 7. Operational Verification Still Required
 
-- [x] Automated database backup command verified and documented.
-- [x] Recovery runbook tested against local Docker environment.
-- [x] Rollback procedure documented using immutable container SHA tags.
-- [x] `/api/health/` monitoring configured and tested for DB and Redis outages.
+- [ ] Install and run the scheduled backup, checksum, encryption, retention and offsite-transfer jobs; attach logs.
+- [ ] Rehearse this corrected restore runbook on an isolated Docker database; attach schema/count/trigger checks and measured recovery time.
+- [ ] Rehearse the explicit SHA-image override, migration compatibility and post-rollback smoke checks.
+- [ ] Configure an external monitor and retain actual uptime/alert evidence; backend health tests alone do not prove monitoring is installed.
 - [x] Maintenance window policy defined to preserve SAMS-NF-002 SLA boundaries.
 - [x] Operational roles delineated across Developer, Tester, QA, and SysAdmin.
