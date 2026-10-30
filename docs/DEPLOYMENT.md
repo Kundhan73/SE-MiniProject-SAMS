@@ -45,3 +45,11 @@ Back up PostgreSQL daily to an access-controlled location: `docker compose exec 
 Audit rows have no update/delete API and database triggers reject update/delete even through raw SQL. Database owners retain administrative power; use separate migration/runtime roles and protect backup access in a deployed institution. Retain records for the current academic year and document any archival process. The project does not auto-purge audit data.
 
 Review dependency alerts weekly, rotate real secrets when needed, run migrations during announced maintenance, and re-run tests before releases. Measure semester uptime externally; a passing health endpoint does not establish 99% uptime.
+
+## Proxy security headers
+
+The HTTP and HTTPS proxies emit a CSP restricting scripts and API connections to the same origin. The existing Google Fonts stylesheet/font origins remain explicitly allowed. Attendance bars set numeric widths through the trusted external script rather than inline style attributes, so the policy requires neither unsafe-inline nor unsafe-eval. Nginx-served static files and proxied responses receive nosniff; the proxy hides its version and disables unused camera, microphone and geolocation capabilities.
+
+The CSRF cookie remains readable because the external JavaScript constructs X-CSRFToken from it. This is distinct from the HttpOnly authentication/session cookie. Cross-origin embedding isolation is not enabled merely to silence a scanner finding; assess it against actual integration needs. These headers and a local scan do not establish live public TLS validation.
+
+API documentation uses the pinned drf-spectacular-sidecar package for same-origin Swagger assets, SpectacularSwaggerSplitView for its external initializer, and an external stylesheet. The same strict CSP applies to documentation and application pages; neither a CDN script exception nor inline styles are required. The Swagger validator is disabled to keep schema requests on the same origin.
