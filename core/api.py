@@ -85,9 +85,12 @@ def user_data(user):
 
 @endpoint(["GET"], public=True)
 def health(request):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT 1")
-        cursor.fetchone()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+    except Exception:
+        return Response({"status": "unavailable"}, status=503)
     if not settings.CELERY_TASK_ALWAYS_EAGER:
         import redis
 

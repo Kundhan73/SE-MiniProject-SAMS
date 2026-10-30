@@ -98,3 +98,49 @@ def test_signout_without_active_session_redirects(client):
     res = client.post("/logout/")
     assert res.status_code == 302
     assert res.url == "/login/"
+
+
+def test_uptime_working_hours_and_maintenance_window():
+    from datetime import datetime
+    from scripts.monitor_uptime import is_working_hours, is_maintenance_window, IST
+
+    # Monday 10:00 AM IST -> working hours, not maintenance
+    mon_10am = datetime(2026, 11, 2, 10, 0, tzinfo=IST)
+    assert is_working_hours(mon_10am) is True
+    assert is_maintenance_window(mon_10am) is False
+
+    # Monday 07:30 AM IST -> outside working hours
+    mon_7am = datetime(2026, 11, 2, 7, 30, tzinfo=IST)
+    assert is_working_hours(mon_7am) is False
+
+    # Saturday 5:30 PM IST -> working hours
+    sat_evening = datetime(2026, 11, 7, 17, 30, tzinfo=IST)
+    assert is_working_hours(sat_evening) is True
+
+    # Sunday 03:00 AM IST -> maintenance window
+    sun_maint = datetime(2026, 11, 8, 3, 0, tzinfo=IST)
+    assert is_working_hours(sun_maint) is False
+    assert is_maintenance_window(sun_maint) is True
+
+
+def test_uptime_summary_calculation_and_recording(tmp_path):
+    from scripts.monitor_uptime import calculate_uptime_summary, record_probe
+
+    sample_records = [
+        {"in_working_hours": True, "in_maintenance": False, "is_up": True, "latency_ms": 42.0},
+        {"in_working_hours": True, "in_maintenance": False, "is_up": True, "latency_ms": 58.0},
+        {"in_working_hours": True, "in_maintenance": False, "is_up": False, "latency_ms": 100.0},
+        {"in_working_hours": False, "in_maintenance": True, "is_up": False, "latency_ms": 0.0},
+    ]
+    summary = calculate_uptime_summary(sample_records)
+    assert summary["total_probes"] == 4
+    assert summary["working_hour_probes"] == 3
+    assert summary["working_hour_up"] == 2
+    assert summary["working_hour_down"] == 1
+    assert summary["measured_uptime_percent"] == 66.67
+    assert summary["sla_met"] is False
+
+    # Test record_probe
+    log_file = tmp_path / "test_uptime.json"
+    record_probe(sample_records[0], log_file)
+    assert log_file.exists()

@@ -324,7 +324,18 @@ def test_health_redis_outage(client, settings):
     import redis
 
     with patch("redis.Redis.ping", side_effect=redis.RedisError):
-        assert client.get("/api/health/").status_code == 503
+        res = client.get("/api/health/")
+        assert res.status_code == 503
+        assert res.data == {"status": "unavailable"}
+
+
+def test_health_db_outage(client):
+    from django.db import OperationalError
+
+    with patch("django.db.connection.cursor", side_effect=OperationalError("Database down")):
+        res = client.get("/api/health/")
+        assert res.status_code == 503
+        assert res.data == {"status": "unavailable"}
 
 
 def test_unknown_records_and_malformed_json(client, world):

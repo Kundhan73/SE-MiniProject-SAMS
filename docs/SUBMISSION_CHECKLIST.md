@@ -24,6 +24,9 @@
 
 - [x] Regression cases updated for implemented behavior and discovered bugs.
 - [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports.
+- [x] Product Maintenance Plan (`docs/MAINTENANCE_PLAN.md`) and working-hours uptime monitoring utility (`scripts/monitor_uptime.py`).
+- [x] Final Academic Project Report in Jackfruit format (`docs/FINAL_PROJECT_REPORT.md`).
+- [x] 15-Minute Demo Presentation Deck & Delivery Guide (`docs/DEMO_PRESENTATION.md`).
 - [ ] Complete staging load, ZAP, Lighthouse, live TLS and UAT during 2–6 November (or record an explicit faculty waiver).
 - [ ] Record actual Jenkins/SonarQube results if the teacher requires those tools specifically, rather than GitHub Actions CI.
 - [ ] Preserve semester uptime and academic-year retention evidence over time.

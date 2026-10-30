@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-29T17:09:32.850185+00:00",
+  "generated_at": "2026-10-30T15:38:57.099981+00:00",
   "database": "SQLite",
-  "tests": 141,
+  "tests": 144,
   "failures": 0,
   "line_percent": 100.0,
   "branch_percent": 98.24
