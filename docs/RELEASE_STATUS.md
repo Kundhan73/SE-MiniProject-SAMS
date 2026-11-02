@@ -21,25 +21,25 @@ The project has entered the teacher testing and closeout sprint (2–6 November 
 ### 3. QA Monitoring Safeguards & Test Suite Expansion
 - Expanded `tests/test_monitor.py` suite covering HTTP error responses, network connection failures, non-list history rejections, CLI summary/check-once flags, and calendar boundary checks.
 - Monitor coverage is measured separately in `docs/reports/monitor-coverage.json`.
-- Integrated backend test suite verified: **166 passing tests** (0 failures, 0 errors), **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170).
+- Integrated backend test suite verified: **167 passing tests** (0 failures, 0 errors), **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170).
 
 ## Remaining external actions and dependencies
 
 | Owner | Remaining action |
 | --- | --- |
-| Tarun (DarkTJ7) | Personally review evidence and record scoped tester conclusion; confirm affected integration retests and required human/device observations. Assisted case execution alone is not his signature. |
+| Tarun (DarkTJ7) | Record remaining manual cross-testing/keyboard and actual iOS Safari/Android Chrome observations from the Test Plan. Automated execution is complete within its recorded scope. |
 | Owner (Kundhan73) | This revision combines merged PR #54, QA PR #55 and developer corrections through PR #56; check latest main CI/delivery. |
-| Owner / Faculty or IT | Supply a staging host/domain and external test email service if public TLS/internet delivery is required; otherwise obtain an explicit scope decision. |
+| Owner / Faculty or IT | A public host/domain and Internet mailbox are needed only for an actual public deployment. The submitted Test Plan permits self-signed staging certificates and captured test email. |
 | Team / Faculty | Complete live faculty demonstration (15 minutes), defense, and teacher UAT evaluation sign-off. |
-| Operator / QA | Install/rehearse backup, recovery, encrypted offsite retention, and collect genuine multi-month semester uptime logs over time. |
+| Operator / QA | For ongoing operation, install/rehearse backup, recovery and monitoring. Semester uptime is explicitly outside this test cycle (Test Plan section 4). Synthetic historical audit rows verify academic-year query/retention logic separately. |
 
 The owner requested a fresh one-time Jira reconciliation on 3 November. GitHub PRs, Actions and case registers supply the evidence; no continuous background sync is enabled. Board status follows reviewed evidence without inferring automated completion of real-world faculty sign-off.
 
 ## Developer closeout verification · 3 November
 
 - PR #54 merged at `b69f49c`; this revision includes QA PR #55 and developer corrections through PR #56.
-- Fresh integrated local suite: 166 passed, zero failures; 100% application statements and 98.24% branches.
+- Fresh integrated local suite: 167 passed, zero failures; 100% application statements and 98.24% branches.
 - Coverage XML now retains distinct repository-relative application modules, including same-named files. The regression failed before the correction and passes afterward.
 - The strict load gate rejects 3,000 ms, matching the under-three-second criterion; 2,999/3,000/3,001 ms boundaries are tested.
-- The actual Jenkins/Sonar run passed all stages, 166 tests and a measured 99.7% Sonar coverage condition against 80%. [Raw execution evidence](testing/jenkins-2026-11-03/README.md) identifies the tested source and preserved setup failures.
+- The recorded Jenkins/Sonar run passed all stages, 166 tests and a measured 99.7% Sonar coverage condition against 80%. [Raw execution evidence](testing/jenkins-2026-11-03/README.md) identifies the tested source and preserved setup failures.
 - Executed performance and functional test tasks #29/#37–#42 are closed with evidence. GitHub Project and Jira reflect these technical completions; remaining external/human/faculty observations remain open. Final main CI and Delivery are authoritative for the published revision.

@@ -62,6 +62,7 @@ curl -fsS -u "ci:$JENKINS_CI_PASSWORD" http://127.0.0.1:8081/job/sams/1/consoleT
 cp -R "$JENKINS_HOME/workspace/sams/docs/reports" evidence/jenkins/reports
 curl -sS -u "admin:$sonar_password" "$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=sams" > evidence/jenkins/quality-gate.json
 curl -sS -u "admin:$sonar_password" "$SONAR_HOST_URL/api/issues/search?componentKeys=sams&ps=500" > evidence/jenkins/sonar-issues.json
+curl -sS -u "admin:$sonar_password" "$SONAR_HOST_URL/api/hotspots/search?projectKey=sams&ps=500" > evidence/jenkins/sonar-hotspots.json
 docker image inspect sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840 sonarsource/sonar-scanner-cli@sha256:47956b669bf486bdad919e1cbd0533223515aa0b6d1d31763e5a3754942df6d7 --format '{{json .RepoDigests}}' > evidence/jenkins/image-digests.txt
 java -jar "$RUNNER_TEMP/jenkins.war" --version > evidence/jenkins/jenkins-version.txt
 find "$JENKINS_HOME/plugins" -maxdepth 1 -name '*.jpi' -printf '%f\n' > evidence/jenkins/plugins.txt

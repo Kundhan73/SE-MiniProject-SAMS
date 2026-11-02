@@ -18,18 +18,19 @@
 - [x] Owner merge of PR #1 executed after green checks (`c9e305f`) using the authorized administrator override; the earlier teammate review was dismissed.
 - [x] Actual working-product recordings: one-minute Sprint 1 retrospective and two-minute Sprint 2 demo in docs/demos. Recorded on 29 October, using synthetic data; silent browser demonstrations.
 - [x] Deviations from earlier SRS/SAD/STP documented.
-- [ ] Development freeze after review and required external validation or an explicit faculty scope decision.
+- [ ] Development freeze after final QA review and required manual/mobile checks.
 
 ## Part 3
 
 - [x] Regression cases updated for implemented behavior and discovered bugs.
-- [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports (166 tests passing, 100% statement coverage, 98.24% branch coverage).
+- [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports (167 tests passing, 100% statement coverage, 98.24% branch coverage).
 - [x] Product Maintenance Plan (`docs/MAINTENANCE_PLAN.md`) and working-hours uptime monitoring utility (`scripts/monitor_uptime.py`).
 - [x] Final Academic Project Report in Jackfruit format (`docs/FINAL_PROJECT_REPORT.md`).
 - [x] 15-minute presentation outline and delivery guide (`docs/DEMO_PRESENTATION.md`).
 - [ ] Complete live faculty demonstration, defense, and teacher UAT during 2–6 November evaluation.
-- [x] Real Jenkins/SonarQube execution and measured quality-gate evidence retained in `docs/testing/jenkins-2026-11-03/` (166 tests; Sonar coverage 99.7% against 80%).
-- [ ] Preserve semester uptime and academic-year retention evidence over time.
+- [x] Real Jenkins/SonarQube execution and measured quality-gate evidence retained in `docs/testing/jenkins-2026-11-03/` (recorded run: 166 tests; Sonar coverage 99.7% against 80%; latest suite: 167 tests).
+- [x] Academic-year audit query/retention behavior verified using dated synthetic rows (ST_OPS_01), without claiming a year has elapsed.
+- [ ] Operational follow-up: collect semester uptime after deployment; Test Plan section 4 excludes it from this cycle.
 
 Unchecked items are not represented as completed merely because configuration or a test script exists. See current Actions run and timestamps in reports for executed evidence.
 
@@ -39,7 +40,7 @@ Unchecked items are not represented as completed merely because configuration or
 - [x] PR #54 opened by DarkTJ7 addressing 300-user scale latency via Gunicorn `gthread` concurrency and PostgreSQL persistent connections (`CONN_MAX_AGE=60`), achieving p95 20 ms at 100 users and 60 ms at 300 users (0 errors).
 - [x] Independent QA Code Review & Architecture Verification of PR #54 conducted and APPROVED by Anish (@planetai05).
 - [x] QA monitoring test suite expanded in `tests/test_monitor.py` covering error conditions, network failures, non-list history and CLI modes (separate monitor coverage measurement retained).
-- [ ] Obtain Tarun's personal conclusion/signature under DarkTJ7.
-- [ ] Complete public staging/external email and required human/device checks, or record the evaluator's explicit scope decision.
+- [ ] Record required manual cross-testing/keyboard and actual iOS Safari/Android Chrome observations.
+- [x] Staging TLS and captured-email test scope executed; the submitted plan accepts self-signed staging certificates and MailHog-style capture (Mailpit deviation documented).
 
 See [release status](RELEASE_STATUS.md) for the current handoff and [final report](FINAL_PROJECT_REPORT.md) for evidence scope.

@@ -161,3 +161,38 @@ def test_swagger_resources_are_local_and_do_not_require_inline_style(client):
     assert '<script src="/api/docs/?script="></script>' in html
     assert "<style>" not in html
     assert "cdn.jsdelivr.net" not in html
+
+
+@pytest.mark.django_db
+def test_ST_OPS_01_academic_year_history_remains_queryable(client, world):
+    """Synthetic historical rows verify retention logic without claiming elapsed-year uptime."""
+    from datetime import date, datetime, time, timezone
+    from unittest.mock import patch
+
+    from attendance.models import AttendanceRecord, ClassSession
+    from audit.models import AuditLog
+    from notifications.tasks import nightly_scan
+
+    dates = [date(2026, 6, 1), date(2026, 9, 1), date(2026, 11, 1)]
+    for day in dates:
+        session = ClassSession.objects.create(
+            section=world["section"], slot=world["slot"], date=day, faculty=world["faculty"]
+        )
+        record = AttendanceRecord.objects.create(
+            session=session, student=world["student"], status="P"
+        )
+        with patch(
+            "django.utils.timezone.now",
+            return_value=datetime.combine(day, time(9, 30), tzinfo=timezone.utc),
+        ):
+            AuditLog.objects.create(
+                record=record, editor=world["faculty"], new="P", reason="Historical fixture"
+            )
+    nightly_scan()
+    client.force_authenticate(world["admin"])
+    response = client.get("/api/audit/?from=2026-06-01&to=2027-05-31")
+    assert response.status_code == 200
+    assert response.data["count"] == 3
+    assert {item["timestamp"][:10] for item in response.data["results"]} == {
+        day.isoformat() for day in dates
+    }

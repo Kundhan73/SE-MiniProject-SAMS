@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-11-02T18:58:27.673031+00:00. Database: SQLite.
+Generated from actual execution at 2026-11-02T19:11:22.363141+00:00. Database: SQLite.
 
-Executed: 166 automated test instances. Failed/error: 0.
+Executed: 167 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -142,6 +142,7 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_ST_SEC_02_production_password_hash_is_salted | PASS |
 | test_admin_user_query_filter_and_corrections_unfiltered | PASS |
 | test_swagger_initialization_is_served_as_an_external_script | PASS |
+| test_ST_OPS_01_academic_year_history_remains_queryable | PASS |
 | test_IT_AUTH_01_login | PASS |
 | test_UT_AUTH_03_lockout | PASS |
 | test_IT_AUTH_02_student_cannot_admin | PASS |

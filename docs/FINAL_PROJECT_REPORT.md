@@ -73,7 +73,7 @@ The current integrated execution counts and percentages are generated from actua
 - [Branch Coverage Report](reports/Branch_Coverage_Report.md)
 - Raw [JUnit](reports/junit.xml), [coverage XML](reports/coverage.xml) and [summary](reports/summary.json)
 
-Current test results: **166 passed**, 0 failures/errors, **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170). Monitoring coverage is measured separately; see `reports/monitor-coverage.json`.
+Current test results: **167 passed**, 0 failures/errors, **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170). Monitoring coverage is measured separately; see `reports/monitor-coverage.json`.
 
 ### Independent and assisted evidence
 
@@ -81,7 +81,7 @@ Current test results: **166 passed**, 0 failures/errors, **100.0% statement cove
 - [His 30 October report](testing/tarun-2026-10-30/README.md) and case register record 33 targeted authenticated HTTP checks, bounded ZAP scan, nine localhost TLS checks with an explicit private CA, and 49 browser/accessibility cases with six Lighthouse snapshots at 100.
 - [His 2 November report](testing/tarun-2026-11-02/README.md) records the full 2 November acceptance retest (60 functional, 33 security, 12 auth boundary, 49 browser cases) and the resolution of the 300-user performance bottleneck in PR #54.
 
-The supplied reports identify tool-assisted execution. Tarun's personal conclusion, Anish's QA reviews, and faculty UAT remain distinct. Physical-device and human assistive-technology checks are not established by browser emulation alone.
+The supplied reports identify tool-assisted execution. Tarun's personal conclusion, Anish's QA reviews, and faculty UAT remain distinct. Actual iOS Safari/Android Chrome observations and manual cross-testing remain distinct from emulated browser runs.
 
 ### Performance evidence and capacity resolution
 
@@ -131,8 +131,8 @@ The probe utility (`scripts/monitor_uptime.py`) supports repeated recording, sin
 
 ## Remaining acceptance and submission work
 
-- Provision a staging host/domain and test email service for public TLS/external delivery checks, or obtain an explicit faculty decision on unavailable resources.
-- Obtain Tarun's personal review and conclusion under DarkTJ7; complete human/device checks required by the course.
+- The submitted Test Plan accepts self-signed staging TLS and captured email. The recorded private-CA Docker/Mailpit checks cover that test scope; a public domain and external mailbox are production-deployment work, not additional assignment test blockers.
+- Complete and record the Test Plan's remaining manual cross-testing/keyboard checks and actual iOS Safari/Android Chrome observations; assisted automated results are already retained.
 - This revision includes QA/developer closeout PR #56; verify the latest main CI and delivery before presenting.
 - Rehearse backup/restore/rollback and collect real monitoring/retention evidence over the required time period.
 - Complete the 15-minute live demonstration, oral defense, and faculty evaluation sign-off.
