@@ -65,6 +65,8 @@ if os.getenv("POSTGRES_HOST"):
         "USER": os.getenv("POSTGRES_USER", "sams"),
         "PASSWORD": os.environ["POSTGRES_PASSWORD"],
         "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "CONN_MAX_AGE": int(os.getenv("POSTGRES_CONN_MAX_AGE", "60")),
+        "CONN_HEALTH_CHECKS": True,
     }
 AUTH_PASSWORD_VALIDATORS = [
     {
