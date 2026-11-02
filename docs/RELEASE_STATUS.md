@@ -1,6 +1,8 @@
-# Release status · 30 October 2026
+# Release status · 2 November 2026
 
-The integration branch combines QA PR #48, application/browser fixes PR #50 and validation/evidence PR #53. Original contributor history, archived failures and source commits are retained. The latest PR #1 head and its Actions runs identify the exact integrated version.
+PR #1 was merged into main at `c9e305f149970b3596ac7fd370c27f1c8e47f5ce` on 30 October, including QA PR #48, application/browser fixes PR #50 and validation/evidence PR #53. Main CI (41098273611), expanded browser acceptance (41098273791), and Delivery publication (41098586616) passed. This publication does not establish a remote deployment. Original contributor history, archived failures and source commits are retained.
+
+PR #54 contains Tarun's new acceptance retests and a proposed performance change. The [2 November evidence](testing/tarun-2026-11-02/README.md) records actual application/Actions merge commits, passes, failed measurements, environment limits and remaining handoff. New commits use DarkTJ7's identity without an assistant co-author. Tool-assisted execution remains distinct from Tarun's personal conclusion.
 
 ## Developer integration completed
 
@@ -17,8 +19,8 @@ The integration branch combines QA PR #48, application/browser fixes PR #50 and 
 | Owner | Remaining action |
 | --- | --- |
 | Tarun (DarkTJ7) | Personally review the evidence and record a scoped tester conclusion; confirm affected integration retests and required human/device observations. Assisted case execution alone is not his signature. |
-| Anish (planetai05) | Review the final integrated diff, evidence, revised submission documents and unresolved acceptance items. Submit an actual review on the latest PR #1 commit. The 05ce028 approval is historical. |
-| Developer / Tester / QA | Assess the recorded 300-user p95 3,100 ms miss, tune and rerun if required, or obtain a faculty decision. The documented passing normal profile does not erase this miss. |
+| Anish (planetai05) | Review PR #54's diff and dated evidence, revised submission documents and unresolved acceptance items. The old 05ce028 review is dismissed; the owner-directed PR #1 merge does not constitute a new teammate review. |
+| Developer / Tester / QA | Review the complete 2 November performance comparison and the proposed connection-reuse change in PR #54 before merging. The earlier 3,100 ms, merged-main 3,800 ms and threaded-repeat 6,800 ms scale failures remain recorded; the first threaded 2,900 ms pass alone is insufficient. |
 | Owner / Faculty or IT | Supply a staging host/domain and external test email service if public TLS/internet delivery is required; otherwise obtain an explicit scope decision. No shared public server or mailbox is currently configured. |
 | Team / Faculty | Complete faculty UAT and any required Jenkins/Sonar execution; confirm the evaluator's report format and rehearse the 15-minute demo. |
 | Operator / QA | Install/rehearse backup, recovery, encrypted offsite retention and external monitoring. Semester/year observations cannot be completed instantaneously. |
@@ -27,4 +29,4 @@ Jira synchronization remains paused at the owner's request. GitHub is the curren
 
 ## Merge and delivery
 
-Main retains its real peer-review requirement. Merge PR #1 only after the final review and required checks pass, then verify main CI and Delivery publication. A green PR pipeline is not an already-published release image or a remote deployment. Keep unresolved testing/operational tasks open; no faculty approval or teammate sign-off is inferred from this integration.
+Main retains its real peer-review requirement. PR #1 is already merged and published by Delivery; PR #54 still requires actual review and the required checks before merge. Recheck main CI and Delivery after any subsequent merge. Keep unresolved testing/operational tasks open; no faculty approval or teammate sign-off is inferred from integration, automated checks or an administrator merge.

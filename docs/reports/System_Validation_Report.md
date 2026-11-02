@@ -1,6 +1,6 @@
 # System validation report
 
-Report generated at 2026-10-30T17:05:12.912476+00:00. Current backend database: SQLite.
+Report generated at 2026-11-02T16:54:32.277602+00:00. Current backend database: SQLite.
 
 Current backend execution: 154 test instances, 0 failures/errors, 100.0% statement coverage and 98.24% branch coverage. Sources: `junit.xml` and `coverage.xml`. Report generation does not execute tests.
 
@@ -25,9 +25,9 @@ JavaScript errors: 0.
 
 This artifact was not rerun by this report command; it is not counted as current local execution.
 
-Performance execution timestamp: 2026-10-29T10:06:59.709333+00:00. Source commit: unavailable. Source file: `performance.json`.
+Performance execution timestamp: 2026-11-02T15:11:36.139498+00:00. Source commit: unavailable. Source file: `performance.json`.
 
-Reported load test: 2000 students, 100 faculty, 20 concurrent users, 393 requests, 0 failures, p95 1400.0 ms. Artifact scope: GitHub-hosted runner, PostgreSQL, 20 concurrent faculty sessions and reports; not a semester uptime or production capacity guarantee.. This is not a semester uptime or production-capacity guarantee.
+Reported load test: 2000 students, 100 faculty, 20 concurrent users, 421 requests, 0 failures, p95 330.0 ms. Artifact scope: GitHub-hosted runner, PostgreSQL, 20 concurrent faculty sessions and reports; not a semester uptime or production capacity guarantee.. This is not a semester uptime or production-capacity guarantee.
 
 Automated backend validation covers authentication, idle expiry, logout, reset, roles, ownership, marking, duplicate prevention, corrections, timetable validation, reporting, notification retries and append-only audit storage.
 

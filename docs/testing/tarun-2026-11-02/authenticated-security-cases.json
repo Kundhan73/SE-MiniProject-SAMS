@@ -1,0 +1,339 @@
+{
+  "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+  "executed_at_utc": "2026-11-02T15:21:36.795059+00:00",
+  "environment": "http://localhost:8003 isolated PostgreSQL synthetic fixture",
+  "execution": "Tool-assisted live HTTP; not a human tester signature",
+  "cases": [
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/config/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/admin/config/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/courses/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/courses/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/email-failures/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/sections/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/sections/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/sections/1/enroll/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/timetable/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/timetable/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/users/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/users/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/admin/users/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/audit/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/corrections/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/records/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/reports/summary/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/sessions/1/attendance/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/sessions/today/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-STUDENT-CORRECTION",
+      "expected": "Another student record cannot be corrected (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_OWN_RECORD"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-SUBMIT",
+      "expected": "Another faculty session cannot be marked (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-EDIT",
+      "expected": "Another faculty attendance record cannot be edited (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-LOGIN-1",
+      "expected": "Injection treated as invalid credentials, no server error (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-SEARCH-1",
+      "expected": "Literal escaped search returns no users (200)",
+      "actual": {
+        "http_status": 200,
+        "returned_rows": 0
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-LOGIN-2",
+      "expected": "Injection treated as invalid credentials, no server error (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-SEARCH-2",
+      "expected": "Literal escaped search returns no users (200)",
+      "actual": {
+        "http_status": 200,
+        "returned_rows": 0
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-MALFORMED-JSON",
+      "expected": "Malformed JSON returns validation error (400)",
+      "actual": {
+        "http_status": 400,
+        "error_code": "PARSE_ERROR"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-STORED-XSS-SETUP",
+      "expected": "Reason accepted as plain text; browser rendering checked separately (201)",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-DECISION",
+      "expected": "Another faculty correction cannot be decided (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-API-CREDENTIAL-LEAK",
+      "expected": "User responses contain no password/hash fields",
+      "actual": {
+        "http_status": 200,
+        "rows_checked": 2105,
+        "forbidden_fields_present": []
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-LOGOUT",
+      "expected": "Logout revokes current session (205)",
+      "actual": {
+        "http_status": 205
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-REVOKED-ACCESS",
+      "expected": "Access token from logged-out session rejected (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "AUTHENTICATION_FAILED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-REVOKED-REFRESH",
+      "expected": "Refresh token from logged-out session rejected (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "SESSION_EXPIRED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    }
+  ],
+  "passed": 33,
+  "failed": 0
+}
