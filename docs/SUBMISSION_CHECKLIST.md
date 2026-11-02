@@ -15,7 +15,7 @@
 - [x] Verified GitHub accounts assigned: Kundhan73, DarkTJ7 (Tarun J), planetai05 (Anish).
 - [x] Linked GitHub Project board with estimates, sprint fields, assignees and team-role fields.
 - [x] Current three-member team assigned by role: Developer Kundhan73, Tester DarkTJ7, QA planetai05.
-- [x] Actual review of PR #1 completed and owner merge executed after green checks (`c9e305f`).
+- [x] Owner merge of PR #1 executed after green checks (`c9e305f`) using the authorized administrator override; the earlier teammate review was dismissed.
 - [x] Actual working-product recordings: one-minute Sprint 1 retrospective and two-minute Sprint 2 demo in docs/demos. Recorded on 29 October, using synthetic data; silent browser demonstrations.
 - [x] Deviations from earlier SRS/SAD/STP documented.
 - [ ] Development freeze after review and required external validation or an explicit faculty scope decision.
@@ -36,7 +36,7 @@ Unchecked items are not represented as completed merely because configuration or
 ## 2 November testing sprint and review
 
 - [x] Owner merge of PR #1 into `main` verified (`c9e305f`), triggering GHCR release image publication.
-- [x] PR #54 opened by DarkTJ7 addressing 300-user scale latency via Gunicorn `gthread` concurrency and PostgreSQL connection pooling (`CONN_MAX_AGE=60`), achieving p95 20 ms at 100 users and 60 ms at 300 users (0 errors).
+- [x] PR #54 opened by DarkTJ7 addressing 300-user scale latency via Gunicorn `gthread` concurrency and PostgreSQL persistent connections (`CONN_MAX_AGE=60`), achieving p95 20 ms at 100 users and 60 ms at 300 users (0 errors).
 - [x] Independent QA Code Review & Architecture Verification of PR #54 conducted and APPROVED by Anish (@planetai05).
 - [x] QA monitoring test suite expanded in `tests/test_monitor.py` covering error conditions, network failures, non-list history and CLI modes (separate monitor coverage measurement retained).
 - [ ] Obtain Tarun's personal conclusion/signature under DarkTJ7.

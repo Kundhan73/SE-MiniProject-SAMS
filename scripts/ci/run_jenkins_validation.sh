@@ -30,9 +30,9 @@ done
 [[ "$ready" == true ]]
 # The fixture password/token are generated per run, masked, and never archived.
 export JENKINS_CI_PASSWORD="$(openssl rand -hex 24)"
-sonar_password="$(openssl rand -hex 24)"
+sonar_password="Aa1!$(openssl rand -hex 24)"
 printf '::add-mask::%s\n' "$JENKINS_CI_PASSWORD" "$sonar_password"
-curl -fsS -u admin:admin -X POST "$SONAR_HOST_URL/api/users/change_password" --data-urlencode login=admin --data-urlencode previousPassword=admin --data-urlencode "password=$sonar_password"
+curl --fail-with-body -sS -u admin:admin -X POST "$SONAR_HOST_URL/api/users/change_password" --data-urlencode login=admin --data-urlencode previousPassword=admin --data-urlencode "password=$sonar_password"
 export SAMS_SONAR_TOKEN="$(curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/user_tokens/generate" --data-urlencode name=sams-ci | jq -er .token)"
 printf '::add-mask::%s\n' "$SAMS_SONAR_TOKEN"
 docker pull sonarsource/sonar-scanner-cli:latest

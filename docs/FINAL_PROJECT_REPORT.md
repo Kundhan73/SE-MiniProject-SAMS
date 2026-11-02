@@ -131,7 +131,7 @@ The probe utility (`scripts/monitor_uptime.py`) supports repeated recording, sin
 
 - Provision a staging host/domain and test email service for public TLS/external delivery checks, or obtain an explicit faculty decision on unavailable resources.
 - Obtain Tarun's personal review and conclusion under DarkTJ7; complete human/device checks required by the course.
-- Merge PR #54 into `main` after owner review and verify post-merge main CI.
+- PR #54 is merged (`b69f49c`); integrate QA/developer closeout changes and verify final main CI and delivery.
 - Rehearse backup/restore/rollback and collect real monitoring/retention evidence over the required time period.
 - Complete the 15-minute live demonstration, oral defense, and faculty evaluation sign-off.
 
