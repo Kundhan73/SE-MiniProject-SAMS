@@ -21,7 +21,7 @@ The project has entered the teacher testing and closeout sprint (2–6 November 
 ### 3. QA Monitoring Safeguards & Test Suite Expansion
 - Expanded `tests/test_monitor.py` suite covering HTTP error responses, network connection failures, non-list history rejections, CLI summary/check-once flags, and calendar boundary checks.
 - Monitor coverage is measured separately in `docs/reports/monitor-coverage.json`.
-- Integrated backend test suite verified: **165 passing tests** (0 failures, 0 errors), **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170).
+- Integrated backend test suite verified: **166 passing tests** (0 failures, 0 errors), **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170).
 
 ## Remaining external actions and dependencies
 

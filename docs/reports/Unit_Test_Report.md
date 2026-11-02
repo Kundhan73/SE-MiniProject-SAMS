@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-11-02T18:44:58.792161+00:00. Database: SQLite.
+Generated from actual execution at 2026-11-02T18:58:27.673031+00:00. Database: SQLite.
 
-Executed: 165 automated test instances. Failed/error: 0.
+Executed: 166 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -146,6 +146,7 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_UT_AUTH_03_lockout | PASS |
 | test_IT_AUTH_02_student_cannot_admin | PASS |
 | test_anonymous_health_only | PASS |
+| test_coverage_xml_preserves_repository_relative_module_paths | PASS |
 | test_load_gate_requires_p95_strictly_below_three_seconds[2999-True] | PASS |
 | test_load_gate_requires_p95_strictly_below_three_seconds[3000-False] | PASS |
 | test_load_gate_requires_p95_strictly_below_three_seconds[3001-False] | PASS |

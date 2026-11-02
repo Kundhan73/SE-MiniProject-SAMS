@@ -35,6 +35,11 @@ printf '::add-mask::%s\n' "$JENKINS_CI_PASSWORD" "$sonar_password"
 curl --fail-with-body -sS -u admin:admin -X POST "$SONAR_HOST_URL/api/users/change_password" --data-urlencode login=admin --data-urlencode previousPassword=admin --data-urlencode "password=$sonar_password"
 export SAMS_SONAR_TOKEN="$(curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/user_tokens/generate" --data-urlencode name=sams-ci | jq -er .token)"
 printf '::add-mask::%s\n' "$SAMS_SONAR_TOKEN"
+# An explicit overall-coverage gate applies even on the first analysis (new-code gates do not).
+curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/projects/create" --data-urlencode project=sams --data-urlencode name=SAMS > /dev/null
+curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/qualitygates/create" --data-urlencode name=SAMS-acceptance > /dev/null
+curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/qualitygates/create_condition" --data-urlencode gateName=SAMS-acceptance --data-urlencode metric=coverage --data-urlencode op=LT --data-urlencode error=80 > /dev/null
+curl -fsS -u "admin:$sonar_password" -X POST "$SONAR_HOST_URL/api/qualitygates/select" --data-urlencode gateName=SAMS-acceptance --data-urlencode projectKey=sams > /dev/null
 docker pull sonarsource/sonar-scanner-cli@sha256:47956b669bf486bdad919e1cbd0533223515aa0b6d1d31763e5a3754942df6d7
 cat > "$RUNNER_TEMP/sams-bin/sonar-scanner" <<'SCANNER'
 #!/usr/bin/env bash
@@ -62,4 +67,4 @@ java -jar "$RUNNER_TEMP/jenkins.war" --version > evidence/jenkins/jenkins-versio
 find "$JENKINS_HOME/plugins" -maxdepth 1 -name '*.jpi' -printf '%f\n' > evidence/jenkins/plugins.txt
 [[ "$finished" == true ]]
 jq -e '.result == "SUCCESS"' evidence/jenkins/build.json
-jq -e '.projectStatus.status == "OK"' evidence/jenkins/quality-gate.json
+jq -e '.projectStatus.status == "OK" and ([.projectStatus.conditions[] | select(.metricKey == "coverage" and .status == "OK" and (.actualValue | tonumber) >= 80)] | length) == 1' evidence/jenkins/quality-gate.json

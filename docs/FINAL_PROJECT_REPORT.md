@@ -73,7 +73,7 @@ The current integrated execution counts and percentages are generated from actua
 - [Branch Coverage Report](reports/Branch_Coverage_Report.md)
 - Raw [JUnit](reports/junit.xml), [coverage XML](reports/coverage.xml) and [summary](reports/summary.json)
 
-Current test results: **165 passed**, 0 failures/errors, **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170). Monitoring coverage is measured separately; see `reports/monitor-coverage.json`.
+Current test results: **166 passed**, 0 failures/errors, **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170). Monitoring coverage is measured separately; see `reports/monitor-coverage.json`.
 
 ### Independent and assisted evidence
 
