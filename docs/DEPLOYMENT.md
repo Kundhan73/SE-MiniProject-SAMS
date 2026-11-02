@@ -48,6 +48,8 @@ Review dependency alerts weekly, rotate real secrets when needed, run migrations
 
 ## Proxy security headers
 
+The application container uses two Gunicorn `gthread` processes with four request threads each. This permits overlapping database/network waits while preserving the existing process count, authentication, throttles and transaction boundaries. Compare the recorded normal/scale acceptance profiles before accepting a capacity change; a configuration change alone does not establish the three-second target. To roll back this tuning, remove `--worker-class gthread --threads 4` from the Docker command and rebuild the previously reviewed image.
+
 The HTTP and HTTPS proxies emit a CSP restricting scripts and API connections to the same origin. The existing Google Fonts stylesheet/font origins remain explicitly allowed. Attendance bars set numeric widths through the trusted external script rather than inline style attributes, so the policy requires neither unsafe-inline nor unsafe-eval. Nginx-served static files and proxied responses receive nosniff; the proxy hides its version and disables unused camera, microphone and geolocation capabilities.
 
 The CSRF cookie remains readable because the external JavaScript constructs X-CSRFToken from it. This is distinct from the HttpOnly authentication/session cookie. Cross-origin embedding isolation is not enabled merely to silence a scanner finding; assess it against actual integration needs. These headers and a local scan do not establish live public TLS validation.
