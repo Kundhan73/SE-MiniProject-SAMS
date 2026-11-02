@@ -9,7 +9,7 @@ pipeline {
     stage('Dependency audit') { steps { sh '.venv/bin/pip-audit --format json --output docs/reports/dependency-audit.json' } }
     stage('SonarQube') {
       // Sonar is required: an absent URL/token fails rather than silently skipping analysis.
-      steps { withCredentials([string(credentialsId: 'sams-sonar-token', variable: 'SONAR_TOKEN')]) { sh 'test -n \"$SONAR_HOST_URL\" && sonar-scanner -Dsonar.qualitygate.wait=true' } }
+      steps { withCredentials([string(credentialsId: 'sams-sonar-token', variable: 'SONAR_TOKEN')]) { sh 'test -n "$SONAR_HOST_URL" && sonar-scanner -Dsonar.qualitygate.wait=true' } }
     }
     stage('Container') { steps { sh 'docker build -t sams:$BUILD_NUMBER .' } }
   }

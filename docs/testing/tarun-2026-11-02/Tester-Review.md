@@ -1,6 +1,6 @@
 # Tarun personal tester review — pending
 
-Read Assigned-Work-Report.md and Case-Register.md, including limitations and actual commits.
+Read README.md and Case-Register.md, including limitations and actual commits.
 
 - Personally verify the required login/logout, role restrictions, attendance, duplicate submission, correction, report/export, notification and admin cases.
 - Record your own date, actual commit, observed results and screenshots for the independent checks you perform.
