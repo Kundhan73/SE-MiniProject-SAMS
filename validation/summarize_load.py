@@ -26,7 +26,7 @@ complete = (
 if args.require_marking:
     complete = complete and duration.get("mark_successes", 0) > 0
 result = {
-    "source_commit": os.getenv("SAMS_SOURCE_SHA", "05ce0282959ab2084b553bcd1e43aa312961d21c"),
+    "source_commit": os.getenv("SAMS_SOURCE_SHA", "unavailable"),
     "profile": args.profile,
     "expected_users": args.users,
     "minimum_seconds_after_full_spawn": args.seconds,

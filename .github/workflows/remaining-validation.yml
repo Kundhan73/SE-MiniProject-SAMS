@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       source_sha:
-        description: 'Optional exact application commit; empty tests this workflow commit'
+        description: 'Optional full 40-character application commit; empty tests this workflow commit'
         required: false
         default: ''
   push:
@@ -12,7 +12,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: remaining-validation-${{ github.ref }}
+  group: remaining-validation-${{ github.ref }}-${{ inputs.source_sha || github.sha }}
   cancel-in-progress: true
 jobs:
   performance:
@@ -25,6 +25,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: tooling
+      - name: Require a complete source commit
+        shell: bash
+        run: |
+          if ! [[ "$SAMS_SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo 'source_sha must be the complete 40-character commit, not an abbreviated ref.' >&2
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.SAMS_SOURCE_SHA }}
@@ -38,6 +45,8 @@ jobs:
           mkdir -p evidence
           chmod 777 evidence
           test "$(nproc)" -ge 4
+          echo "SAMS_SOURCE_SHA=$(git -C app rev-parse HEAD)" >> "$GITHUB_ENV"
+          export SAMS_SOURCE_SHA="$(git -C app rev-parse HEAD)"
           python - <<'PY'
           import json,os,secrets,pathlib,platform
           p=pathlib.Path('app/.env')
@@ -45,7 +54,7 @@ jobs:
           values['DJANGO_SECRET_KEY']=secrets.token_urlsafe(64)
           values['POSTGRES_PASSWORD']=secrets.token_urlsafe(32)
           p.write_text('\n'.join(k+'='+v for k,v in values.items())+'\n')
-          pathlib.Path('evidence/environment.json').write_text(json.dumps({'source_commit':os.environ['SAMS_SOURCE_SHA'],'os':platform.platform(),'host_cpus':os.cpu_count(),'sut_cpus':'0,1','load_client_cpus':'2,3','sut_memory_budget':'<=4GiB; separate container caps','source_branch':'implementation/sams-ci-delivery','scope':'Ephemeral isolated Linux validation environment, no public endpoint or external mailbox'},indent=2))
+          pathlib.Path('evidence/environment.json').write_text(json.dumps({'source_commit':os.environ['SAMS_SOURCE_SHA'],'os':platform.platform(),'host_cpus':os.cpu_count(),'sut_cpus':'0,1','load_client_cpus':'2,3','sut_memory_budget':'<=4GiB; separate container caps','application_checkout':'Detached exact source commit','scope':'Ephemeral isolated Linux validation environment, no public endpoint or external mailbox'},indent=2))
           PY
           git -C app rev-parse HEAD > evidence/source-commit.txt
           git -C tooling rev-parse HEAD > evidence/harness-commit.txt
@@ -56,7 +65,7 @@ jobs:
           docker compose -p sams-acceptance -f docker-compose.yml -f ../tooling/validation/compose-budget.yml up --build -d nginx
           docker compose -p sams-acceptance exec -T web python manage.py seed_demo --full
           docker cp ../tooling/validation/prepare_performance_fixture.py sams-acceptance-web-1:/tmp/fixture.py
-          docker exec sams-acceptance-web-1 python /tmp/fixture.py > ../evidence/dataset.json
+          docker exec -e SAMS_SOURCE_SHA="$SAMS_SOURCE_SHA" -e SAMS_FIXTURE_ORIGIN='Fresh seed_demo --full database plus current-day marking fixtures' sams-acceptance-web-1 python /tmp/fixture.py > ../evidence/dataset.json
           docker pull locustio/locust:2.47.0
           for service in web db redis nginx; do docker inspect "sams-acceptance-$service-1" --format '{{json .HostConfig.CpusetCpus}} {{json .HostConfig.Memory}}'; done > ../evidence/container-budget.txt
       - name: Run 100 concurrent users for at least 600 seconds
@@ -64,7 +73,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          docker stats --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1 > evidence/perf100-resources.jsonl &
+          (while true; do docker stats --no-stream --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1; sleep 5; done) > evidence/perf100-resources.jsonl &
           monitor=$!
           trap 'kill "$monitor" 2>/dev/null || true' EXIT
           docker run --name perf100-client --cpuset-cpus 2,3 --memory 768m --network container:sams-acceptance-nginx-1 -e VALIDATION_PROFILE=perf100 -e VALIDATION_SECONDS=600 -v "$PWD/tooling/validation:/mnt/locust:ro" -v "$PWD/evidence:/evidence" locustio/locust:2.47.0 -f /mnt/locust/acceptance_locust.py --headless --host http://127.0.0.1:80 -u 100 -r 0.5 --csv /evidence/perf100 --html /evidence/perf100.html --only-summary > evidence/perf100.log 2>&1
@@ -74,7 +83,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          docker stats --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1 > evidence/perf300-resources.jsonl &
+          (while true; do docker stats --no-stream --format '{{json .}}' sams-acceptance-web-1 sams-acceptance-db-1; sleep 5; done) > evidence/perf300-resources.jsonl &
           monitor=$!
           trap 'kill "$monitor" 2>/dev/null || true' EXIT
           docker run --name perf300-client --cpuset-cpus 2,3 --memory 768m --network container:sams-acceptance-nginx-1 -e VALIDATION_PROFILE=perf300 -e VALIDATION_SECONDS=120 -v "$PWD/tooling/validation:/mnt/locust:ro" -v "$PWD/evidence:/evidence" locustio/locust:2.47.0 -f /mnt/locust/acceptance_locust.py --headless --host http://127.0.0.1:80 -u 300 -r 0.5 --csv /evidence/perf300 --html /evidence/perf300.html --only-summary > evidence/perf300.log 2>&1

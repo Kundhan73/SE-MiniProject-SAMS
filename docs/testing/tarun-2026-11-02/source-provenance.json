@@ -1,0 +1,9 @@
+{
+  "application_commit": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+  "actions_merge_commit": "c339794c7f7266c4c6c1e703fa43a534405c9bd9",
+  "application_tree": "e2732d4f8c1d70df1b1a231e40df676c9a36083c",
+  "actions_merge_tree": "e2732d4f8c1d70df1b1a231e40df676c9a36083c",
+  "tree_equality": true,
+  "scope": "Original PR54 CI/browser source, before evidence-only commit",
+  "github_account": "DarkTJ7"
+}

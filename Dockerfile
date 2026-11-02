@@ -8,4 +8,4 @@ COPY . .
 RUN mkdir -p /app/staticfiles && chown -R sams:sams /app
 USER sams
 EXPOSE 8000
-CMD ["gunicorn", "sams.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--access-logfile", "-"]
+CMD ["gunicorn", "sams.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--access-logfile", "-"]

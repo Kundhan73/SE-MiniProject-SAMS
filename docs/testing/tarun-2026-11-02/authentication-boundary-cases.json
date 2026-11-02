@@ -1,0 +1,151 @@
+{
+  "source_commit": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+  "executed_at_utc": "2026-11-02T15:46:04.925604+00:00",
+  "execution": "Tool-assisted real HTTP and local Mailpit; no human signature",
+  "environment": "http://localhost:8003 isolated synthetic database",
+  "cases": [
+    {
+      "test_id": "AUTH-LOCKOUT-FIVE",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Five incorrect passwords yield 401, then correct login is locked (423)",
+      "actual": {
+        "http_status": 423,
+        "failed_attempt_statuses": [
+          401,
+          401,
+          401,
+          401,
+          401
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-KNOWN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Locked active user can request reset without revealing account existence",
+      "actual": {
+        "http_status": 202
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-ENUMERATION",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Unknown and known email reset requests return identical public response",
+      "actual": {
+        "http_status": 202,
+        "response_matches_known": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-MAILPIT",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Worker sends reset link to the controlled synthetic Mailpit recipient",
+      "actual": {
+        "http_status": 200,
+        "reset_link_present": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-WEAK",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Weak replacement password rejected without consuming reset token",
+      "actual": {
+        "http_status": 400
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-CONSUME",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Valid replacement password consumes token and clears lockout",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REVOKE-ACCESS",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Password reset revokes the earlier access session",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REVOKE-REFRESH",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Password reset revokes earlier refresh session",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REPLAY",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Consumed reset token cannot be reused",
+      "actual": {
+        "http_status": 410
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-UNKNOWN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Unknown reset token rejected with same expiry/reuse response",
+      "actual": {
+        "http_status": 410
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-OLD-PASSWORD",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Previous password cannot sign in after reset",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-NEW-PASSWORD",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "New password signs in and cleared lockout permits access",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

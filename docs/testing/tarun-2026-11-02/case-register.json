@@ -1,0 +1,1340 @@
+{
+  "execution": "Tool-assisted execution; not Tarun personal sign-off",
+  "generated_at_utc": "2026-11-02T16:53:05.754842+00:00",
+  "cases": [
+    {
+      "test_id": "AUTH-ROLE-ADMIN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Authenticated identity has expected role",
+      "actual": {
+        "http_status": 200,
+        "role": "ADMIN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-ROLE-FACULTY",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Authenticated identity has expected role",
+      "actual": {
+        "http_status": 200,
+        "role": "FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-ROLE-STUDENT",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Authenticated identity has expected role",
+      "actual": {
+        "http_status": 200,
+        "role": "STUDENT"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-STUDENT-ADMIN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Student administrator access rejected",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-CSRF-LOGIN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Login without a CSRF cookie/header is rejected",
+      "actual": {
+        "http_status": 403,
+        "error_code": "PERMISSION_DENIED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-COURSE-A",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a synthetic course",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-SECTION-A",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a section assigned to faculty",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-COURSE-B",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a synthetic course",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-SECTION-B",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a section assigned to faculty",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-COURSE-C",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a synthetic course",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-SECTION-C",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a section assigned to faculty",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-DUPLICATE-COURSE",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Duplicate code rejected",
+      "actual": {
+        "http_status": 409,
+        "error_code": "CONFLICT"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-CSV-PARTIAL",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Two valid rows enrolled; invalid row reported",
+      "actual": {
+        "http_status": 200,
+        "enrolled": 2,
+        "errors": [
+          {
+            "row": 3,
+            "reason": "Unknown or inactive student"
+          }
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-CSV-HEADER",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Missing institute_id header rejected",
+      "actual": {
+        "http_status": 400,
+        "error_code": "INVALID_CSV"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-CSV-IDEMPOTENT",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Repeated enrollment creates no duplicates",
+      "actual": {
+        "http_status": 200,
+        "enrolled": 0,
+        "errors": []
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-ENROLL-CONCURRENCY",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Two concurrent imports enroll exactly one row in total",
+      "actual": {
+        "http_status": 200,
+        "statuses": [
+          200,
+          200
+        ],
+        "created_total": 1
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-TIMETABLE",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Create a valid current-day timetable slot",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-FACULTY-CLASH",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Overlapping faculty slot rejected",
+      "actual": {
+        "http_status": 409,
+        "error_code": "TIMETABLE_CLASH"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-ADJACENT-SLOT",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Adjacent slot accepted",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SETUP-INVALID-WEEKDAY",
+      "github_issue": 38,
+      "jira_issue": "SAM-49",
+      "expected": "Weekday outside 0..6 rejected",
+      "actual": {
+        "http_status": 400,
+        "error_code": "INVALID"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-COMPLETE-ROSTER",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Partial roster rejected atomically",
+      "actual": {
+        "http_status": 400,
+        "error_code": "NOT_IN_ROSTER"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-PAOD",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Complete P/A/OD roster saved once",
+      "actual": {
+        "http_status": 201,
+        "session_id": 163,
+        "saved": 3,
+        "present": 1,
+        "absent": 1,
+        "on_duty": 1
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-DUPLICATE",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Repeated submission rejected",
+      "actual": {
+        "http_status": 409,
+        "error_code": "ALREADY_SUBMITTED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-CONCURRENT-DUPLICATE",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Concurrent submissions produce one 201 and one 409",
+      "actual": {
+        "http_status": 409,
+        "error_code": "ALREADY_SUBMITTED",
+        "statuses": [
+          201,
+          409
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-EDIT-REASON",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Blank edit reason rejected",
+      "actual": {
+        "http_status": 400,
+        "error_code": "INVALID"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-FOREIGN-FACULTY",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Other faculty cannot edit",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-AUDITED-EDIT",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Authorized reasoned edit accepted",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-AUDIT-HISTORY",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Original mark and reasoned edit appear in audit",
+      "actual": {
+        "http_status": 200,
+        "matching_edit_entries": 1,
+        "entries_for_record": 2
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "STUDENT-PRIVACY",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Student sees their own records and not the other new record",
+      "actual": {
+        "http_status": 200,
+        "own_record_present": true,
+        "foreign_record_present": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "STUDENT-NO-CLASSES",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Unmarked enrolled course has null percentage",
+      "actual": {
+        "http_status": 200,
+        "rows": [
+          {
+            "student_id": 102,
+            "srn": "STU001",
+            "name": "Student 001",
+            "section_id": 26,
+            "section": "C",
+            "course": "QA1102151545C",
+            "held": 0,
+            "attended": 0,
+            "percentage": null,
+            "below_threshold": false
+          }
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-CREATE",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Own correction accepted",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-DUPLICATE",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Second pending correction rejected",
+      "actual": {
+        "http_status": 409,
+        "error_code": "OPEN_REQUEST_EXISTS"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-FACULTY-ROUTING",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Other faculty cannot decide",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-APPROVE",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Owning faculty approves",
+      "actual": {
+        "http_status": 200,
+        "state": "APPROVED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-REPEAT-DECISION",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Repeated decision rejected",
+      "actual": {
+        "http_status": 409,
+        "error_code": "ALREADY_DECIDED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "COR-REJECT",
+      "github_issue": 40,
+      "jira_issue": "SAM-51",
+      "expected": "Owning faculty rejects correction",
+      "actual": {
+        "http_status": 200,
+        "state": "REJECTED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-INCLUSIVE-FILTERS",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Exact student/course/date filters include approved OD as attended",
+      "actual": {
+        "http_status": 200,
+        "rows": [
+          {
+            "student_id": 102,
+            "srn": "STU001",
+            "name": "Student 001",
+            "section_id": 24,
+            "section": "A",
+            "course": "QA1102151545A",
+            "held": 1,
+            "attended": 1,
+            "percentage": 100.0,
+            "below_threshold": false
+          }
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-THRESHOLD-100",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Strict below-threshold comparison, equality not flagged",
+      "actual": {
+        "http_status": 200,
+        "threshold": 100,
+        "below_threshold": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-THRESHOLD-0",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Strict below-threshold comparison, equality not flagged",
+      "actual": {
+        "http_status": 200,
+        "threshold": 0,
+        "below_threshold": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-THRESHOLD-0.01",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Strict below-threshold comparison, equality not flagged",
+      "actual": {
+        "http_status": 200,
+        "threshold": "0.01",
+        "below_threshold": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-DATE-RANGE",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Inverted date range rejected",
+      "actual": {
+        "http_status": 400,
+        "error_code": "INVALID_DATE_RANGE"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-CSV",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "CSV MIME/header/filtered numeric percentage correct",
+      "actual": {
+        "http_status": 200,
+        "content_type": "text/csv",
+        "rows": 1
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-PDF-NUMERIC",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Valid parsed PDF with correct percentage label",
+      "actual": {
+        "http_status": 200,
+        "expected_text_found": true,
+        "bad_no_classes_percent": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-PDF-NO-CLASSES",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Valid parsed PDF with correct percentage label",
+      "actual": {
+        "http_status": 200,
+        "expected_text_found": true,
+        "bad_no_classes_percent": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "REPORT-CSV-FORMULA",
+      "github_issue": 41,
+      "jira_issue": "SAM-52",
+      "expected": "Spreadsheet-formula name is neutralized",
+      "actual": {
+        "http_status": 200,
+        "prefix_quoted": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ATT-SNAPSHOT-ROSTER",
+      "github_issue": 39,
+      "jira_issue": "SAM-50",
+      "expected": "Post-submission enrollment does not change submitted roster",
+      "actual": {
+        "http_status": 200,
+        "roster_size": 3,
+        "late_student_present": false
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-SUSPEND",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Admin suspends synthetic account",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-REVOKED-SESSION",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Suspension revokes existing token",
+      "actual": {
+        "http_status": 401,
+        "error_code": "AUTHENTICATION_FAILED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-ROLE-IN-USE",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Role change is rejected while student has an enrollment",
+      "actual": {
+        "http_status": 409,
+        "error_code": "ROLE_IN_USE"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-ROLE-CHANGE",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Unassigned synthetic account can change role",
+      "actual": {
+        "http_status": 200,
+        "role": "FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-SELF-LOCKOUT",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Administrator cannot suspend own account",
+      "actual": {
+        "http_status": 400,
+        "error_code": "SELF_LOCKOUT"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-THRESHOLD",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Valid threshold persists",
+      "actual": {
+        "http_status": 200,
+        "threshold": 80.0
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "ADMIN-THRESHOLD-BOUND",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Threshold above 100 rejected",
+      "actual": {
+        "http_status": 400,
+        "error_code": "INVALID"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "NOTIFICATION-OWNERSHIP",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Other student cannot mark notification read",
+      "actual": {
+        "http_status": 404,
+        "error_code": "NOT_FOUND"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "NOTIFICATION-READ",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Own notification can be marked read",
+      "actual": {
+        "http_status": 200,
+        "read": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "NOTIFICATION-FAILURES-ADMIN",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Admin failure listing available",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "NOTIFICATION-FAILURES-STUDENT",
+      "github_issue": 42,
+      "jira_issue": "SAM-53",
+      "expected": "Student failure listing denied",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-LOGOUT",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Logout succeeds",
+      "actual": {
+        "http_status": 205
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-LOGOUT-ACCESS",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Logged-out token rejected",
+      "actual": {
+        "http_status": 401,
+        "error_code": "AUTHENTICATION_FAILED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-LOGOUT-REFRESH",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Logged-out refresh token rejected",
+      "actual": {
+        "http_status": 401,
+        "error_code": "SESSION_EXPIRED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/config/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/admin/config/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/courses/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/courses/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/email-failures/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/sections/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/sections/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/sections/1/enroll/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/timetable/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/timetable/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/admin/users/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/admin/users/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/admin/users/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/audit/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/corrections/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-PATCH-/api/records/1/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/reports/summary/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-POST-/api/sessions/1/attendance/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-RBAC-GET-/api/sessions/today/",
+      "expected": "Student token rejected with HTTP 403",
+      "actual": {
+        "http_status": 403,
+        "error_code": "FORBIDDEN"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-STUDENT-CORRECTION",
+      "expected": "Another student record cannot be corrected (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_OWN_RECORD"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-SUBMIT",
+      "expected": "Another faculty session cannot be marked (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-EDIT",
+      "expected": "Another faculty attendance record cannot be edited (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-LOGIN-1",
+      "expected": "Injection treated as invalid credentials, no server error (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-SEARCH-1",
+      "expected": "Literal escaped search returns no users (200)",
+      "actual": {
+        "http_status": 200,
+        "returned_rows": 0
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-LOGIN-2",
+      "expected": "Injection treated as invalid credentials, no server error (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-INJECTION-SEARCH-2",
+      "expected": "Literal escaped search returns no users (200)",
+      "actual": {
+        "http_status": 200,
+        "returned_rows": 0
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-MALFORMED-JSON",
+      "expected": "Malformed JSON returns validation error (400)",
+      "actual": {
+        "http_status": 400,
+        "error_code": "PARSE_ERROR"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-STORED-XSS-SETUP",
+      "expected": "Reason accepted as plain text; browser rendering checked separately (201)",
+      "actual": {
+        "http_status": 201
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-IDOR-FACULTY-DECISION",
+      "expected": "Another faculty correction cannot be decided (403)",
+      "actual": {
+        "http_status": 403,
+        "error_code": "NOT_SESSION_FACULTY"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-API-CREDENTIAL-LEAK",
+      "expected": "User responses contain no password/hash fields",
+      "actual": {
+        "http_status": 200,
+        "rows_checked": 2105,
+        "forbidden_fields_present": []
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-LOGOUT",
+      "expected": "Logout revokes current session (205)",
+      "actual": {
+        "http_status": 205
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-REVOKED-ACCESS",
+      "expected": "Access token from logged-out session rejected (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "AUTHENTICATION_FAILED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "SEC-REVOKED-REFRESH",
+      "expected": "Refresh token from logged-out session rejected (401)",
+      "actual": {
+        "http_status": 401,
+        "error_code": "SESSION_EXPIRED"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-LOCKOUT-FIVE",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Five incorrect passwords yield 401, then correct login is locked (423)",
+      "actual": {
+        "http_status": 423,
+        "failed_attempt_statuses": [
+          401,
+          401,
+          401,
+          401,
+          401
+        ]
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-KNOWN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Locked active user can request reset without revealing account existence",
+      "actual": {
+        "http_status": 202
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-ENUMERATION",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Unknown and known email reset requests return identical public response",
+      "actual": {
+        "http_status": 202,
+        "response_matches_known": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-MAILPIT",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Worker sends reset link to the controlled synthetic Mailpit recipient",
+      "actual": {
+        "http_status": 200,
+        "reset_link_present": true
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-WEAK",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Weak replacement password rejected without consuming reset token",
+      "actual": {
+        "http_status": 400
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-CONSUME",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Valid replacement password consumes token and clears lockout",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REVOKE-ACCESS",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Password reset revokes the earlier access session",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REVOKE-REFRESH",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Password reset revokes earlier refresh session",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-REPLAY",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Consumed reset token cannot be reused",
+      "actual": {
+        "http_status": 410
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-UNKNOWN",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Unknown reset token rejected with same expiry/reuse response",
+      "actual": {
+        "http_status": 410
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-OLD-PASSWORD",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "Previous password cannot sign in after reset",
+      "actual": {
+        "http_status": 401
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "AUTH-RESET-NEW-PASSWORD",
+      "github_issue": 37,
+      "jira_issue": "SAM-48",
+      "expected": "New password signs in and cleared lockout permits access",
+      "actual": {
+        "http_status": 200
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220"
+    },
+    {
+      "test_id": "TLS-HTTP-REDIRECT",
+      "expected": "301 to exact HTTPS host, port and path",
+      "actual": {
+        "status": 301,
+        "location": "https://localhost:8444/login/?next=/"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-VERIFIED-CHAIN",
+      "expected": "Valid localhost SAN and private-CA certificate verification, HTTP 200",
+      "actual": {
+        "status": 200,
+        "verification": "explicit private CA; verification enabled"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-HSTS",
+      "expected": "HSTS max-age >=31536000",
+      "actual": "max-age=31536000; includeSubDomains; preload, max-age=31536000",
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-PROTOCOL-TLSv1_2",
+      "expected": "Accept TLS 1.2/1.3; server rejects TLS 1.0/1.1",
+      "actual": {
+        "negotiated": "TLSv1.2",
+        "cipher": "ECDHE-RSA-AES256-GCM-SHA384"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-PROTOCOL-TLSv1_3",
+      "expected": "Accept TLS 1.2/1.3; server rejects TLS 1.0/1.1",
+      "actual": {
+        "negotiated": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-PROTOCOL-TLSv1",
+      "expected": "Accept TLS 1.2/1.3; server rejects TLS 1.0/1.1",
+      "actual": {
+        "ssl_reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-PROTOCOL-TLSv1_1",
+      "expected": "Accept TLS 1.2/1.3; server rejects TLS 1.0/1.1",
+      "actual": {
+        "ssl_reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-SESSION-COOKIE",
+      "expected": "Secure, HttpOnly and SameSite=Lax session cookie",
+      "actual": {
+        "secure": true,
+        "httponly": true,
+        "samesite": "Lax"
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    },
+    {
+      "test_id": "TLS-AUTH-LOGOUT",
+      "expected": "Authenticated HTTPS logout succeeds",
+      "actual": {
+        "status": 205
+      },
+      "result": "PASS",
+      "commit_tested": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+      "github_issue": 30,
+      "jira_issue": "SAM-43"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source_commit": "8b843a6b59d6eb71a98bc8ee7babda850ab9432b",
+  "execution": "Tool-assisted browser; not a human signature",
+  "xss": {
+    "injectedImages": 0,
+    "injectedScripts": 0,
+    "payloadVisible": true
+  },
+  "keyboardCorrection": {
+    "expected": "Tab to Reject, press Enter; save succeeds with note",
+    "actual": "Saved successfully; REJECTED with matching faculty note",
+    "result": "PASS"
+  },
+  "final_student": {
+    "source_commit": "b60f42b1ad29d488f4aa96e8f5964884764f6220",
+    "expected": "Student keyboard login; own attendance, no-class state, student-only navigation",
+    "actual": {
+      "heading": "Overview",
+      "horizontalOverflow": false,
+      "nav": [
+        "Overview 01",
+        "Corrections 03",
+        "Notifications 06"
+      ],
+      "noClasses": true
+    },
+    "result": "PASS"
+  }
+}
