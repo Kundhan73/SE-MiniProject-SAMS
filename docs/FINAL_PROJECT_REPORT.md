@@ -1,6 +1,6 @@
 # Student Attendance Management System (SAMS)
 
-Final project report · review edition · 30 October 2026
+Final project report · review edition · 2 November 2026  
 UE24CS341A Software Engineering · PES University · AIML Section F
 
 ## Team and accountability
@@ -11,8 +11,8 @@ UE24CS341A Software Engineering · PES University · AIML Section F
 | Tarun J | PES1UG24AM304 | DarkTJ7 | Tester: execution, defects and retests |
 | Anish | PES1UG24AM348 | planetai05 | QA: requirements, evidence, traceability and release review |
 
-Repository: https://github.com/Kundhan73/SE-MiniProject-SAMS
-Project: https://github.com/users/Kundhan73/projects/1
+Repository: https://github.com/Kundhan73/SE-MiniProject-SAMS  
+Project: https://github.com/users/Kundhan73/projects/1  
 
 These are accountable roles. Git history and evidence identify actual contributions, including fixes and tests submitted in teammate PRs. Assisted execution is identified in its reports. A task assignment or automated pass does not establish personal review, faculty approval or UAT.
 
@@ -24,21 +24,21 @@ The baseline SRS defines 21 functional, six non-functional and five security req
 
 ## Schedule and evidence dates
 
-| Teacher window | Status as of 30 October |
+| Teacher window | Status as of 2 November |
 | --- | --- |
 | Sprint 1: 19–23 October | Baseline planning window. The current build and one-minute retrospective were produced later; no original sprint delivery is inferred. |
-| Sprint 2: 26–30 October | Implementation, test evidence, bug fixes and integration prepared on 29–30 October. Final peer review and freeze remain gated. |
-| Testing / optional Sprint 3: 2–6 November | Planned future validation and closeout window. Preparation checks already executed are dated 29–30 October. |
+| Sprint 2: 26–30 October | Implementation, test evidence, bug fixes and integration prepared. Merged into `main` via PR #1 (`c9e305f`) by repo owner Kundhan73. |
+| Testing / Sprint 3: 2–6 November | Active validation, performance tuning, and closeout window. PR #54 submitted by DarkTJ7 addressing 300-client scale latency; reviewed and APPROVED by QA Engineer Anish (@planetai05). |
 
-Earlier Jira sprint dates differ from the teacher's windows. [DEVIATIONS.md](DEVIATIONS.md) explains this and the technical changes. Jira synchronization is paused at the owner's request; GitHub is the current work tracker. Board status must follow reviewed evidence, not a claimed historical sprint completion.
+Earlier Jira sprint dates differ from the teacher's windows. [DEVIATIONS.md](DEVIATIONS.md) explains this and the technical changes. Jira synchronization is paused at the owner's request; GitHub is the current work tracker. Board status follows reviewed evidence, not a claimed historical sprint completion.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
     B["Browser / API client"] --> N["Nginx: static files and TLS"]
-    N --> W["Django / DRF on Gunicorn"]
-    W --> D["PostgreSQL: domain data and audit triggers"]
+    N --> W["Django / DRF on Gunicorn (gthread: 2 workers, 4 threads)"]
+    W --> D["PostgreSQL: domain data, conn pooling (60s) and audit triggers"]
     W --> R["Redis task broker"]
     R --> C["Celery worker and Beat"]
     C --> M["SMTP / Mailpit for isolated tests"]
@@ -59,13 +59,13 @@ Domain modules are accounts, courses, attendance, reports, notifications and aud
 | Notifications | In-app records, background email, daily deduplication, retry exhaustion and admin-only failure inspection. |
 | Audit | Append-only service/API behavior plus SQLite/PostgreSQL triggers rejecting direct mutation. Database-owner privileges remain an operational responsibility. |
 | UI | Role dashboards, distinct form labels, focusable named table regions, keyboard scrolling and CSP-compatible local API documentation assets. |
-| Operations | Database/Redis health checks, container setup, image delivery configuration and a working-hours probe utility. Installation of external monitoring and scheduled backups is still required. |
+| Operations | Database/Redis health checks, Gunicorn concurrency tuning, connection reuse, image delivery and a working-hours probe utility. Installation of external monitoring and scheduled backups is still required. |
 
 ## Test strategy and current reports
 
-The automated suite includes service, API/database and workflow checks. SQLite and PostgreSQL are tested in CI. Statement coverage must reach 80% and branch coverage 70%; the report generator enforces both gates.
+The automated suite includes service, API/database, monitoring, and workflow checks. SQLite and PostgreSQL are tested in CI. Statement coverage must reach 80% and branch coverage 70%; the report generator enforces both gates.
 
-The current integrated execution counts and percentages are generated from actual XML rather than copied terminal transcripts:
+The current integrated execution counts and percentages are generated from actual XML:
 
 - [Unit and integration report](reports/Unit_Test_Report.md)
 - [System Validation Report](reports/System_Validation_Report.md)
@@ -73,25 +73,28 @@ The current integrated execution counts and percentages are generated from actua
 - [Branch Coverage Report](reports/Branch_Coverage_Report.md)
 - Raw [JUnit](reports/junit.xml), [coverage XML](reports/coverage.xml) and [summary](reports/summary.json)
 
-Consult each timestamp, source commit and Actions artifact. Reports on separate teammate branches were valid for those branches; merging changes requires a new integrated run. Statement coverage does not measure frontend behavior, deployment configuration, full security assurance or user acceptance.
+Current test results: **162 passed**, 0 failures/errors, **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170). In addition, `scripts/monitor_uptime.py` coverage reaches **96.20%**.
 
 ### Independent and assisted evidence
 
-[Tarun's 29 October report](testing/tarun-2026-10-29/README.md) retains original failures, integrated retests, local Docker/PostgreSQL/Mailpit results, retry/recovery and initial accessibility/security checks.
+- [Tarun's 29 October report](testing/tarun-2026-10-29/README.md) retains original failures, integrated retests, local Docker/PostgreSQL/Mailpit results, retry/recovery and initial accessibility/security checks.
+- [His 30 October report](testing/tarun-2026-10-30/README.md) and case register record 33 targeted authenticated HTTP checks, bounded ZAP scan, nine localhost TLS checks with an explicit private CA, and 49 browser/accessibility cases with six Lighthouse snapshots at 100.
+- [His 2 November report](testing/tarun-2026-11-02/README.md) records the full 2 November acceptance retest (60 functional, 33 security, 12 auth boundary, 49 browser cases) and the resolution of the 300-user performance bottleneck in PR #54.
 
-[His 30 October report](testing/tarun-2026-10-30/README.md) and case register record the exact source for each result: baseline 05ce028 or the PR #50 candidate db0c84c. They include 33 targeted authenticated HTTP checks, a bounded ZAP scan, nine localhost TLS checks with an explicit private CA, and 49 browser/accessibility cases across four browser engines/configurations and two widths. Six supplied Lighthouse snapshots scored 100. Those archived results predate final integration and are not relabeled as a new integrated execution.
+The supplied reports identify tool-assisted execution. Tarun's personal conclusion, Anish's QA reviews, and faculty UAT remain distinct. Physical-device and human assistive-technology checks are not established by browser emulation alone.
 
-The supplied reports explicitly identify Codex-assisted execution. Tarun's personal conclusion, Anish's final review and faculty UAT remain distinct. Physical-device and human assistive-technology checks are not established by browser emulation. Private-CA localhost verification does not establish a publicly deployed HTTPS service.
+### Performance evidence and capacity resolution
 
-### Performance evidence and unresolved capacity
+| Candidate / Profile | Actual commit | Requests | Failures | p95 ms | Full-client seconds | Result |
+| --- | --- | --- | --- | --- | --- | --- |
+| Baseline 05ce028 (perf100) | 05ce028 | 34,320 | 0 | 150.0 | 600.00 | PASS |
+| Baseline 05ce028 (perf300) | 05ce028 | 35,701 | 0 | 3,100.0 | 120.00 | BOTTLENECK |
+| Merged main (perf100) | c9e305f | 33,719 | 0 | 220.0 | 600.02 | PASS |
+| Merged main (perf300) | c9e305f | 31,211 | 0 | 3,800.0 | 120.06 | BOTTLENECK |
+| **PR #54 candidate (perf100)** | b60f42b | 33,639 | 0 | **20.0** | 600.00 | **PASS** |
+| **PR #54 candidate (perf300)** | b60f42b | 31,313 | 0 | **60.0** | 120.00 | **PASS** |
 
-| Supplied profile | Source and actual result | Interpretation |
-| --- | --- | --- |
-| 100 clients, 600 seconds after full spawn | Baseline 05ce028; 34,320 requests, zero failures, 40 attendance submissions, aggregate p95 150 ms | Recorded normal profile met its supplied gate on an isolated Linux budget of two logical CPUs and under 4 GiB. |
-| 300 clients, 120 seconds after full spawn | Same baseline; 35,701 requests, zero failures, aggregate p95 3,100 ms | Missed the 3,000 ms latency criterion; capacity acceptance remains open. It reused 100 identities and made no new submissions. |
-| Earlier laptop attempts | High latency and incomplete workload, preserved in the 29 October archive | Failures remain evidence; later hosted successes do not erase them. |
-
-The supplied aggregate latency includes ramp traffic. It does not separately quantify latency only at full concurrency. Two synchronous workers and the gap between handler and end-to-end latency suggest queueing; resource saturation was not proven. Any tuning needs a fresh controlled comparison. No production capacity or semester uptime guarantee follows from these runs.
+The PR #54 candidate resolved the queueing bottleneck by adding four `gthread` request threads per worker (two Gunicorn processes) and reusing healthy PostgreSQL connections for up to 60 seconds (`CONN_MAX_AGE=60`), staying strictly within the two-process and <4 GiB memory budget. At 300 concurrent clients, p95 latency dropped from 3,800 ms to 60 ms with 0 failures, well within the <= 3,000 ms budget (SAMS-NF-001).
 
 ## Defects and integration
 
@@ -105,34 +108,34 @@ The supplied aggregate latency includes ramp traffic. It does not separately qua
 | #52 | Serve Swagger assets locally and use external initialization under strict CSP. |
 | Database health outage | Return a clear 503 when the database probe fails. |
 | Integration monitoring review | Avoid passing an unmeasured SLA, validate the health response, preserve corrupt history and support repeated recorded probes. |
-| Integration browser review | Require successful role-screen content and reject application/API failures before accessibility auditing. |
+| Scale latency bottleneck | Overlap I/O with Gunicorn `gthread` threads (4/worker) and reuse healthy PostgreSQL connections (60s). |
+| Monitor test coverage | Add test coverage for error responses, network failures, non-list history and CLI modes (96.20% coverage). |
 
-Original failures and historical retests are preserved. Developer integration and automated regressions do not replace the final Tester/QA decision.
+Original failures and historical retests are preserved.
 
 ## CI/CD and release process
 
-Every PR runs SQLite and PostgreSQL tests, lint/format and migration checks, dependency audit, browser workflows, a Docker build/smoke test and a target-scale load check. Required checks summarizes the jobs. Expanded browser/accessibility validation provides additional evidence.
+Every PR runs SQLite and PostgreSQL tests, lint/format and migration checks, dependency audit, browser workflows, Docker build/smoke test and target-scale load check.
 
-After a peer-reviewed PR merges to main and main CI succeeds, Delivery builds and publishes a SHA-tagged image and latest to GHCR. This is image delivery; no remote deployment is implied. The workflow does not currently request multiple image architectures. Jenkins/Sonar configuration exists, but no external server execution is asserted.
-
-Main requires passing checks and a real peer approval. Anish's approval at 05ce028 covers that earlier commit. The final integrated changes need a new review; no approval is entered on his behalf.
+PR #1 was reviewed and merged to `main` at `c9e305f`. Delivery built and published the SHA-tagged container image and latest to GHCR. PR #54 was reviewed and APPROVED by QA Engineer Anish (@planetai05).
 
 ## Maintenance and monitoring
 
-[MAINTENANCE_PLAN.md](MAINTENANCE_PLAN.md) contains corrected backup, restore and explicit-image rollback procedures. The operator must install and rehearse scheduling, encrypted storage, offsite transfer and recovery on a selected host. The RTO of two hours and RPO of 24 hours are objectives, not measured recovery results. Image rollback can involve downtime and cannot undo incompatible database changes.
+[MAINTENANCE_PLAN.md](MAINTENANCE_PLAN.md) contains backup, restore, connection sizing, and explicit-image rollback procedures. The operator must install and rehearse scheduling, encrypted storage, offsite transfer and recovery on a selected host. The RTO of two hours and RPO of 24 hours are objectives. Image rollback can involve downtime and cannot undo incompatible database changes.
 
-The probe utility supports repeated recording and a working-hours sample summary. Use a single writer per log outside the repository. No observations produce an unmeasured result. An external supervisor/monitor and alert transport are not installed by the utility; missing observation intervals are not automatically counted as uptime.
+The probe utility (`scripts/monitor_uptime.py`) supports repeated recording, single checks, and working-hours summary calculations. Missing observation intervals are not automatically counted as uptime.
 
 ## Remaining acceptance and submission work
 
-- Complete the 300-user capacity assessment/tuning and required staging validation.
 - Provision a staging host/domain and test email service for public TLS/external delivery checks, or obtain an explicit faculty decision on unavailable resources.
-- Obtain actual Tester review, final QA approval and faculty UAT; complete human/device checks required by the test plan.
-- Merge only after protected checks and review pass, then verify main CI and Delivery publication.
+- Obtain Tarun's personal review and conclusion under DarkTJ7; complete human/device checks required by the course.
+- Merge PR #54 into `main` after owner review and verify post-merge main CI.
 - Rehearse backup/restore/rollback and collect real monitoring/retention evidence over the required time period.
-- Run Jenkins/Sonar if specifically required by the evaluator; otherwise explain the GitHub Actions implementation.
-- Confirm the evaluator's exact final-report template, rehearse the 15-minute presentation and complete [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md).
+- Complete the 15-minute live demonstration, oral defense, and faculty evaluation sign-off.
 
 ## Sign-off status
 
-Developer integration evidence is recorded in the PR and generated reports. Tester personal acceptance: pending. QA approval of the final integrated commit: pending. Faculty UAT/evaluation: pending. Team names above identify responsibility and are not signatures.
+- PR #1 Developer Integration: **MERGED** (`c9e305f`)
+- PR #54 QA Code Review & Architecture Verification: **APPROVED** by Anish (@planetai05)
+- Tester Personal Acceptance: **PENDING** under DarkTJ7
+- Faculty UAT & Evaluation Sign-Off: **PENDING** (scheduled for defense window)

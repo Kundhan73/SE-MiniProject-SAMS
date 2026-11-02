@@ -1,8 +1,8 @@
 # Unit and integration test report
 
-Generated from actual execution at 2026-10-30T17:05:12.912476+00:00. Database: SQLite.
+Generated from actual execution at 2026-11-02T17:58:08.966869+00:00. Database: SQLite.
 
-Executed: 154 automated test instances. Failed/error: 0.
+Executed: 162 automated test instances. Failed/error: 0.
 
 The suite includes service-level tests and real API/database integration tests; parametrized cases count as separate executions. Source: `junit.xml`. Test IDs map to the revised Test Plan addendum.
 
@@ -154,6 +154,14 @@ The suite includes service-level tests and real API/database integration tests; 
 | test_probe_checks_health_contract_and_final_url[{"status":"ok"}-http://127.0.0.1:8000/login/-False] | PASS |
 | test_corrupt_monitoring_history_is_not_overwritten | PASS |
 | test_daemon_records_repeated_probes_and_stops_cleanly | PASS |
+| test_probe_health_http_error | PASS |
+| test_probe_health_network_failure | PASS |
+| test_record_probe_rejects_non_list_json | PASS |
+| test_monitor_cli_summary_mode | PASS |
+| test_monitor_cli_summary_missing_file | PASS |
+| test_monitor_cli_check_once_and_record | PASS |
+| test_monitor_cli_invalid_interval | PASS |
+| test_sunday_outside_maintenance_window | PASS |
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[None-No classes] | PASS |
 | test_pdf_missing_percentage_is_not_formatted_as_a_percent[100.0-100.0%] | PASS |
 | test_system_report_labels_separately_supplied_evidence | PASS |
