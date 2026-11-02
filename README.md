@@ -61,13 +61,13 @@ pip-audit
 
 With the local demo server running, `python scripts/browser_smoke.py` exercises all three roles in Chromium. Install the browser once with `playwright install chromium`. Use an isolated demo database: this test submits attendance and approves a correction.
 
-For the fixes found during Tarun's test execution and the next independent retest, see the [tester handoff](docs/TESTER_HANDOFF.md).
+For completed teammate tests and current team steps, see the [team handoff](docs/TESTER_HANDOFF.md).
 
 ## CI and delivery
 
 Every PR runs linting, migration validation, SQLite and PostgreSQL tests, coverage gates, a dependency audit, real browser workflows, and a Docker build/health test. Reports are downloadable from the Actions run. `Required checks` summarizes the gate.
 
-After a reviewed PR merges to `main` and main-branch CI succeeds, Delivery publishes `ghcr.io/kundhan73/se-miniproject-sams:sha-<commit>` and `:latest`. This is continuous delivery of a tested image. Deployment to a college VM needs a provisioned host/domain and remains an operator step. Jenkins and SonarQube configuration are also included for the submitted architecture; Jenkins requires an external server and SonarQube credentials.
+After a reviewed PR merges to `main` and main-branch CI succeeds, Delivery publishes `ghcr.io/kundhan73/se-miniproject-sams:sha-<commit>` and `:latest`. This is continuous delivery of a tested image. Deployment to a college VM needs a provisioned host/domain and remains an operator step. The Jenkins/Sonar validation workflow runs the actual Jenkinsfile on a disposable loopback-only controller and SonarQube instance, retains its results and requires measured coverage. A permanent institutional Jenkins installation needs its own agent and Sonar credentials; see [validation and setup](docs/JENKINS_VALIDATION.md).
 
 ## Team and roles
 
@@ -92,6 +92,6 @@ The [linked GitHub Project](https://github.com/users/Kundhan73/projects/1) conta
 - Current implementation: [API](docs/API.md), [design deviations](docs/DEVIATIONS.md), [test-plan addendum](docs/TEST_PLAN_ADDENDUM.md), [traceability matrix](docs/TRACEABILITY.md)
 - Submission status: [release status](docs/RELEASE_STATUS.md), [delivery checklist](docs/SUBMISSION_CHECKLIST.md), [final report](docs/FINAL_PROJECT_REPORT.md), [15-minute presentation outline](docs/DEMO_PRESENTATION.md), [demo guide](docs/DEMO_GUIDE.md), [maintenance plan](docs/MAINTENANCE_PLAN.md)
 - Actual execution evidence: [reports](docs/reports), [Actions](https://github.com/Kundhan73/SE-MiniProject-SAMS/actions)
-- Tester evidence: [29 October](docs/testing/tarun-2026-10-29/README.md), [30 October](docs/testing/tarun-2026-10-30/README.md). Each records its own source commit and limitations.
+- Tester evidence: [29 October](docs/testing/tarun-2026-10-29/README.md), [30 October](docs/testing/tarun-2026-10-30/README.md), [2 November](docs/testing/tarun-2026-11-02/README.md). Each records its own source commit and limitations.
 
 The current PDFs include the revised three-member team allocation. Technical requirements remain the baseline; addenda describe implementation and remaining validation. Review and UAT signatures are pending actual approval.

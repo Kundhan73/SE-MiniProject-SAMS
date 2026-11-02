@@ -1,4 +1,4 @@
-# Submission checklist · 2 November 2026
+# Submission checklist · 3 November 2026
 
 ## Part 1
 
@@ -26,9 +26,9 @@
 - [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports (166 tests passing, 100% statement coverage, 98.24% branch coverage).
 - [x] Product Maintenance Plan (`docs/MAINTENANCE_PLAN.md`) and working-hours uptime monitoring utility (`scripts/monitor_uptime.py`).
 - [x] Final Academic Project Report in Jackfruit format (`docs/FINAL_PROJECT_REPORT.md`).
-- [x] 15-Minute Demo Presentation Deck & Delivery Guide (`docs/DEMO_PRESENTATION.md`).
+- [x] 15-minute presentation outline and delivery guide (`docs/DEMO_PRESENTATION.md`).
 - [ ] Complete live faculty demonstration, defense, and teacher UAT during 2–6 November evaluation.
-- [ ] Record actual Jenkins/SonarQube results if the teacher requires those tools specifically, rather than GitHub Actions CI.
+- [x] Real Jenkins/SonarQube execution and measured quality-gate evidence retained in `docs/testing/jenkins-2026-11-03/` (166 tests; Sonar coverage 99.7% against 80%).
 - [ ] Preserve semester uptime and academic-year retention evidence over time.
 
 Unchecked items are not represented as completed merely because configuration or a test script exists. See current Actions run and timestamps in reports for executed evidence.

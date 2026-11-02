@@ -1,6 +1,6 @@
 # Student Attendance Management System (SAMS)
 
-Final project report · review edition · 2 November 2026  
+Final project report · review edition · 3 November 2026  
 UE24CS341A Software Engineering · PES University · AIML Section F
 
 ## Team and accountability
@@ -121,6 +121,8 @@ Every PR runs SQLite and PostgreSQL tests, lint/format and migration checks, dep
 
 PR #1 was reviewed and merged to `main` at `c9e305f`. Delivery built and published the SHA-tagged container image and latest to GHCR. PR #54 was reviewed and APPROVED by QA Engineer Anish (@planetai05).
 
+Actual Jenkins/Sonar execution is retained in [the 3 November record](testing/jenkins-2026-11-03/README.md): 166 tests, successful Docker build, and a measured Sonar coverage condition of 99.7% against 80%. The coverage-path regression preserves distinct modules; the strict latency gate rejects exactly 3,000 ms. The latest main CI and Delivery identify the final published revision.
+
 ## Maintenance and monitoring
 
 [MAINTENANCE_PLAN.md](MAINTENANCE_PLAN.md) contains backup, restore, connection sizing, and explicit-image rollback procedures. The operator must install and rehearse scheduling, encrypted storage, offsite transfer and recovery on a selected host. The RTO of two hours and RPO of 24 hours are objectives. Image rollback can involve downtime and cannot undo incompatible database changes.
@@ -131,7 +133,7 @@ The probe utility (`scripts/monitor_uptime.py`) supports repeated recording, sin
 
 - Provision a staging host/domain and test email service for public TLS/external delivery checks, or obtain an explicit faculty decision on unavailable resources.
 - Obtain Tarun's personal review and conclusion under DarkTJ7; complete human/device checks required by the course.
-- PR #54 is merged (`b69f49c`); integrate QA/developer closeout changes and verify final main CI and delivery.
+- This revision includes QA/developer closeout PR #56; verify the latest main CI and delivery before presenting.
 - Rehearse backup/restore/rollback and collect real monitoring/retention evidence over the required time period.
 - Complete the 15-minute live demonstration, oral defense, and faculty evaluation sign-off.
 

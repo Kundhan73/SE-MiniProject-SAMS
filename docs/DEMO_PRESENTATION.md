@@ -1,6 +1,6 @@
 # SAMS: 15-minute demonstration outline
 
-Review edition · 2 November 2026. This outline supports the team presentation; it is not a record of a presentation already delivered. Use synthetic demo data and the actual reviewed commit.
+Review edition · 3 November 2026. This outline supports the team presentation; it is not a record of a presentation already delivered. Use synthetic demo data and the actual reviewed commit.
 
 | Time | Presenter | Content |
 | --- | --- | --- |

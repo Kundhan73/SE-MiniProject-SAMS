@@ -1,55 +1,27 @@
-# Tester handoff after developer integration
+# Current team handoff · 3 November 2026
 
-29 October 2026. Implementation PR: [#1](https://github.com/Kundhan73/SE-MiniProject-SAMS/pull/1). Developer: Kundhan73; Tester: DarkTJ7; QA: planetai05.
+Tarun's technical retests and performance tuning are merged in [PR #54](https://github.com/Kundhan73/SE-MiniProject-SAMS/pull/54). Anish's monitoring regressions and submission updates are combined with developer corrections in [PR #56](https://github.com/Kundhan73/SE-MiniProject-SAMS/pull/56). Use `main` after integration and read its latest Actions results before presenting.
 
-## Integrated changes
-
-- [#45](https://github.com/Kundhan73/SE-MiniProject-SAMS/issues/45): an attendance PDF now renders a missing percentage as `No classes`; numeric percentages retain `%`.
-- [#46](https://github.com/Kundhan73/SE-MiniProject-SAMS/issues/46): the System Validation Report separates current backend results from supplied browser/performance artifacts. It preserves artifact timestamps, shows missing provenance as unavailable, and states that report generation does not execute those tests.
-- Three regression executions cover these changes. The code changes supplied in the local fix archive were reviewed, their failures reproduced before integration, and the integrated suite rerun by the developer.
-
-Source: [Tarun's execution evidence](https://github.com/Kundhan73/SE-MiniProject-SAMS/pull/1#issuecomment-6497995970) and its attached archive, local fix commit `b8b2c098633b43ae58b116b2514ec15c56c3a86b` based on `824fb57ad44531bb6489b49e8c94af1112503aec`. That archive records Codex-assisted execution on Tarun's laptop; it is not a personal tester, QA or faculty sign-off. The original failures remain in the archive.
-
-The latest GitHub Actions run on PR #1 is the source for hosted verification of the integrated commit. Developer checks do not close the independent testing tasks.
-
-## Tarun: retest the integrated version
-
-Preserve any local changes first, then update the implementation branch:
+Preserve local changes, then update:
 
 ```bash
 git fetch origin
-git switch implementation/sams-ci-delivery
-git pull --ff-only origin implementation/sams-ci-delivery
+git switch main
+git pull --ff-only origin main
 git rev-parse HEAD
 ```
 
-Record the full resulting commit in the test results. Use the existing virtual environment with the requirements installed, then run:
+The developer's combined local run passed 166 test instances, with 100% application statement coverage and 98.24% branch coverage. Actual counts and environment are in [the generated reports](reports/summary.json); historical branch counts are not current expectations. Both databases, browser acceptance and the real Jenkins/Sonar pipeline are checked in Actions. Review their actual conclusions rather than inferring success from configuration.
 
-```bash
-python -m pytest --cov --cov-report=xml:docs/reports/coverage.xml --junitxml=docs/reports/junit.xml
-python scripts/test_reports.py
-```
-
-The current suite has 138 test instances. Record actual counts rather than copying this expected count. Keep the environment, run time, command output, JUnit and coverage XML with the results.
-
-1. Restart the local app from this branch using an isolated demo database.
-2. Retest #45: create a course/section with an enrolled student but no submitted classes, export its PDF, and verify `No classes` without `%`. Also export a row with a numeric percentage and verify its `%` remains.
-3. Retest #46: generate the reports without rerunning browser/load tests. Confirm the system report labels those artifacts separately, retains their available timestamps, reports unavailable source metadata honestly, and does not claim this command ran browser/load tests.
-4. Attach the actual retest results to #45/#46 under DarkTJ7, with the integrated commit. Keep original failures and the new retests distinguishable. Request closure only once the integrated result has been verified and QA has assessed it.
-5. Link the existing execution evidence and any new results to assigned issues #37–#42. Identify which acceptance scenarios are covered by each result and which are still untested. Do not rerun already sufficient cases merely to duplicate evidence; run gaps and regressions affected by changes.
-6. Review the evidence personally and record an honest Tester conclusion. Assisted execution, personal review, QA approval and faculty UAT are separate records.
-
-## Validation still pending
-
-| Issue / area | Remaining work |
+| Member | Remaining team action |
 | --- | --- |
-| #29 performance | Review the hosted PostgreSQL target-scale evidence and complete required staging validation; retain environment, dataset, concurrency and latency evidence. |
-| #30 security | ZAP on an isolated staging environment, live TLS validation and any uncovered security scenarios. |
-| #31 accessibility | Lighthouse, keyboard navigation, responsive checks and required cross-browser/accessibility coverage. |
-| #42 notifications | Verify scheduled execution and external email delivery in an appropriate environment; distinguish these from directly invoking a task or console email. Check retry/dead-letter acceptance evidence. |
+| Kundhan — Developer | Verify final main CI, Jenkins/Sonar and image delivery; run the synthetic-data demo from main. Configure the selected server/domain/mail service if the evaluator requires public deployment. |
+| Tarun — Tester | Review the dated case register, confirm the independent observations required by the course, and demonstrate the actual results. Complete physical-device/human accessibility and public-host security observations when the required resources are available. No repeat of already sufficient automated cases is needed solely to duplicate evidence. |
+| Anish — QA | Review the final revised SRS/SAD/Test Plan mapping and release checklist, confirm remaining gaps, and prepare the report/presentation for faculty evaluation. His actual PR #54 approval is recorded; no approval of later revisions is invented. |
+| All three | Rehearse and deliver the 15-minute presentation, product walkthrough and defense. Faculty UAT and semester observations require their actual participants/time. |
 
-The local archive did not execute PostgreSQL/container/load, ZAP/TLS, full accessibility/cross-browser, external SMTP or scheduler timing. Existing CI evidence can be reviewed for the scenarios it actually covers; it is not evidence of a fresh execution on Tarun's laptop. If staging is unavailable, record the blocker and arrange it with the developer. Only faculty can grant a waiver of required external validation.
+[Tarun's 2 November report](testing/tarun-2026-11-02/README.md) retains 60 functional, 33 security, 12 auth-boundary, nine localhost TLS and 49 browser cases, scheduled Mailpit delivery/recovery, and the full load comparison. Original failed executions remain available. The final tuning candidate measured p95 20 ms at 100 clients and 60 ms at 300 clients with zero failures. These are isolated measurements; aggregate latency includes ramp traffic and 300 clients reuse 100 faculty identities without new attendance submissions.
 
-## Anish: QA handoff
+The executed technical tasks #29 and #37–#42 are closed with evidence. Public hosting, external email, human/device acceptance and semester uptime remain separate from Mailpit, private-CA localhost TLS and automated browser emulation. Personal testimony, faculty approval and a scope waiver must come from the people concerned.
 
-Review the integrated diff, Tarun's retests, traceability and open defects. Give an actual PR review decision from planetai05. Kundhan merges only after required checks and peer review pass. Main CI and Delivery then need their own successful runs. Remaining submission/UAT and time-based operational requirements stay tracked in `SUBMISSION_CHECKLIST.md`.
+See [release status](RELEASE_STATUS.md), [submission checklist](SUBMISSION_CHECKLIST.md), [traceability](TRACEABILITY.md) and the dated [29 October](testing/tarun-2026-10-29/README.md)/[30 October](testing/tarun-2026-10-30/README.md) evidence.

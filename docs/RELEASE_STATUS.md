@@ -1,4 +1,4 @@
-# Release status · 2 November 2026
+# Release status · 3 November 2026
 
 The project has entered the teacher testing and closeout sprint (2–6 November 2026). Following final integration review, PR #1 was successfully merged into `main` (commit `c9e305f`) by repository owner Kundhan73, passing all GitHub Actions checks and triggering delivery publication to GHCR.
 
@@ -28,9 +28,18 @@ The project has entered the teacher testing and closeout sprint (2–6 November 
 | Owner | Remaining action |
 | --- | --- |
 | Tarun (DarkTJ7) | Personally review evidence and record scoped tester conclusion; confirm affected integration retests and required human/device observations. Assisted case execution alone is not his signature. |
-| Owner (Kundhan73) | PR #54 is merged into main at `b69f49c`; integrate QA PR #55 and developer corrections, then verify final main CI/delivery. |
+| Owner (Kundhan73) | This revision combines merged PR #54, QA PR #55 and developer corrections through PR #56; check latest main CI/delivery. |
 | Owner / Faculty or IT | Supply a staging host/domain and external test email service if public TLS/internet delivery is required; otherwise obtain an explicit scope decision. |
 | Team / Faculty | Complete live faculty demonstration (15 minutes), defense, and teacher UAT evaluation sign-off. |
 | Operator / QA | Install/rehearse backup, recovery, encrypted offsite retention, and collect genuine multi-month semester uptime logs over time. |
 
 The owner requested a fresh one-time Jira reconciliation on 3 November. GitHub PRs, Actions and case registers supply the evidence; no continuous background sync is enabled. Board status follows reviewed evidence without inferring automated completion of real-world faculty sign-off.
+
+## Developer closeout verification · 3 November
+
+- PR #54 merged at `b69f49c`; this revision includes QA PR #55 and developer corrections through PR #56.
+- Fresh integrated local suite: 166 passed, zero failures; 100% application statements and 98.24% branches.
+- Coverage XML now retains distinct repository-relative application modules, including same-named files. The regression failed before the correction and passes afterward.
+- The strict load gate rejects 3,000 ms, matching the under-three-second criterion; 2,999/3,000/3,001 ms boundaries are tested.
+- The actual Jenkins/Sonar run passed all stages, 166 tests and a measured 99.7% Sonar coverage condition against 80%. [Raw execution evidence](testing/jenkins-2026-11-03/README.md) identifies the tested source and preserved setup failures.
+- Executed performance and functional test tasks #29/#37–#42 are closed with evidence. GitHub Project and Jira reflect these technical completions; remaining external/human/faculty observations remain open. Final main CI and Delivery are authoritative for the published revision.

@@ -1,0 +1,757 @@
+Started
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /home/runner/work/_temp/sams-jenkins/workspace/sams
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Setup)
+[Pipeline] sh
+[2026-11-02T19:02:06.594Z] + python3 -m venv .venv
+[2026-11-02T19:02:09.825Z] + .venv/bin/pip install --upgrade pip
+[2026-11-02T19:02:09.825Z] Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (25.0.1)
+[2026-11-02T19:02:09.825Z] Collecting pip
+[2026-11-02T19:02:09.825Z]   Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+[2026-11-02T19:02:10.076Z] Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+[2026-11-02T19:02:10.076Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 23.6 MB/s eta 0:00:00
+[2026-11-02T19:02:10.076Z] Installing collected packages: pip
+[2026-11-02T19:02:10.076Z]   Attempting uninstall: pip
+[2026-11-02T19:02:10.076Z]     Found existing installation: pip 25.0.1
+[2026-11-02T19:02:10.076Z]     Uninstalling pip-25.0.1:
+[2026-11-02T19:02:10.076Z]       Successfully uninstalled pip-25.0.1
+[2026-11-02T19:02:10.988Z] Successfully installed pip-26.2.2
+[2026-11-02T19:02:11.238Z] + .venv/bin/pip install -r requirements-dev.txt
+[2026-11-02T19:02:11.790Z] Collecting Django==5.2.18 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 1))
+[2026-11-02T19:02:11.790Z]   Downloading django-5.2.18-py3-none-any.whl.metadata (4.1 kB)
+[2026-11-02T19:02:11.790Z] Collecting djangorestframework==3.18.3 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 2))
+[2026-11-02T19:02:11.790Z]   Downloading djangorestframework-3.18.3-py3-none-any.whl.metadata (7.8 kB)
+[2026-11-02T19:02:11.790Z] Collecting djangorestframework-simplejwt==5.5.1 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 3))
+[2026-11-02T19:02:11.790Z]   Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl.metadata (4.6 kB)
+[2026-11-02T19:02:11.790Z] Collecting drf-spectacular==0.30.0 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:11.790Z]   Downloading drf_spectacular-0.30.0-py3-none-any.whl.metadata (14 kB)
+[2026-11-02T19:02:11.790Z] Collecting drf-spectacular-sidecar==2026.10.1 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 5))
+[2026-11-02T19:02:12.041Z]   Downloading drf_spectacular_sidecar-2026.10.1-py3-none-any.whl.metadata (3.6 kB)
+[2026-11-02T19:02:12.041Z] Collecting psycopg==3.2.13 (from psycopg[binary]==3.2.13->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 6))
+[2026-11-02T19:02:12.041Z]   Downloading psycopg-3.2.13-py3-none-any.whl.metadata (4.5 kB)
+[2026-11-02T19:02:12.041Z] Collecting celery==5.5.3 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:12.041Z]   Downloading celery-5.5.3-py3-none-any.whl.metadata (22 kB)
+[2026-11-02T19:02:12.041Z] Collecting redis==6.4.0 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 8))
+[2026-11-02T19:02:12.041Z]   Downloading redis-6.4.0-py3-none-any.whl.metadata (10 kB)
+[2026-11-02T19:02:12.041Z] Collecting gunicorn==23.0.0 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 9))
+[2026-11-02T19:02:12.041Z]   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[2026-11-02T19:02:12.292Z] Collecting reportlab==4.5.1 (from -r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 10))
+[2026-11-02T19:02:12.292Z]   Downloading reportlab-4.5.1-py3-none-any.whl.metadata (1.7 kB)
+[2026-11-02T19:02:12.292Z] Collecting pytest==9.2.0 (from -r requirements-dev.txt (line 2))
+[2026-11-02T19:02:12.292Z]   Downloading pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+[2026-11-02T19:02:12.292Z] Collecting pytest-django==4.14.0 (from -r requirements-dev.txt (line 3))
+[2026-11-02T19:02:12.292Z]   Downloading pytest_django-4.14.0-py3-none-any.whl.metadata (8.1 kB)
+[2026-11-02T19:02:12.292Z] Collecting pytest-cov==6.3.0 (from -r requirements-dev.txt (line 4))
+[2026-11-02T19:02:12.292Z]   Downloading pytest_cov-6.3.0-py3-none-any.whl.metadata (30 kB)
+[2026-11-02T19:02:12.843Z] Collecting ruff==0.17.3 (from -r requirements-dev.txt (line 5))
+[2026-11-02T19:02:12.843Z]   Downloading ruff-0.17.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+[2026-11-02T19:02:12.843Z] Collecting pip-audit==2.10.1 (from -r requirements-dev.txt (line 6))
+[2026-11-02T19:02:12.843Z]   Downloading pip_audit-2.10.1-py3-none-any.whl.metadata (28 kB)
+[2026-11-02T19:02:12.843Z] Collecting locust==2.47.0 (from -r requirements-dev.txt (line 7))
+[2026-11-02T19:02:12.843Z]   Downloading locust-2.47.0-py3-none-any.whl.metadata (11 kB)
+[2026-11-02T19:02:13.094Z] Collecting playwright==1.64.1 (from -r requirements-dev.txt (line 8))
+[2026-11-02T19:02:13.094Z]   Downloading playwright-1.64.1-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
+[2026-11-02T19:02:13.094Z] Collecting asgiref>=3.8.1 (from Django==5.2.18->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 1))
+[2026-11-02T19:02:13.094Z]   Downloading asgiref-3.13.0-py3-none-any.whl.metadata (12 kB)
+[2026-11-02T19:02:13.094Z] Collecting sqlparse>=0.3.1 (from Django==5.2.18->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 1))
+[2026-11-02T19:02:13.094Z]   Downloading sqlparse-0.6.1-py3-none-any.whl.metadata (6.9 kB)
+[2026-11-02T19:02:13.094Z] Collecting pyjwt>=1.7.1 (from djangorestframework-simplejwt==5.5.1->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 3))
+[2026-11-02T19:02:13.094Z]   Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:02:13.094Z] Collecting uritemplate>=2.0.0 (from drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:13.094Z]   Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-02T19:02:13.094Z] Collecting PyYAML>=5.1 (from drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:13.345Z]   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+[2026-11-02T19:02:13.345Z] Collecting jsonschema>=2.6.0 (from drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:13.345Z]   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+[2026-11-02T19:02:13.345Z] Collecting inflection>=0.3.1 (from drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:13.345Z]   Downloading inflection-0.5.1-py2.py3-none-any.whl.metadata (1.7 kB)
+[2026-11-02T19:02:13.345Z] Collecting typing-extensions>=4.6 (from psycopg==3.2.13->psycopg[binary]==3.2.13->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 6))
+[2026-11-02T19:02:13.345Z]   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+[2026-11-02T19:02:13.345Z] Collecting billiard<5.0,>=4.2.1 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.345Z]   Downloading billiard-4.3.2-py3-none-any.whl.metadata (5.0 kB)
+[2026-11-02T19:02:13.345Z] Collecting kombu<5.6,>=5.5.2 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.345Z]   Downloading kombu-5.5.4-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:02:13.345Z] Collecting vine<6.0,>=5.1.0 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.345Z]   Downloading vine-5.1.0-py3-none-any.whl.metadata (2.7 kB)
+[2026-11-02T19:02:13.596Z] Collecting click<9.0,>=8.1.2 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.596Z]   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-02T19:02:13.596Z] Collecting click-didyoumean>=0.3.0 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.596Z]   Downloading click_didyoumean-0.3.1-py3-none-any.whl.metadata (3.9 kB)
+[2026-11-02T19:02:13.596Z] Collecting click-repl>=0.2.0 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.596Z]   Downloading click_repl-0.4.1-py3-none-any.whl.metadata (3.7 kB)
+[2026-11-02T19:02:13.596Z] Collecting click-plugins>=1.1.1 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.596Z]   Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl.metadata (6.5 kB)
+[2026-11-02T19:02:13.596Z] Collecting python-dateutil>=2.8.2 (from celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:13.596Z]   Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+[2026-11-02T19:02:13.596Z] Collecting packaging (from gunicorn==23.0.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 9))
+[2026-11-02T19:02:13.596Z]   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:02:13.847Z] Collecting pillow>=9.0.0 (from reportlab==4.5.1->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 10))
+[2026-11-02T19:02:13.847Z]   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+[2026-11-02T19:02:14.098Z] Collecting charset-normalizer (from reportlab==4.5.1->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 10))
+[2026-11-02T19:02:14.098Z]   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+[2026-11-02T19:02:14.098Z] Collecting iniconfig>=2 (from pytest==9.2.0->-r requirements-dev.txt (line 2))
+[2026-11-02T19:02:14.098Z]   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+[2026-11-02T19:02:14.098Z] Collecting pluggy<2,>=1.6 (from pytest==9.2.0->-r requirements-dev.txt (line 2))
+[2026-11-02T19:02:14.098Z]   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+[2026-11-02T19:02:14.098Z] Collecting pygments>=2.15 (from pytest==9.2.0->-r requirements-dev.txt (line 2))
+[2026-11-02T19:02:14.098Z]   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+[2026-11-02T19:02:14.649Z] Collecting coverage>=7.5 (from coverage[toml]>=7.5->pytest-cov==6.3.0->-r requirements-dev.txt (line 4))
+[2026-11-02T19:02:14.649Z]   Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.1 kB)
+[2026-11-02T19:02:14.649Z] Collecting CacheControl>=0.13.0 (from CacheControl[filecache]>=0.13.0->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.649Z]   Downloading cachecontrol-0.14.4-py3-none-any.whl.metadata (3.1 kB)
+[2026-11-02T19:02:14.649Z] Collecting cyclonedx-python-lib<12,>=5 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.649Z]   Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl.metadata (6.9 kB)
+[2026-11-02T19:02:14.649Z] Collecting pip-api>=0.0.28 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.649Z]   Downloading pip_api-0.0.35-py3-none-any.whl.metadata (17 kB)
+[2026-11-02T19:02:14.649Z] Collecting pip-requirements-parser>=32.0.0 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading pip_requirements_parser-32.0.1-py3-none-any.whl.metadata (9.3 kB)
+[2026-11-02T19:02:14.900Z] Collecting requests>=2.31.0 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+[2026-11-02T19:02:14.900Z] Collecting rich>=12.4 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+[2026-11-02T19:02:14.900Z] Collecting tomli>=2.2.1 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading tomli-2.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+[2026-11-02T19:02:14.900Z] Collecting tomli-w>=1.2.0 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading tomli_w-1.2.0-py3-none-any.whl.metadata (5.7 kB)
+[2026-11-02T19:02:14.900Z] Collecting platformdirs>=4.2.0 (from pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:14.900Z]   Downloading platformdirs-4.14.3-py3-none-any.whl.metadata (5.4 kB)
+[2026-11-02T19:02:15.151Z] Collecting configargparse>=1.7.1 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.151Z]   Downloading configargparse-1.9.0-py3-none-any.whl.metadata (24 kB)
+[2026-11-02T19:02:15.151Z] Collecting flask-cors>=3.0.10 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.151Z]   Downloading flask_cors-6.0.5-py3-none-any.whl.metadata (5.4 kB)
+[2026-11-02T19:02:15.151Z] Collecting flask-login>=0.6.3 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.151Z]   Downloading Flask_Login-0.6.3-py3-none-any.whl.metadata (5.8 kB)
+[2026-11-02T19:02:15.151Z] Collecting flask>=2.0.0 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.151Z]   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+[2026-11-02T19:02:15.151Z] Collecting gevent>=24.11.1 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.401Z]   Downloading gevent-26.9.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (14 kB)
+[2026-11-02T19:02:15.401Z] Collecting geventhttpclient>=2.5.1 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.402Z]   Downloading geventhttpclient-2.6.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (12 kB)
+[2026-11-02T19:02:15.652Z] Collecting msgpack>=1.0.0 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.652Z]   Downloading msgpack-1.2.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+[2026-11-02T19:02:15.652Z] Collecting psutil>=5.9.1 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.652Z]   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+[2026-11-02T19:02:15.652Z] Collecting python-engineio>=4.12.2 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.652Z]   Downloading python_engineio-4.15.1-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-02T19:02:15.652Z] Collecting python-socketio>=5.13.0 (from python-socketio[client]>=5.13.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.652Z]   Downloading python_socketio-5.18.0-py3-none-any.whl.metadata (3.6 kB)
+[2026-11-02T19:02:15.903Z] Collecting pyzmq>=25.0.0 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.903Z]   Downloading pyzmq-27.2.0-cp312-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+[2026-11-02T19:02:15.903Z] Collecting werkzeug>=2.0.0 (from locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:15.903Z]   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[2026-11-02T19:02:16.154Z] Collecting pyee<15,>=13 (from playwright==1.64.1->-r requirements-dev.txt (line 8))
+[2026-11-02T19:02:16.154Z]   Downloading pyee-14.0.0-py3-none-any.whl.metadata (1.8 kB)
+[2026-11-02T19:02:16.154Z] Collecting greenlet<4.0.0,>=3.1.1 (from playwright==1.64.1->-r requirements-dev.txt (line 8))
+[2026-11-02T19:02:16.154Z]   Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+[2026-11-02T19:02:16.404Z] Collecting psycopg-binary==3.2.13 (from psycopg[binary]==3.2.13->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 6))
+[2026-11-02T19:02:16.404Z]   Downloading psycopg_binary-3.2.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.9 kB)
+[2026-11-02T19:02:16.404Z] Collecting license-expression<31,>=30 (from cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.404Z]   Downloading license_expression-30.4.4-py3-none-any.whl.metadata (11 kB)
+[2026-11-02T19:02:16.404Z] Collecting packageurl-python<2,>=0.11 (from cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.404Z]   Downloading packageurl_python-0.17.6-py3-none-any.whl.metadata (5.1 kB)
+[2026-11-02T19:02:16.655Z] Collecting py-serializable<3.0.0,>=2.1.0 (from cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.655Z]   Downloading py_serializable-2.1.0-py3-none-any.whl.metadata (4.3 kB)
+[2026-11-02T19:02:16.655Z] Collecting sortedcontainers<3.0.0,>=2.4.0 (from cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.655Z]   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+[2026-11-02T19:02:16.655Z] Collecting amqp<6.0.0,>=5.1.1 (from kombu<5.6,>=5.5.2->celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:16.655Z]   Downloading amqp-5.4.2-py3-none-any.whl.metadata (9.4 kB)
+[2026-11-02T19:02:16.655Z] Collecting tzdata>=2025.2 (from kombu<5.6,>=5.5.2->celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:16.655Z]   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+[2026-11-02T19:02:16.655Z] Collecting boolean.py>=4.0 (from license-expression<31,>=30->cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.655Z]   Downloading boolean_py-5.0-py3-none-any.whl.metadata (2.3 kB)
+[2026-11-02T19:02:16.655Z] Collecting defusedxml<0.8.0,>=0.7.1 (from py-serializable<3.0.0,>=2.1.0->cyclonedx-python-lib<12,>=5->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.655Z]   Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+[2026-11-02T19:02:16.906Z] Collecting filelock>=3.8.0 (from CacheControl[filecache]>=0.13.0->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:16.906Z]   Downloading filelock-4.2.7-py3-none-any.whl.metadata (2.0 kB)
+[2026-11-02T19:02:16.906Z] Collecting prompt_toolkit>=3.0.36 (from click-repl>=0.2.0->celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:16.906Z]   Downloading prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+[2026-11-02T19:02:16.906Z] Collecting blinker>=1.9.0 (from flask>=2.0.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:16.906Z]   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[2026-11-02T19:02:16.906Z] Collecting itsdangerous>=2.2.0 (from flask>=2.0.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:16.906Z]   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[2026-11-02T19:02:16.906Z] Collecting jinja2>=3.1.2 (from flask>=2.0.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:16.906Z]   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[2026-11-02T19:02:17.157Z] Collecting markupsafe>=2.1.1 (from flask>=2.0.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.157Z]   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+[2026-11-02T19:02:17.157Z] Collecting zope.event (from gevent>=24.11.1->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.157Z]   Downloading zope_event-6.2-py3-none-any.whl.metadata (5.4 kB)
+[2026-11-02T19:02:17.157Z] Collecting zope.interface (from gevent>=24.11.1->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.157Z]   Downloading zope_interface-8.7-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata (48 kB)
+[2026-11-02T19:02:17.407Z] Collecting certifi (from geventhttpclient>=2.5.1->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.407Z]   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+[2026-11-02T19:02:17.408Z] Collecting brotli (from geventhttpclient>=2.5.1->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.408Z]   Downloading brotli-1.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.1 kB)
+[2026-11-02T19:02:17.408Z] Collecting attrs>=22.2.0 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:17.408Z]   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+[2026-11-02T19:02:17.408Z] Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:17.408Z]   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+[2026-11-02T19:02:17.408Z] Collecting referencing>=0.28.4 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:17.408Z]   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+[2026-11-02T19:02:17.658Z] Collecting rpds-py>=0.25.0 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 4))
+[2026-11-02T19:02:17.658Z]   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+[2026-11-02T19:02:17.658Z] Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (from pip-api>=0.0.28->pip-audit==2.10.1->-r requirements-dev.txt (line 6)) (26.2.2)
+[2026-11-02T19:02:17.909Z] Collecting pyparsing (from pip-requirements-parser>=32.0.0->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:17.909Z]   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+[2026-11-02T19:02:17.909Z] Collecting wcwidth>=0.1.4 (from prompt_toolkit>=3.0.36->click-repl>=0.2.0->celery==5.5.3->-r /home/runner/work/_temp/sams-jenkins/workspace/sams/requirements.txt (line 7))
+[2026-11-02T19:02:17.909Z]   Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (23 kB)
+[2026-11-02T19:02:17.909Z] Collecting simple-websocket>=0.10.0 (from python-engineio>=4.12.2->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.909Z]   Downloading simple_websocket-1.1.0-py3-none-any.whl.metadata (1.5 kB)
+[2026-11-02T19:02:17.909Z] Collecting bidict>=0.21.0 (from python-socketio>=5.13.0->python-socketio[client]>=5.13.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.909Z]   Downloading bidict-0.24.1-py3-none-any.whl.metadata (8.7 kB)
+[2026-11-02T19:02:17.909Z] Collecting websocket-client>=0.54.0 (from python-socketio[client]>=5.13.0->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:17.909Z]   Downloading websocket_client-1.9.2-py3-none-any.whl.metadata (8.3 kB)
+[2026-11-02T19:02:18.159Z] Collecting idna<4,>=2.5 (from requests>=2.31.0->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:18.159Z]   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+[2026-11-02T19:02:18.159Z] Collecting urllib3<3,>=1.26 (from requests>=2.31.0->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:18.159Z]   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+[2026-11-02T19:02:18.159Z] Collecting markdown-it-py>=2.2.0 (from rich>=12.4->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:18.159Z]   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+[2026-11-02T19:02:18.159Z] Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=12.4->pip-audit==2.10.1->-r requirements-dev.txt (line 6))
+[2026-11-02T19:02:18.160Z]   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+[2026-11-02T19:02:18.160Z] Collecting wsproto (from simple-websocket>=0.10.0->python-engineio>=4.12.2->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:18.160Z]   Downloading wsproto-1.3.2-py3-none-any.whl.metadata (5.2 kB)
+[2026-11-02T19:02:18.410Z] Collecting h11<1,>=0.16.0 (from wsproto->simple-websocket>=0.10.0->python-engineio>=4.12.2->locust==2.47.0->-r requirements-dev.txt (line 7))
+[2026-11-02T19:02:18.410Z]   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+[2026-11-02T19:02:18.410Z] Downloading django-5.2.18-py3-none-any.whl (8.3 MB)
+[2026-11-02T19:02:18.410Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 157.8 MB/s  0:00:00
+[2026-11-02T19:02:18.410Z] Downloading djangorestframework-3.18.3-py3-none-any.whl (903 kB)
+[2026-11-02T19:02:18.410Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 904.0/904.0 kB 204.2 MB/s  0:00:00
+[2026-11-02T19:02:18.410Z] Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl (107 kB)
+[2026-11-02T19:02:18.410Z] Downloading drf_spectacular-0.30.0-py3-none-any.whl (111 kB)
+[2026-11-02T19:02:18.410Z] Downloading drf_spectacular_sidecar-2026.10.1-py3-none-any.whl (2.7 MB)
+[2026-11-02T19:02:18.410Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.7/2.7 MB 237.8 MB/s  0:00:00
+[2026-11-02T19:02:18.410Z] Downloading psycopg-3.2.13-py3-none-any.whl (206 kB)
+[2026-11-02T19:02:18.410Z] Downloading celery-5.5.3-py3-none-any.whl (438 kB)
+[2026-11-02T19:02:18.410Z] Downloading redis-6.4.0-py3-none-any.whl (279 kB)
+[2026-11-02T19:02:18.410Z] Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[2026-11-02T19:02:18.410Z] Downloading reportlab-4.5.1-py3-none-any.whl (2.0 MB)
+[2026-11-02T19:02:18.410Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 303.5 MB/s  0:00:00
+[2026-11-02T19:02:18.410Z] Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+[2026-11-02T19:02:18.410Z] Downloading pytest_django-4.14.0-py3-none-any.whl (27 kB)
+[2026-11-02T19:02:18.661Z] Downloading pytest_cov-6.3.0-py3-none-any.whl (25 kB)
+[2026-11-02T19:02:18.661Z] Downloading ruff-0.17.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.6 MB)
+[2026-11-02T19:02:18.661Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.6/10.6 MB 300.3 MB/s  0:00:00
+[2026-11-02T19:02:18.661Z] Downloading pip_audit-2.10.1-py3-none-any.whl (62 kB)
+[2026-11-02T19:02:18.661Z] Downloading locust-2.47.0-py3-none-any.whl (1.5 MB)
+[2026-11-02T19:02:18.661Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.5/1.5 MB 255.7 MB/s  0:00:00
+[2026-11-02T19:02:18.661Z] Downloading playwright-1.64.1-py3-none-manylinux1_x86_64.whl (48.5 MB)
+[2026-11-02T19:02:18.661Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.5/48.5 MB 339.8 MB/s  0:00:00
+[2026-11-02T19:02:18.661Z] Downloading psycopg_binary-3.2.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.4 MB)
+[2026-11-02T19:02:18.912Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 264.0 MB/s  0:00:00
+[2026-11-02T19:02:18.912Z] Downloading billiard-4.3.2-py3-none-any.whl (90 kB)
+[2026-11-02T19:02:18.912Z] Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[2026-11-02T19:02:18.912Z] Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+[2026-11-02T19:02:18.912Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.5/529.5 kB 109.6 MB/s  0:00:00
+[2026-11-02T19:02:18.912Z] Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+[2026-11-02T19:02:18.912Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 137.5 MB/s  0:00:00
+[2026-11-02T19:02:18.912Z] Downloading kombu-5.5.4-py3-none-any.whl (210 kB)
+[2026-11-02T19:02:18.912Z] Downloading vine-5.1.0-py3-none-any.whl (9.6 kB)
+[2026-11-02T19:02:18.912Z] Downloading amqp-5.4.2-py3-none-any.whl (51 kB)
+[2026-11-02T19:02:18.912Z] Downloading license_expression-30.4.4-py3-none-any.whl (120 kB)
+[2026-11-02T19:02:18.912Z] Downloading packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+[2026-11-02T19:02:18.912Z] Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+[2026-11-02T19:02:18.912Z] Downloading py_serializable-2.1.0-py3-none-any.whl (23 kB)
+[2026-11-02T19:02:18.912Z] Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+[2026-11-02T19:02:18.912Z] Downloading pyee-14.0.0-py3-none-any.whl (15 kB)
+[2026-11-02T19:02:18.912Z] Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+[2026-11-02T19:02:18.912Z] Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+[2026-11-02T19:02:18.912Z] Downloading asgiref-3.13.0-py3-none-any.whl (27 kB)
+[2026-11-02T19:02:18.912Z] Downloading boolean_py-5.0-py3-none-any.whl (26 kB)
+[2026-11-02T19:02:18.912Z] Downloading cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+[2026-11-02T19:02:19.163Z] Downloading msgpack-1.2.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (475 kB)
+[2026-11-02T19:02:19.163Z] Downloading click_didyoumean-0.3.1-py3-none-any.whl (3.6 kB)
+[2026-11-02T19:02:19.163Z] Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl (11 kB)
+[2026-11-02T19:02:19.163Z] Downloading click_repl-0.4.1-py3-none-any.whl (14 kB)
+[2026-11-02T19:02:19.163Z] Downloading configargparse-1.9.0-py3-none-any.whl (37 kB)
+[2026-11-02T19:02:19.163Z] Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (261 kB)
+[2026-11-02T19:02:19.163Z] Downloading filelock-4.2.7-py3-none-any.whl (164 kB)
+[2026-11-02T19:02:19.163Z] Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+[2026-11-02T19:02:19.163Z] Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[2026-11-02T19:02:19.163Z] Downloading flask_cors-6.0.5-py3-none-any.whl (16 kB)
+[2026-11-02T19:02:19.163Z] Downloading Flask_Login-0.6.3-py3-none-any.whl (17 kB)
+[2026-11-02T19:02:19.163Z] Downloading gevent-26.9.0-cp312-cp312-manylinux_2_28_x86_64.whl (2.2 MB)
+[2026-11-02T19:02:19.163Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 213.9 MB/s  0:00:00
+[2026-11-02T19:02:19.163Z] Downloading geventhttpclient-2.6.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (163 kB)
+[2026-11-02T19:02:19.163Z] Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+[2026-11-02T19:02:19.163Z] Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+[2026-11-02T19:02:19.163Z] Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[2026-11-02T19:02:19.163Z] Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[2026-11-02T19:02:19.163Z] Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+[2026-11-02T19:02:19.163Z] Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+[2026-11-02T19:02:19.163Z] Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+[2026-11-02T19:02:19.414Z] Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+[2026-11-02T19:02:19.414Z] Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[2026-11-02T19:02:19.414Z] Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+[2026-11-02T19:02:19.414Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 311.1 MB/s  0:00:00
+[2026-11-02T19:02:19.414Z] Downloading pip_api-0.0.35-py3-none-any.whl (123 kB)
+[2026-11-02T19:02:19.414Z] Downloading pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+[2026-11-02T19:02:19.414Z] Downloading platformdirs-4.14.3-py3-none-any.whl (35 kB)
+[2026-11-02T19:02:19.414Z] Downloading prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+[2026-11-02T19:02:19.414Z] Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+[2026-11-02T19:02:19.414Z] Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+[2026-11-02T19:02:19.414Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 229.3 MB/s  0:00:00
+[2026-11-02T19:02:19.414Z] Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+[2026-11-02T19:02:19.414Z] Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+[2026-11-02T19:02:19.414Z] Downloading python_engineio-4.15.1-py3-none-any.whl (60 kB)
+[2026-11-02T19:02:19.414Z] Downloading python_socketio-5.18.0-py3-none-any.whl (82 kB)
+[2026-11-02T19:02:19.414Z] Downloading bidict-0.24.1-py3-none-any.whl (36 kB)
+[2026-11-02T19:02:19.414Z] Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+[2026-11-02T19:02:19.414Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 153.2 MB/s  0:00:00
+[2026-11-02T19:02:19.414Z] Downloading pyzmq-27.2.0-cp312-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (872 kB)
+[2026-11-02T19:02:19.414Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 872.3/872.3 kB 155.7 MB/s  0:00:00
+[2026-11-02T19:02:19.414Z] Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+[2026-11-02T19:02:19.414Z] Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+[2026-11-02T19:02:19.664Z] Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+[2026-11-02T19:02:19.664Z] Downloading idna-3.20-py3-none-any.whl (69 kB)
+[2026-11-02T19:02:19.664Z] Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+[2026-11-02T19:02:19.664Z] Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+[2026-11-02T19:02:19.664Z] Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+[2026-11-02T19:02:19.664Z] Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+[2026-11-02T19:02:19.664Z] Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+[2026-11-02T19:02:19.664Z] Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+[2026-11-02T19:02:19.664Z] Downloading simple_websocket-1.1.0-py3-none-any.whl (13 kB)
+[2026-11-02T19:02:19.664Z] Downloading sqlparse-0.6.1-py3-none-any.whl (51 kB)
+[2026-11-02T19:02:19.664Z] Downloading tomli-2.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (286 kB)
+[2026-11-02T19:02:19.664Z] Downloading tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+[2026-11-02T19:02:19.664Z] Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+[2026-11-02T19:02:19.664Z] Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+[2026-11-02T19:02:19.664Z] Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (785 kB)
+[2026-11-02T19:02:19.664Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 785.9/785.9 kB 114.2 MB/s  0:00:00
+[2026-11-02T19:02:19.664Z] Downloading websocket_client-1.9.2-py3-none-any.whl (95 kB)
+[2026-11-02T19:02:19.664Z] Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[2026-11-02T19:02:19.664Z] Downloading brotli-1.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.4 MB)
+[2026-11-02T19:02:19.664Z]    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 196.0 MB/s  0:00:00
+[2026-11-02T19:02:19.665Z] Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+[2026-11-02T19:02:19.665Z] Downloading wsproto-1.3.2-py3-none-any.whl (24 kB)
+[2026-11-02T19:02:19.915Z] Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+[2026-11-02T19:02:19.915Z] Downloading zope_event-6.2-py3-none-any.whl (6.5 kB)
+[2026-11-02T19:02:19.915Z] Downloading zope_interface-8.7-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl (284 kB)
+[2026-11-02T19:02:20.466Z] Installing collected packages: sortedcontainers, brotli, boolean.py, zope.interface, zope.event, websocket-client, wcwidth, vine, urllib3, uritemplate, tzdata, typing-extensions, tomli-w, tomli, sqlparse, ruff, rpds-py, redis, pyzmq, PyYAML, pyparsing, pyjwt, pygments, psycopg-binary, psutil, pluggy, platformdirs, pip-api, pillow, packaging, packageurl-python, msgpack, mdurl, markupsafe, license-expression, itsdangerous, iniconfig, inflection, idna, h11, greenlet, filelock, defusedxml, coverage, configargparse, click, charset-normalizer, certifi, blinker, billiard, bidict, attrs, asgiref, wsproto, werkzeug, requests, reportlab, referencing, python-dateutil, pytest, pyee, py-serializable, psycopg, prompt_toolkit, pip-requirements-parser, markdown-it-py, jinja2, gunicorn, gevent, Django, click-plugins, click-didyoumean, amqp, simple-websocket, rich, pytest-django, pytest-cov, playwright, kombu, jsonschema-specifications, geventhttpclient, flask, drf-spectacular-sidecar, djangorestframework, cyclonedx-python-lib, click-repl, CacheControl, python-engineio, jsonschema, flask-login, flask-cors, djangorestframework-simplejwt, celery, python-socketio, pip-audit, drf-spectacular, locust
+[2026-11-02T19:02:30.344Z] 
+[2026-11-02T19:02:30.344Z] Successfully installed CacheControl-0.14.4 Django-5.2.18 PyYAML-6.0.3 amqp-5.4.2 asgiref-3.13.0 attrs-26.1.0 bidict-0.24.1 billiard-4.3.2 blinker-1.9.0 boolean.py-5.0 brotli-1.2.1 celery-5.5.3 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.0 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.4.1 configargparse-1.9.0 coverage-7.17.0 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 djangorestframework-3.18.3 djangorestframework-simplejwt-5.5.1 drf-spectacular-0.30.0 drf-spectacular-sidecar-2026.10.1 filelock-4.2.7 flask-3.1.3 flask-cors-6.0.5 flask-login-0.6.3 gevent-26.9.0 geventhttpclient-2.6.1 greenlet-3.5.6 gunicorn-23.0.0 h11-0.16.0 idna-3.20 inflection-0.5.1 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 kombu-5.5.4 license-expression-30.4.4 locust-2.47.0 markdown-it-py-4.2.0 markupsafe-3.0.4 mdurl-0.1.2 msgpack-1.2.4 packageurl-python-0.17.6 packaging-26.3 pillow-13.0.0 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.14.3 playwright-1.64.1 pluggy-1.7.0 prompt_toolkit-3.0.53 psutil-7.2.2 psycopg-3.2.13 psycopg-binary-3.2.13 py-serializable-2.1.0 pyee-14.0.0 pygments-2.21.0 pyjwt-2.15.1 pyparsing-3.3.3 pytest-9.2.0 pytest-cov-6.3.0 pytest-django-4.14.0 python-dateutil-4.0.0 python-engineio-4.15.1 python-socketio-5.18.0 pyzmq-27.2.0 redis-6.4.0 referencing-0.37.0 reportlab-4.5.1 requests-2.34.2 rich-15.0.0 rpds-py-2026.9.1 ruff-0.17.3 simple-websocket-1.1.0 sortedcontainers-2.4.0 sqlparse-0.6.1 tomli-2.5.0 tomli-w-1.2.0 typing-extensions-4.16.0 tzdata-2026.6 uritemplate-4.2.0 urllib3-2.8.0 vine-5.1.0 wcwidth-0.9.4 websocket-client-1.9.2 werkzeug-3.1.9 wsproto-1.3.2 zope.event-6.2 zope.interface-8.7
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint and migrations)
+[Pipeline] sh
+[2026-11-02T19:02:30.912Z] + .venv/bin/ruff check .
+[2026-11-02T19:02:30.913Z] All checks passed!
+[2026-11-02T19:02:30.913Z] + .venv/bin/ruff format --check .
+[2026-11-02T19:02:30.913Z] 79 files already formatted
+[2026-11-02T19:02:30.913Z] + .venv/bin/python manage.py check
+[2026-11-02T19:02:32.256Z] System check identified no issues (0 silenced).
+[2026-11-02T19:02:32.256Z] + .venv/bin/python manage.py makemigrations --check --dry-run
+[2026-11-02T19:02:32.507Z] No changes detected
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Tests and coverage)
+[Pipeline] sh
+[2026-11-02T19:02:33.069Z] + .venv/bin/pytest --cov --cov-report=xml:docs/reports/coverage.xml --junitxml=docs/reports/junit.xml
+[2026-11-02T19:02:35.552Z] ============================= test session starts ==============================
+[2026-11-02T19:02:35.552Z] platform linux -- Python 3.12.15, pytest-9.2.0, pluggy-1.7.0
+[2026-11-02T19:02:35.552Z] django: version: 5.2.18, settings: sams.settings (from ini)
+[2026-11-02T19:02:35.552Z] rootdir: /home/runner/work/_temp/sams-jenkins/workspace/sams
+[2026-11-02T19:02:35.552Z] configfile: pyproject.toml
+[2026-11-02T19:02:35.552Z] testpaths: tests
+[2026-11-02T19:02:35.552Z] plugins: platformdirs-4.14.3, django-4.14.0, cov-6.3.0, locust-2.47.0
+[2026-11-02T19:02:35.552Z] collected 166 items
+[2026-11-02T19:02:35.552Z] 
+[2026-11-02T19:02:36.805Z] tests/test_api.py ...........................................            [ 25%]
+[2026-11-02T19:02:37.306Z] tests/test_domain.py ................................................... [ 56%]
+[2026-11-02T19:02:38.718Z] ......................................                                   [ 79%]
+[2026-11-02T19:02:38.718Z] tests/test_validation_regressions.py ..                                  [ 80%]
+[2026-11-02T19:02:38.718Z] tests/test_workflows.py ....                                             [ 83%]
+[2026-11-02T19:02:38.969Z] tests/test_coverage_paths.py .                                           [ 83%]
+[2026-11-02T19:02:39.770Z] tests/test_load_acceptance.py ...                                        [ 85%]
+[2026-11-02T19:02:40.020Z] tests/test_monitor.py ................                                   [ 95%]
+[2026-11-02T19:02:40.271Z] tests/test_validation_regressions.py ........                            [100%]
+[2026-11-02T19:02:40.271Z] 
+[2026-11-02T19:02:40.271Z] - generated xml file: /home/runner/work/_temp/sams-jenkins/workspace/sams/docs/reports/junit.xml -
+[2026-11-02T19:02:40.271Z] ================================ tests coverage ================================
+[2026-11-02T19:02:40.271Z] _______________ coverage: platform linux, python 3.12.15-final-0 _______________
+[2026-11-02T19:02:40.271Z] 
+[2026-11-02T19:02:40.271Z] Coverage XML written to file docs/reports/coverage.xml
+[2026-11-02T19:02:40.271Z] Required test coverage of 80.0% reached. Total coverage: 99.68%
+[2026-11-02T19:02:40.271Z] ============================= 166 passed in 5.44s ==============================
+[2026-11-02T19:02:40.271Z] + .venv/bin/python scripts/test_reports.py
+[2026-11-02T19:02:40.522Z] {
+[2026-11-02T19:02:40.522Z]   "generated_at": "2026-11-02T19:02:40.270784+00:00",
+[2026-11-02T19:02:40.522Z]   "database": "SQLite",
+[2026-11-02T19:02:40.522Z]   "tests": 166,
+[2026-11-02T19:02:40.522Z]   "failures": 0,
+[2026-11-02T19:02:40.522Z]   "line_percent": 100.0,
+[2026-11-02T19:02:40.522Z]   "branch_percent": 98.24
+[2026-11-02T19:02:40.522Z] }
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Dependency audit)
+[Pipeline] sh
+[2026-11-02T19:02:40.828Z] + .venv/bin/pip-audit --format json --output docs/reports/dependency-audit.json
+[2026-11-02T19:02:42.690Z] No known vulnerabilities found
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube)
+[Pipeline] withCredentials
+[2026-11-02T19:02:42.787Z] Masking supported pattern matches of $SONAR_TOKEN
+[Pipeline] {
+[Pipeline] sh
+[2026-11-02T19:02:43.065Z] + test -n http://127.0.0.1:9000
+[2026-11-02T19:02:43.065Z] + sonar-scanner -Dsonar.qualitygate.wait=true
+[2026-11-02T19:02:44.408Z] 19:02:44.028 WARN  Property 'sonar.working.directory' with value '/tmp/.scannerwork' is overridden with value '/usr/src/.scannerwork'
+[2026-11-02T19:02:44.409Z] 19:02:44.036 INFO  Scanner configuration file: /opt/sonar-scanner/conf/sonar-scanner.properties
+[2026-11-02T19:02:44.409Z] 19:02:44.037 INFO  Project root configuration file: /usr/src/sonar-project.properties
+[2026-11-02T19:02:44.409Z] 19:02:44.052 INFO  SonarScanner CLI 8.1.0.6389
+[2026-11-02T19:02:44.409Z] 19:02:44.058 INFO  Linux 7.0.0-1017-azure amd64
+[2026-11-02T19:02:45.320Z] 19:02:45.228 INFO  Communicating with SonarQube Community Build 26.10.0.133078
+[2026-11-02T19:02:45.320Z] 19:02:45.229 INFO  JRE provisioning: os[linux], arch[x86_64]
+[2026-11-02T19:02:47.807Z] 19:02:47.395 INFO  Starting SonarScanner Engine...
+[2026-11-02T19:02:47.807Z] 19:02:47.395 INFO  Java 21.0.12.1 Eclipse Adoptium (64-bit)
+[2026-11-02T19:02:48.720Z] 19:02:48.682 INFO  Load global settings
+[2026-11-02T19:02:48.971Z] 19:02:48.809 INFO  Load global settings (done) | time=125ms
+[2026-11-02T19:02:48.971Z] 19:02:48.811 INFO  Server id: 147B411E-AaGdouTUhT7unotWHWq-
+[2026-11-02T19:02:48.971Z] 19:02:48.824 INFO  Loading required plugins
+[2026-11-02T19:02:48.971Z] 19:02:48.824 INFO  Load plugins index
+[2026-11-02T19:02:48.971Z] 19:02:48.858 INFO  Load plugins index (done) | time=32ms
+[2026-11-02T19:02:48.971Z] 19:02:48.861 INFO  Load/download plugins
+[2026-11-02T19:02:49.222Z] 19:02:49.216 INFO  Load/download plugins (done) | time=357ms
+[2026-11-02T19:02:49.774Z] 19:02:49.531 INFO  Load project settings for component key: 'sams'
+[2026-11-02T19:02:49.774Z] 19:02:49.585 INFO  Load project settings for component key: 'sams' (done) | time=40ms
+[2026-11-02T19:02:49.774Z] 19:02:49.586 INFO  Process project properties
+[2026-11-02T19:02:49.774Z] 19:02:49.600 INFO  Process project properties (done) | time=15ms
+[2026-11-02T19:02:49.774Z] 19:02:49.611 INFO  Project key: sams
+[2026-11-02T19:02:49.774Z] 19:02:49.611 INFO  Base dir: /usr/src
+[2026-11-02T19:02:49.774Z] 19:02:49.612 INFO  Working dir: /usr/src/.scannerwork
+[2026-11-02T19:02:50.025Z] 19:02:49.777 INFO  Load quality profiles
+[2026-11-02T19:02:50.025Z] 19:02:49.866 INFO  Load quality profiles (done) | time=88ms
+[2026-11-02T19:02:50.025Z] 19:02:49.929 INFO  Load active rules
+[2026-11-02T19:02:50.576Z] 19:02:50.533 INFO  Load active rules (done) | time=605ms
+[2026-11-02T19:02:50.576Z] 19:02:50.540 INFO  Load analysis cache
+[2026-11-02T19:02:50.576Z] 19:02:50.571 INFO  Load analysis cache (404) | time=32ms
+[2026-11-02T19:02:50.826Z] 19:02:50.686 INFO  Preprocessing files...
+[2026-11-02T19:02:50.826Z] 19:02:50.806 INFO  1 language detected in 35 preprocessed files (done) | time=118ms
+[2026-11-02T19:02:50.826Z] 19:02:50.809 INFO  0 files ignored because of inclusion/exclusion patterns
+[2026-11-02T19:02:50.826Z] 19:02:50.809 INFO  13 directories skipped because of exclusion patterns (content not counted)
+[2026-11-02T19:02:50.826Z] 19:02:50.810 INFO  8 files ignored because of scm ignore settings
+[2026-11-02T19:02:50.826Z] 19:02:50.825 INFO  Loading plugins for detected languages
+[2026-11-02T19:02:50.826Z] 19:02:50.825 INFO  Load/download plugins
+[2026-11-02T19:02:51.077Z] 19:02:51.006 INFO  Load/download plugins (done) | time=156ms
+[2026-11-02T19:02:51.328Z] 19:02:51.126 INFO  Load project repositories
+[2026-11-02T19:02:51.328Z] 19:02:51.219 INFO  Load project repositories (done) | time=94ms
+[2026-11-02T19:02:51.328Z] 19:02:51.264 INFO  Indexing files...
+[2026-11-02T19:02:51.328Z] 19:02:51.266 INFO  Project configuration:
+[2026-11-02T19:02:51.328Z] 19:02:51.266 INFO    Excluded sources: **/migrations/**, **/__pycache__/**
+[2026-11-02T19:02:51.328Z] 19:02:51.266 INFO    Excluded sources for coverage: **/management/**, **/apps.py
+[2026-11-02T19:02:51.328Z] 19:02:51.278 INFO  35 files indexed (done) | time=13ms
+[2026-11-02T19:02:51.328Z] 19:02:51.279 INFO  Quality profile for py: Sonar way core
+[2026-11-02T19:02:51.328Z] 19:02:51.279 INFO  ------------- Run sensors on module SAMS
+[2026-11-02T19:02:51.328Z] 19:02:51.321 INFO  Load metrics repository
+[2026-11-02T19:02:51.578Z] 19:02:51.368 INFO  Load metrics repository (done) | time=46ms
+[2026-11-02T19:02:52.131Z] 19:02:51.974 INFO  Sensor IaC YAML File Type Classification Sensor [iac]
+[2026-11-02T19:02:52.131Z] 19:02:51.979 INFO  Sensor IaC YAML File Type Classification Sensor [iac] (done) | time=3ms
+[2026-11-02T19:02:52.131Z] 19:02:51.979 INFO  Sensor IaC hadolint report Sensor [iac]
+[2026-11-02T19:02:52.131Z] 19:02:51.979 INFO  Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[2026-11-02T19:02:52.131Z] 19:02:51.980 INFO  Sensor Java Config Sensor [iac]
+[2026-11-02T19:02:52.131Z] 19:02:51.984 INFO  There are no files to be analyzed for the Java language
+[2026-11-02T19:02:52.131Z] 19:02:51.985 INFO  Sensor Java Config Sensor [iac] (done) | time=0ms
+[2026-11-02T19:02:52.131Z] 19:02:51.985 INFO  Sensor IaC Docker Sensor [iac]
+[2026-11-02T19:02:52.131Z] 19:02:51.987 INFO  There are no files to be analyzed for the Docker language
+[2026-11-02T19:02:52.131Z] 19:02:51.987 INFO  Sensor IaC Docker Sensor [iac] (done) | time=3ms
+[2026-11-02T19:02:52.131Z] 19:02:51.989 INFO  Sensor Python Sensor [python]
+[2026-11-02T19:02:53.047Z] 19:02:52.937 INFO  Starting global symbols computation
+[2026-11-02T19:02:53.047Z] 19:02:52.940 INFO  35 source files to be analyzed
+[2026-11-02T19:02:54.390Z] 19:02:54.086 INFO  35/35 source files have been analyzed
+[2026-11-02T19:02:54.390Z] 19:02:54.088 INFO  Finished step global symbols computation in 1149ms
+[2026-11-02T19:02:54.390Z] 19:02:54.135 INFO  Starting rules execution
+[2026-11-02T19:02:54.390Z] 19:02:54.136 INFO  35 source files to be analyzed
+[2026-11-02T19:02:55.737Z] 19:02:55.690 INFO  35/35 source files have been analyzed
+[2026-11-02T19:02:55.737Z] 19:02:55.693 INFO  Finished step rules execution in 1554ms
+[2026-11-02T19:02:55.737Z] 19:02:55.694 INFO  The Python analyzer was able to leverage cached data from previous analyses for 0 out of 35 files. These files were not parsed.
+[2026-11-02T19:02:55.737Z] 19:02:55.695 INFO  Sensor Python Sensor [python] (done) | time=3711ms
+[2026-11-02T19:02:55.737Z] 19:02:55.695 INFO  Sensor Cobertura Sensor for Python coverage [python]
+[2026-11-02T19:02:55.987Z] 19:02:55.981 INFO  Python test coverage
+[2026-11-02T19:02:55.987Z] 19:02:55.983 INFO  Parsing report '/usr/src/docs/reports/coverage.xml'
+[2026-11-02T19:02:56.238Z] 19:02:56.057 INFO  Sensor Cobertura Sensor for Python coverage [python] (done) | time=363ms
+[2026-11-02T19:02:56.238Z] 19:02:56.059 INFO  Sensor PythonXUnitSensor [python]
+[2026-11-02T19:02:56.488Z] 19:02:56.308 INFO  Sensor PythonXUnitSensor [python] (done) | time=250ms
+[2026-11-02T19:02:56.488Z] 19:02:56.308 INFO  Sensor Python Dependency Sensor [python]
+[2026-11-02T19:02:56.489Z] 19:02:56.312 INFO  Sensor Python Dependency Sensor [python] (done) | time=3ms
+[2026-11-02T19:02:56.489Z] 19:02:56.312 INFO  Sensor TextAndSecretsSensor [text]
+[2026-11-02T19:02:56.489Z] 19:02:56.334 INFO  Available processors: 4
+[2026-11-02T19:02:56.489Z] 19:02:56.335 INFO  Using 4 threads for analysis.
+[2026-11-02T19:02:56.739Z] 19:02:56.658 INFO  Start fetching files for the text and secrets analysis
+[2026-11-02T19:02:56.739Z] 19:02:56.666 INFO  Using Git CLI to retrieve dirty files
+[2026-11-02T19:02:56.990Z] 19:02:56.831 INFO  Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+[2026-11-02T19:02:56.990Z] 19:02:56.832 INFO  Starting the text and secrets analysis
+[2026-11-02T19:02:56.990Z] 19:02:56.834 INFO  35 source files to be analyzed for the text and secrets analysis
+[2026-11-02T19:02:56.990Z] 19:02:56.923 INFO  35/35 source files have been analyzed for the text and secrets analysis
+[2026-11-02T19:02:56.990Z] 19:02:56.925 INFO  Sensor TextAndSecretsSensor [text] (done) | time=613ms
+[2026-11-02T19:02:56.990Z] 19:02:56.927 INFO  ------------- Run sensors on project
+[2026-11-02T19:02:57.240Z] 19:02:57.068 INFO  Sensor IaC Project Sensor [iac]
+[2026-11-02T19:02:57.240Z] 19:02:57.069 INFO  Sensor IaC Project Sensor [iac] (done) | time=1ms
+[2026-11-02T19:02:57.240Z] 19:02:57.073 INFO  Sensor Zero Coverage Sensor
+[2026-11-02T19:02:57.240Z] 19:02:57.073 INFO  Sensor Zero Coverage Sensor (done) | time=0ms
+[2026-11-02T19:02:57.241Z] 19:02:57.073 INFO  ------------- Gather SCA dependencies on project
+[2026-11-02T19:02:57.241Z] 19:02:57.078 INFO  Dependency analysis skipped
+[2026-11-02T19:02:57.241Z] 19:02:57.081 INFO  SCM Publisher SCM provider for this project is: git
+[2026-11-02T19:02:57.241Z] 19:02:57.082 INFO  SCM Publisher 26 source files to be analyzed
+[2026-11-02T19:02:57.792Z] 19:02:57.644 INFO  SCM Publisher 26/26 source files have been analyzed (done) | time=560ms
+[2026-11-02T19:02:57.792Z] 19:02:57.653 INFO  CPD Executor 10 files had no CPD blocks
+[2026-11-02T19:02:57.792Z] 19:02:57.653 INFO  CPD Executor Calculating CPD for 17 files
+[2026-11-02T19:02:57.792Z] 19:02:57.665 INFO  CPD Executor CPD calculation finished (done) | time=11ms
+[2026-11-02T19:02:57.792Z] 19:02:57.671 INFO  SCM revision ID 'aa1dd84003e2ab468d2861ae0396af3493080e38'
+[2026-11-02T19:02:57.792Z] 19:02:57.771 INFO  Analysis report generated in 97ms, dir size=438.5 kB
+[2026-11-02T19:02:58.042Z] 19:02:57.871 INFO  Analysis report compressed in 100ms, zip size=201.4 kB
+[2026-11-02T19:02:58.042Z] 19:02:57.955 INFO  Analysis report uploaded in 84ms
+[2026-11-02T19:02:58.042Z] 19:02:57.959 INFO  ------------- Check Quality Gate status
+[2026-11-02T19:02:58.042Z] 19:02:57.960 INFO  Waiting for the analysis report to be processed (max 300s)
+[2026-11-02T19:03:03.237Z] 19:03:03.019 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=sams
+[2026-11-02T19:03:03.237Z] 19:03:03.039 INFO  Analysis total time: 15.599 s
+[2026-11-02T19:03:03.237Z] 19:03:03.040 INFO  SonarScanner Engine completed successfully
+[2026-11-02T19:03:03.237Z] 19:03:03.088 INFO  EXECUTION SUCCESS
+[2026-11-02T19:03:03.237Z] 19:03:03.089 INFO  Total time: 19.055s
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Container)
+[Pipeline] sh
+[2026-11-02T19:03:04.470Z] + docker build -t sams:1 .
+[2026-11-02T19:03:05.021Z] #0 building with "default" instance using docker driver
+[2026-11-02T19:03:05.021Z] 
+[2026-11-02T19:03:05.021Z] #1 [internal] load build definition from Dockerfile
+[2026-11-02T19:03:05.021Z] #1 transferring dockerfile: 551B done
+[2026-11-02T19:03:05.021Z] #1 DONE 0.0s
+[2026-11-02T19:03:05.021Z] 
+[2026-11-02T19:03:05.021Z] #2 [auth] library/python:pull token for registry-1.docker.io
+[2026-11-02T19:03:05.021Z] #2 DONE 0.0s
+[2026-11-02T19:03:05.021Z] 
+[2026-11-02T19:03:05.021Z] #3 [internal] load metadata for docker.io/library/python:3.12-slim
+[2026-11-02T19:03:05.021Z] #3 DONE 0.4s
+[2026-11-02T19:03:05.272Z] 
+[2026-11-02T19:03:05.272Z] #4 [internal] load .dockerignore
+[2026-11-02T19:03:05.272Z] #4 transferring context: 155B done
+[2026-11-02T19:03:05.272Z] #4 DONE 0.0s
+[2026-11-02T19:03:05.272Z] 
+[2026-11-02T19:03:05.272Z] #5 [1/7] FROM docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+[2026-11-02T19:03:05.272Z] #5 resolve docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30 done
+[2026-11-02T19:03:05.272Z] #5 sha256:1148dbb014615300fa7e713b2f94f550c0d1c69780c0805f84f093ceee34dd0b 1.75kB / 1.75kB done
+[2026-11-02T19:03:05.272Z] #5 sha256:ae4e8b7c575fabea88a029b6cae757f342ca2525e07f7c22272d5105c346b35e 5.66kB / 5.66kB done
+[2026-11-02T19:03:05.272Z] #5 sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5 0B / 29.86MB 0.1s
+[2026-11-02T19:03:05.272Z] #5 sha256:3eb77115150676568f88e2957181b8f7e3014e797f1ce8cd640086dfbed45e35 0B / 1.29MB 0.1s
+[2026-11-02T19:03:05.272Z] #5 sha256:f574edac59d9f092df596f54e5b52656c803fd3ae30825b8ee5a189ed05f63d3 0B / 12.12MB 0.1s
+[2026-11-02T19:03:05.272Z] #5 sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30 10.37kB / 10.37kB done
+[2026-11-02T19:03:05.272Z] #5 sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5 8.39MB / 29.86MB 0.2s
+[2026-11-02T19:03:05.272Z] #5 sha256:3eb77115150676568f88e2957181b8f7e3014e797f1ce8cd640086dfbed45e35 1.29MB / 1.29MB 0.2s done
+[2026-11-02T19:03:05.272Z] #5 sha256:f574edac59d9f092df596f54e5b52656c803fd3ae30825b8ee5a189ed05f63d3 5.24MB / 12.12MB 0.2s
+[2026-11-02T19:03:05.523Z] #5 ...
+[2026-11-02T19:03:05.523Z] 
+[2026-11-02T19:03:05.523Z] #6 [internal] load build context
+[2026-11-02T19:03:05.523Z] #6 transferring context: 58.06MB 0.2s done
+[2026-11-02T19:03:05.523Z] #6 DONE 0.2s
+[2026-11-02T19:03:05.523Z] 
+[2026-11-02T19:03:05.523Z] #5 [1/7] FROM docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+[2026-11-02T19:03:05.523Z] #5 sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5 29.86MB / 29.86MB 0.2s done
+[2026-11-02T19:03:05.523Z] #5 sha256:f574edac59d9f092df596f54e5b52656c803fd3ae30825b8ee5a189ed05f63d3 12.12MB / 12.12MB 0.2s done
+[2026-11-02T19:03:05.523Z] #5 extracting sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5 0.1s
+[2026-11-02T19:03:05.523Z] #5 sha256:acca7542dfc736e9ce20cbefc58b2d09822276d15d4a0c531531a6f1b057928e 251B / 251B 0.2s done
+[2026-11-02T19:03:06.434Z] #5 extracting sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5 0.8s done
+[2026-11-02T19:03:06.434Z] #5 extracting sha256:3eb77115150676568f88e2957181b8f7e3014e797f1ce8cd640086dfbed45e35
+[2026-11-02T19:03:06.434Z] #5 extracting sha256:3eb77115150676568f88e2957181b8f7e3014e797f1ce8cd640086dfbed45e35 0.1s done
+[2026-11-02T19:03:06.434Z] #5 extracting sha256:f574edac59d9f092df596f54e5b52656c803fd3ae30825b8ee5a189ed05f63d3
+[2026-11-02T19:03:06.985Z] #5 extracting sha256:f574edac59d9f092df596f54e5b52656c803fd3ae30825b8ee5a189ed05f63d3 0.5s done
+[2026-11-02T19:03:06.985Z] #5 extracting sha256:acca7542dfc736e9ce20cbefc58b2d09822276d15d4a0c531531a6f1b057928e
+[2026-11-02T19:03:07.235Z] #5 extracting sha256:acca7542dfc736e9ce20cbefc58b2d09822276d15d4a0c531531a6f1b057928e done
+[2026-11-02T19:03:07.236Z] #5 DONE 2.0s
+[2026-11-02T19:03:07.236Z] 
+[2026-11-02T19:03:07.236Z] #7 [2/7] WORKDIR /app
+[2026-11-02T19:03:07.236Z] #7 DONE 0.0s
+[2026-11-02T19:03:07.236Z] 
+[2026-11-02T19:03:07.236Z] #8 [3/7] RUN groupadd --system sams && useradd --system --gid sams sams
+[2026-11-02T19:03:07.236Z] #8 DONE 0.2s
+[2026-11-02T19:03:07.236Z] 
+[2026-11-02T19:03:07.236Z] #9 [4/7] COPY requirements.txt .
+[2026-11-02T19:03:07.236Z] #9 DONE 0.0s
+[2026-11-02T19:03:07.236Z] 
+[2026-11-02T19:03:07.236Z] #10 [5/7] RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
+[2026-11-02T19:03:08.579Z] #10 1.266 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+[2026-11-02T19:03:08.579Z] #10 1.336 Collecting pip
+[2026-11-02T19:03:08.579Z] #10 1.373   Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+[2026-11-02T19:03:08.579Z] #10 1.384 Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+[2026-11-02T19:03:08.579Z] #10 1.427    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 76.8 MB/s eta 0:00:00
+[2026-11-02T19:03:08.579Z] #10 1.442 Installing collected packages: pip
+[2026-11-02T19:03:08.579Z] #10 1.442   Attempting uninstall: pip
+[2026-11-02T19:03:08.579Z] #10 1.445     Found existing installation: pip 25.0.1
+[2026-11-02T19:03:08.579Z] #10 1.483     Uninstalling pip-25.0.1:
+[2026-11-02T19:03:08.830Z] #10 1.491       Successfully uninstalled pip-25.0.1
+[2026-11-02T19:03:09.380Z] #10 2.309 Successfully installed pip-26.2.2
+[2026-11-02T19:03:09.631Z] #10 2.309 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-11-02T19:03:10.542Z] #10 3.415 Collecting Django==5.2.18 (from -r requirements.txt (line 1))
+[2026-11-02T19:03:10.793Z] #10 3.456   Downloading django-5.2.18-py3-none-any.whl.metadata (4.1 kB)
+[2026-11-02T19:03:10.793Z] #10 3.479 Collecting djangorestframework==3.18.3 (from -r requirements.txt (line 2))
+[2026-11-02T19:03:10.793Z] #10 3.488   Downloading djangorestframework-3.18.3-py3-none-any.whl.metadata (7.8 kB)
+[2026-11-02T19:03:10.793Z] #10 3.505 Collecting djangorestframework-simplejwt==5.5.1 (from -r requirements.txt (line 3))
+[2026-11-02T19:03:10.793Z] #10 3.513   Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl.metadata (4.6 kB)
+[2026-11-02T19:03:10.793Z] #10 3.534 Collecting drf-spectacular==0.30.0 (from -r requirements.txt (line 4))
+[2026-11-02T19:03:10.793Z] #10 3.542   Downloading drf_spectacular-0.30.0-py3-none-any.whl.metadata (14 kB)
+[2026-11-02T19:03:10.793Z] #10 3.563 Collecting drf-spectacular-sidecar==2026.10.1 (from -r requirements.txt (line 5))
+[2026-11-02T19:03:10.793Z] #10 3.572   Downloading drf_spectacular_sidecar-2026.10.1-py3-none-any.whl.metadata (3.6 kB)
+[2026-11-02T19:03:10.793Z] #10 3.588 Collecting psycopg==3.2.13 (from psycopg[binary]==3.2.13->-r requirements.txt (line 6))
+[2026-11-02T19:03:10.793Z] #10 3.597   Downloading psycopg-3.2.13-py3-none-any.whl.metadata (4.5 kB)
+[2026-11-02T19:03:10.793Z] #10 3.626 Collecting celery==5.5.3 (from -r requirements.txt (line 7))
+[2026-11-02T19:03:10.793Z] #10 3.635   Downloading celery-5.5.3-py3-none-any.whl.metadata (22 kB)
+[2026-11-02T19:03:11.044Z] #10 3.671 Collecting redis==6.4.0 (from -r requirements.txt (line 8))
+[2026-11-02T19:03:11.044Z] #10 3.681   Downloading redis-6.4.0-py3-none-any.whl.metadata (10 kB)
+[2026-11-02T19:03:11.044Z] #10 3.710 Collecting gunicorn==23.0.0 (from -r requirements.txt (line 9))
+[2026-11-02T19:03:11.044Z] #10 3.719   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[2026-11-02T19:03:11.044Z] #10 3.828 Collecting reportlab==4.5.1 (from -r requirements.txt (line 10))
+[2026-11-02T19:03:11.044Z] #10 3.837   Downloading reportlab-4.5.1-py3-none-any.whl.metadata (1.7 kB)
+[2026-11-02T19:03:11.044Z] #10 3.855 Collecting asgiref>=3.8.1 (from Django==5.2.18->-r requirements.txt (line 1))
+[2026-11-02T19:03:11.044Z] #10 3.873   Downloading asgiref-3.13.0-py3-none-any.whl.metadata (12 kB)
+[2026-11-02T19:03:11.044Z] #10 3.888 Collecting sqlparse>=0.3.1 (from Django==5.2.18->-r requirements.txt (line 1))
+[2026-11-02T19:03:11.044Z] #10 3.897   Downloading sqlparse-0.6.1-py3-none-any.whl.metadata (6.9 kB)
+[2026-11-02T19:03:11.044Z] #10 3.920 Collecting pyjwt>=1.7.1 (from djangorestframework-simplejwt==5.5.1->-r requirements.txt (line 3))
+[2026-11-02T19:03:11.044Z] #10 3.929   Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:03:11.294Z] #10 3.946 Collecting uritemplate>=2.0.0 (from drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:11.294Z] #10 3.955   Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-02T19:03:11.294Z] #10 3.994 Collecting PyYAML>=5.1 (from drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:11.294Z] #10 4.003   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+[2026-11-02T19:03:11.294Z] #10 4.031 Collecting jsonschema>=2.6.0 (from drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:11.294Z] #10 4.040   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+[2026-11-02T19:03:11.294Z] #10 4.054 Collecting inflection>=0.3.1 (from drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:11.294Z] #10 4.064   Downloading inflection-0.5.1-py2.py3-none-any.whl.metadata (1.7 kB)
+[2026-11-02T19:03:11.294Z] #10 4.083 Collecting typing-extensions>=4.6 (from psycopg==3.2.13->psycopg[binary]==3.2.13->-r requirements.txt (line 6))
+[2026-11-02T19:03:11.294Z] #10 4.092   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+[2026-11-02T19:03:11.294Z] #10 4.111 Collecting billiard<5.0,>=4.2.1 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.294Z] #10 4.120   Downloading billiard-4.3.2-py3-none-any.whl.metadata (5.0 kB)
+[2026-11-02T19:03:11.294Z] #10 4.144 Collecting kombu<5.6,>=5.5.2 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.152   Downloading kombu-5.5.4-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:03:11.545Z] #10 4.168 Collecting vine<6.0,>=5.1.0 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.177   Downloading vine-5.1.0-py3-none-any.whl.metadata (2.7 kB)
+[2026-11-02T19:03:11.545Z] #10 4.195 Collecting click<9.0,>=8.1.2 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.204   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-02T19:03:11.545Z] #10 4.216 Collecting click-didyoumean>=0.3.0 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.224   Downloading click_didyoumean-0.3.1-py3-none-any.whl.metadata (3.9 kB)
+[2026-11-02T19:03:11.545Z] #10 4.237 Collecting click-repl>=0.2.0 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.246   Downloading click_repl-0.4.1-py3-none-any.whl.metadata (3.7 kB)
+[2026-11-02T19:03:11.545Z] #10 4.259 Collecting click-plugins>=1.1.1 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.268   Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl.metadata (6.5 kB)
+[2026-11-02T19:03:11.545Z] #10 4.283 Collecting python-dateutil>=2.8.2 (from celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:11.545Z] #10 4.292   Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+[2026-11-02T19:03:11.545Z] #10 4.312 Collecting packaging (from gunicorn==23.0.0->-r requirements.txt (line 9))
+[2026-11-02T19:03:11.545Z] #10 4.321   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-02T19:03:11.795Z] #10 4.490 Collecting pillow>=9.0.0 (from reportlab==4.5.1->-r requirements.txt (line 10))
+[2026-11-02T19:03:11.795Z] #10 4.499   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+[2026-11-02T19:03:11.795Z] #10 4.618 Collecting charset-normalizer (from reportlab==4.5.1->-r requirements.txt (line 10))
+[2026-11-02T19:03:12.046Z] #10 4.627   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+[2026-11-02T19:03:12.046Z] #10 4.798 Collecting psycopg-binary==3.2.13 (from psycopg[binary]==3.2.13->-r requirements.txt (line 6))
+[2026-11-02T19:03:12.046Z] #10 4.808   Downloading psycopg_binary-3.2.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.9 kB)
+[2026-11-02T19:03:12.046Z] #10 4.827 Collecting amqp<6.0.0,>=5.1.1 (from kombu<5.6,>=5.5.2->celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:12.046Z] #10 4.835   Downloading amqp-5.4.2-py3-none-any.whl.metadata (9.4 kB)
+[2026-11-02T19:03:12.046Z] #10 4.852 Collecting tzdata>=2025.2 (from kombu<5.6,>=5.5.2->celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:12.046Z] #10 4.864   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+[2026-11-02T19:03:12.046Z] #10 4.895 Collecting prompt_toolkit>=3.0.36 (from click-repl>=0.2.0->celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:12.046Z] #10 4.904   Downloading prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+[2026-11-02T19:03:12.296Z] #10 4.921 Collecting attrs>=22.2.0 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:12.296Z] #10 4.930   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+[2026-11-02T19:03:12.296Z] #10 4.944 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:12.296Z] #10 4.953   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+[2026-11-02T19:03:12.296Z] #10 4.974 Collecting referencing>=0.28.4 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:12.296Z] #10 4.983   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+[2026-11-02T19:03:12.547Z] #10 5.240 Collecting rpds-py>=0.25.0 (from jsonschema>=2.6.0->drf-spectacular==0.30.0->-r requirements.txt (line 4))
+[2026-11-02T19:03:12.547Z] #10 5.249   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+[2026-11-02T19:03:12.547Z] #10 5.275 Collecting wcwidth>=0.1.4 (from prompt_toolkit>=3.0.36->click-repl>=0.2.0->celery==5.5.3->-r requirements.txt (line 7))
+[2026-11-02T19:03:12.547Z] #10 5.288   Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (23 kB)
+[2026-11-02T19:03:12.547Z] #10 5.310 Downloading django-5.2.18-py3-none-any.whl (8.3 MB)
+[2026-11-02T19:03:12.547Z] #10 5.357    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 223.3 MB/s  0:00:00
+[2026-11-02T19:03:12.547Z] #10 5.366 Downloading djangorestframework-3.18.3-py3-none-any.whl (903 kB)
+[2026-11-02T19:03:12.547Z] #10 5.369    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 904.0/904.0 kB 828.0 MB/s  0:00:00
+[2026-11-02T19:03:12.547Z] #10 5.378 Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl (107 kB)
+[2026-11-02T19:03:12.547Z] #10 5.387 Downloading drf_spectacular-0.30.0-py3-none-any.whl (111 kB)
+[2026-11-02T19:03:12.547Z] #10 5.399 Downloading drf_spectacular_sidecar-2026.10.1-py3-none-any.whl (2.7 MB)
+[2026-11-02T19:03:12.547Z] #10 5.408    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.7/2.7 MB 332.9 MB/s  0:00:00
+[2026-11-02T19:03:12.547Z] #10 5.417 Downloading psycopg-3.2.13-py3-none-any.whl (206 kB)
+[2026-11-02T19:03:12.547Z] #10 5.427 Downloading celery-5.5.3-py3-none-any.whl (438 kB)
+[2026-11-02T19:03:12.547Z] #10 5.436 Downloading redis-6.4.0-py3-none-any.whl (279 kB)
+[2026-11-02T19:03:12.547Z] #10 5.445 Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[2026-11-02T19:03:12.547Z] #10 5.454 Downloading reportlab-4.5.1-py3-none-any.whl (2.0 MB)
+[2026-11-02T19:03:12.797Z] #10 5.459    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 807.5 MB/s  0:00:00
+[2026-11-02T19:03:12.797Z] #10 5.467 Downloading psycopg_binary-3.2.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.4 MB)
+[2026-11-02T19:03:12.797Z] #10 5.483    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 310.1 MB/s  0:00:00
+[2026-11-02T19:03:12.797Z] #10 5.492 Downloading billiard-4.3.2-py3-none-any.whl (90 kB)
+[2026-11-02T19:03:12.797Z] #10 5.501 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[2026-11-02T19:03:12.797Z] #10 5.510 Downloading kombu-5.5.4-py3-none-any.whl (210 kB)
+[2026-11-02T19:03:12.797Z] #10 5.519 Downloading vine-5.1.0-py3-none-any.whl (9.6 kB)
+[2026-11-02T19:03:12.797Z] #10 5.528 Downloading amqp-5.4.2-py3-none-any.whl (51 kB)
+[2026-11-02T19:03:12.797Z] #10 5.537 Downloading asgiref-3.13.0-py3-none-any.whl (27 kB)
+[2026-11-02T19:03:12.797Z] #10 5.546 Downloading click_didyoumean-0.3.1-py3-none-any.whl (3.6 kB)
+[2026-11-02T19:03:12.797Z] #10 5.555 Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl (11 kB)
+[2026-11-02T19:03:12.797Z] #10 5.564 Downloading click_repl-0.4.1-py3-none-any.whl (14 kB)
+[2026-11-02T19:03:12.797Z] #10 5.573 Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+[2026-11-02T19:03:12.797Z] #10 5.581 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+[2026-11-02T19:03:12.797Z] #10 5.590 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+[2026-11-02T19:03:12.797Z] #10 5.599 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+[2026-11-02T19:03:12.797Z] #10 5.608 Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+[2026-11-02T19:03:12.797Z] #10 5.620    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 662.2 MB/s  0:00:00
+[2026-11-02T19:03:12.797Z] #10 5.630 Downloading prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+[2026-11-02T19:03:12.797Z] #10 5.639 Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+[2026-11-02T19:03:12.797Z] #10 5.648 Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+[2026-11-02T19:03:12.797Z] #10 5.657 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+[2026-11-02T19:03:12.797Z] #10 5.659    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 759.5 MB/s  0:00:00
+[2026-11-02T19:03:12.797Z] #10 5.669 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+[2026-11-02T19:03:13.048Z] #10 5.679 Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+[2026-11-02T19:03:13.048Z] #10 5.689 Downloading sqlparse-0.6.1-py3-none-any.whl (51 kB)
+[2026-11-02T19:03:13.048Z] #10 5.697 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+[2026-11-02T19:03:13.048Z] #10 5.707 Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+[2026-11-02T19:03:13.048Z] #10 5.716 Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+[2026-11-02T19:03:13.048Z] #10 5.725 Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (785 kB)
+[2026-11-02T19:03:13.048Z] #10 5.727    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 785.9/785.9 kB 829.2 MB/s  0:00:00
+[2026-11-02T19:03:13.048Z] #10 5.736 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+[2026-11-02T19:03:13.048Z] #10 5.746 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[2026-11-02T19:03:13.048Z] #10 5.980 Installing collected packages: wcwidth, vine, uritemplate, tzdata, typing-extensions, sqlparse, rpds-py, redis, PyYAML, pyjwt, psycopg-binary, pillow, packaging, inflection, click, charset-normalizer, billiard, attrs, asgiref, reportlab, referencing, python-dateutil, psycopg, prompt_toolkit, gunicorn, Django, click-plugins, click-didyoumean, amqp, kombu, jsonschema-specifications, drf-spectacular-sidecar, djangorestframework, click-repl, jsonschema, djangorestframework-simplejwt, celery, drf-spectacular
+[2026-11-02T19:03:18.243Z] #10 11.16 
+[2026-11-02T19:03:18.495Z] #10 11.16 Successfully installed Django-5.2.18 PyYAML-6.0.3 amqp-5.4.2 asgiref-3.13.0 attrs-26.1.0 billiard-4.3.2 celery-5.5.3 charset-normalizer-3.5.2 click-8.5.0 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.4.1 djangorestframework-3.18.3 djangorestframework-simplejwt-5.5.1 drf-spectacular-0.30.0 drf-spectacular-sidecar-2026.10.1 gunicorn-23.0.0 inflection-0.5.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 kombu-5.5.4 packaging-26.3 pillow-13.0.0 prompt_toolkit-3.0.53 psycopg-3.2.13 psycopg-binary-3.2.13 pyjwt-2.15.1 python-dateutil-4.0.0 redis-6.4.0 referencing-0.37.0 reportlab-4.5.1 rpds-py-2026.9.1 sqlparse-0.6.1 typing-extensions-4.16.0 tzdata-2026.6 uritemplate-4.2.0 vine-5.1.0 wcwidth-0.9.4
+[2026-11-02T19:03:18.495Z] #10 11.16 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-11-02T19:03:18.495Z] #10 DONE 11.4s
+[2026-11-02T19:03:18.745Z] 
+[2026-11-02T19:03:18.745Z] #11 [6/7] COPY . .
+[2026-11-02T19:03:18.745Z] #11 DONE 0.1s
+[2026-11-02T19:03:18.745Z] 
+[2026-11-02T19:03:18.745Z] #12 [7/7] RUN mkdir -p /app/staticfiles && chown -R sams:sams /app
+[2026-11-02T19:03:18.996Z] #12 DONE 0.3s
+[2026-11-02T19:03:18.996Z] 
+[2026-11-02T19:03:18.996Z] #13 exporting to image
+[2026-11-02T19:03:18.996Z] #13 exporting layers
+[2026-11-02T19:03:20.858Z] #13 exporting layers 2.0s done
+[2026-11-02T19:03:20.858Z] #13 writing image sha256:7a94e85b5a53435a44e93b12f437baf61db897f77fc851d830aadda98a99354d done
+[2026-11-02T19:03:20.858Z] #13 naming to docker.io/library/sams:1 done
+[2026-11-02T19:03:20.858Z] #13 DONE 2.0s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] junit
+[2026-11-02T19:03:20.957Z] Recording test results
+[2026-11-02T19:03:21.092Z] [Checks API] No suitable checks publisher found.
+[Pipeline] archiveArtifacts
+[2026-11-02T19:03:21.110Z] Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
