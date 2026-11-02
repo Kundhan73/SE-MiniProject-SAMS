@@ -24,14 +24,17 @@ for section in Section.objects.select_related("faculty"):
 print(
     json.dumps(
         {
-            "commit": "05ce0282959ab2084b553bcd1e43aa312961d21c",
+            "commit": os.getenv("SAMS_SOURCE_SHA", "unavailable"),
             "fixture_date": str(today),
             "students": User.objects.filter(role="STUDENT").count(),
             "faculty": User.objects.filter(role="FACULTY").count(),
             "sections": Section.objects.count(),
             "held_records": AttendanceRecord.objects.count(),
             "pending_today": ClassSession.objects.filter(date=today, submitted=False).count(),
-            "origin": "Private snapshot of the existing synthetic seed; session and notification rows excluded; current-day marking fixtures added.",
+            "origin": os.getenv(
+                "SAMS_FIXTURE_ORIGIN",
+                "Current-day marking fixtures added to the existing isolated synthetic database.",
+            ),
         },
         indent=2,
     )
