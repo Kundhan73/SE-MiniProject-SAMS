@@ -8,8 +8,8 @@ pipeline {
     stage('Tests and coverage') { steps { sh '.venv/bin/pytest --cov --cov-report=xml:docs/reports/coverage.xml --junitxml=docs/reports/junit.xml && .venv/bin/python scripts/test_reports.py' } }
     stage('Dependency audit') { steps { sh '.venv/bin/pip-audit --format json --output docs/reports/dependency-audit.json' } }
     stage('SonarQube') {
-      when { expression { return env.SONAR_HOST_URL?.trim() } }
-      steps { withCredentials([string(credentialsId: 'sams-sonar-token', variable: 'SONAR_TOKEN')]) { sh 'sonar-scanner -Dsonar.qualitygate.wait=true' } }
+      // Sonar is required: an absent URL/token fails rather than silently skipping analysis.
+      steps { withCredentials([string(credentialsId: 'sams-sonar-token', variable: 'SONAR_TOKEN')]) { sh 'test -n \"$SONAR_HOST_URL\" && sonar-scanner -Dsonar.qualitygate.wait=true' } }
     }
     stage('Container') { steps { sh 'docker build -t sams:$BUILD_NUMBER .' } }
   }

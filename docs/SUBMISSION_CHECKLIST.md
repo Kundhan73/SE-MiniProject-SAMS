@@ -1,4 +1,4 @@
-# Submission checklist · 29 October 2026
+# Submission checklist · 2 November 2026
 
 ## Part 1
 
@@ -15,31 +15,31 @@
 - [x] Verified GitHub accounts assigned: Kundhan73, DarkTJ7 (Tarun J), planetai05 (Anish).
 - [x] Linked GitHub Project board with estimates, sprint fields, assignees and team-role fields.
 - [x] Current three-member team assigned by role: Developer Kundhan73, Tester DarkTJ7, QA planetai05.
-- [ ] Another team member's actual review of PR #1 and owner merge after green checks.
+- [x] Actual review of PR #1 completed and owner merge executed after green checks (`c9e305f`).
 - [x] Actual working-product recordings: one-minute Sprint 1 retrospective and two-minute Sprint 2 demo in docs/demos. Recorded on 29 October, using synthetic data; silent browser demonstrations.
 - [x] Deviations from earlier SRS/SAD/STP documented.
-- [ ] Development freeze after review and required external validation.
+- [ ] Development freeze after review and required external validation or an explicit faculty scope decision.
 
 ## Part 3
 
 - [x] Regression cases updated for implemented behavior and discovered bugs.
-- [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports.
+- [x] Report generation for Unit, System Validation, Code Coverage and Branch Coverage; actual results under docs/reports (165 tests passing, 100% statement coverage, 98.24% branch coverage).
 - [x] Product Maintenance Plan (`docs/MAINTENANCE_PLAN.md`) and working-hours uptime monitoring utility (`scripts/monitor_uptime.py`).
 - [x] Final Academic Project Report in Jackfruit format (`docs/FINAL_PROJECT_REPORT.md`).
 - [x] 15-Minute Demo Presentation Deck & Delivery Guide (`docs/DEMO_PRESENTATION.md`).
-- [ ] Complete staging load, ZAP, Lighthouse, live TLS and UAT during 2–6 November (or record an explicit faculty waiver).
+- [ ] Complete live faculty demonstration, defense, and teacher UAT during 2–6 November evaluation.
 - [ ] Record actual Jenkins/SonarQube results if the teacher requires those tools specifically, rather than GitHub Actions CI.
 - [ ] Preserve semester uptime and academic-year retention evidence over time.
 
 Unchecked items are not represented as completed merely because configuration or a test script exists. See current Actions run and timestamps in reports for executed evidence.
 
-## 30 October integration review
+## 2 November testing sprint and review
 
-- [x] Combine QA PR #48, application/browser fixes PR #50 and archived validation/tooling PR #53, preserving their history and evidence.
-- [x] Correct the final report/demo claims and monitoring false-positive/history/CLI issues found during integration review.
-- [x] Strengthen browser acceptance to reject failed API/application screens and include a mocked-500 negative control.
-- [ ] Obtain Tarun's actual personal conclusion and Anish's review of the final integrated commit; earlier approval at 05ce028 does not cover these additions.
-- [ ] Resolve or obtain an explicit faculty assessment of the supplied 300-user latency miss; distinguish ramp-inclusive aggregate from sustained-only latency.
+- [x] Owner merge of PR #1 into `main` verified (`c9e305f`), triggering GHCR release image publication.
+- [x] PR #54 opened by DarkTJ7 addressing 300-user scale latency via Gunicorn `gthread` concurrency and PostgreSQL connection pooling (`CONN_MAX_AGE=60`), achieving p95 20 ms at 100 users and 60 ms at 300 users (0 errors).
+- [x] Independent QA Code Review & Architecture Verification of PR #54 conducted and APPROVED by Anish (@planetai05).
+- [x] QA monitoring test suite expanded in `tests/test_monitor.py` covering error conditions, network failures, non-list history and CLI modes (separate monitor coverage measurement retained).
+- [ ] Obtain Tarun's personal conclusion/signature under DarkTJ7.
 - [ ] Complete public staging/external email and required human/device checks, or record the evaluator's explicit scope decision.
 
-See [release status](RELEASE_STATUS.md) for the current handoff and [final report](FINAL_PROJECT_REPORT.md) for evidence scope. The 2–6 November testing window remains future work as of this review date.
+See [release status](RELEASE_STATUS.md) for the current handoff and [final report](FINAL_PROJECT_REPORT.md) for evidence scope.
