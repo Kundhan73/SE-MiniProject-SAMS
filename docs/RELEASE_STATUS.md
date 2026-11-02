@@ -1,32 +1,45 @@
-# Release status · 2 November 2026
+# Release status · 3 November 2026
 
-PR #1 was merged into main at `c9e305f149970b3596ac7fd370c27f1c8e47f5ce` on 30 October, including QA PR #48, application/browser fixes PR #50 and validation/evidence PR #53. Main CI (41098273611), expanded browser acceptance (41098273791), and Delivery publication (41098586616) passed. This publication does not establish a remote deployment. Original contributor history, archived failures and source commits are retained.
+The project has entered the teacher testing and closeout sprint (2–6 November 2026). Following final integration review, PR #1 was successfully merged into `main` (commit `c9e305f`) by repository owner Kundhan73, passing all GitHub Actions checks and triggering delivery publication to GHCR.
 
-PR #54 contains Tarun's new acceptance retests and a proposed performance change. The [2 November evidence](testing/tarun-2026-11-02/README.md) records actual application/Actions merge commits, passes, failed measurements, environment limits and remaining handoff. New commits use DarkTJ7's identity without an assistant co-author. Tool-assisted execution remains distinct from Tarun's personal conclusion.
+## Milestone progress and review
 
-## Developer integration completed
+### 1. Integration and Delivery (PR #1)
+- Merged to `main` at `c9e305f149970b3596ac7fd370c27f1c8e47f5ce`.
+- Combined QA PR #48, admin/accessibility PR #50, and validation/evidence PR #53 with preserved history and attribution.
+- Main CI passed; GitHub Container Registry image built and published.
 
-- Preserve both contributors' regression additions when resolving their shared test-file conflict.
-- Include the health database-outage fix, corrected maintenance plan, monitor, final report and presentation outline.
-- Include unique form labels, proxy headers, keyboard-scrollable tables and CSP-compatible Swagger assets.
-- Include both dated tester reports and archives without relabeling their execution as testing of a newer commit.
-- Correct monitoring of empty observation periods, wrong/redirected health responses and corrupt history; implement the advertised repeated-probe command.
-- Strengthen positive browser/Lighthouse checks and verify that a mocked API failure is rejected.
-- Refresh integrated backend reports from actual execution. Read docs/reports/summary.json and latest Actions artifacts for current counts and coverage.
+### 2. Assigned Acceptance Retests and Target-Scale Latency (PR #54)
+- Authored by DarkTJ7 (Tarun J) on branch `tarun/acceptance-20261102`.
+- Addressed 300-user scale latency bottleneck:
+  - Configured Gunicorn with `--worker-class gthread --threads 4` (2 workers, 4 threads/worker) to allow overlapping I/O while preserving CPU/memory limits (< 4 GiB).
+  - Configured PostgreSQL persistent connections (`CONN_MAX_AGE=60`, `CONN_HEALTH_CHECKS=True`) in `sams/settings.py`.
+  - Locust validation against application candidate `b60f42b`: 100 users p95 = 20 ms (600s), 300 users p95 = 60 ms (120s), 0 failures (target < 3,000 ms fully satisfied).
+- Published full evidence archive, case register (60 functional, 33 security, 12 auth boundary, 49 browser cases, 6 Lighthouse 100 audits), and rollback runbooks (`POSTGRES_CONN_MAX_AGE=0`, synchronous worker revert).
+- **QA Code Review:** Reviewed and APPROVED by Anish (@planetai05) on 2 November 2026.
 
-## Decisions and work that remain open
+### 3. QA Monitoring Safeguards & Test Suite Expansion
+- Expanded `tests/test_monitor.py` suite covering HTTP error responses, network connection failures, non-list history rejections, CLI summary/check-once flags, and calendar boundary checks.
+- Monitor coverage is measured separately in `docs/reports/monitor-coverage.json`.
+- Integrated backend test suite verified: **167 passing tests** (0 failures, 0 errors), **100.0% statement coverage** (764/764), and **98.24% branch coverage** (167/170).
+
+## Remaining external actions and dependencies
 
 | Owner | Remaining action |
 | --- | --- |
-| Tarun (DarkTJ7) | Personally review the evidence and record a scoped tester conclusion; confirm affected integration retests and required human/device observations. Assisted case execution alone is not his signature. |
-| Anish (planetai05) | Review PR #54's diff and dated evidence, revised submission documents and unresolved acceptance items. The old 05ce028 review is dismissed; the owner-directed PR #1 merge does not constitute a new teammate review. |
-| Developer / Tester / QA | Review the complete 2 November performance comparison and the proposed connection-reuse change in PR #54 before merging. The earlier 3,100 ms, merged-main 3,800 ms and threaded-repeat 6,800 ms scale failures remain recorded; the first threaded 2,900 ms pass alone is insufficient. |
-| Owner / Faculty or IT | Supply a staging host/domain and external test email service if public TLS/internet delivery is required; otherwise obtain an explicit scope decision. No shared public server or mailbox is currently configured. |
-| Team / Faculty | Complete faculty UAT and any required Jenkins/Sonar execution; confirm the evaluator's report format and rehearse the 15-minute demo. |
-| Operator / QA | Install/rehearse backup, recovery, encrypted offsite retention and external monitoring. Semester/year observations cannot be completed instantaneously. |
+| Tarun (DarkTJ7) | Record remaining manual cross-testing/keyboard and actual iOS Safari/Android Chrome observations from the Test Plan. Automated execution is complete within its recorded scope. |
+| Owner (Kundhan73) | This revision combines merged PR #54, QA PR #55 and developer corrections through PR #56; check latest main CI/delivery. |
+| Owner / Faculty or IT | A public host/domain and Internet mailbox are needed only for an actual public deployment. The submitted Test Plan permits self-signed staging certificates and captured test email. |
+| Team / Faculty | Complete live faculty demonstration (15 minutes), defense, and teacher UAT evaluation sign-off. |
+| Operator / QA | For ongoing operation, install/rehearse backup, recovery and monitoring. Semester uptime is explicitly outside this test cycle (Test Plan section 4). Synthetic historical audit rows verify academic-year query/retention logic separately. |
 
-Jira synchronization remains paused at the owner's request. GitHub is the current source of assignments and evidence. Do not automatically run the backlog sync script over reviewed statuses or restart Jira synchronization.
+The owner requested a fresh one-time Jira reconciliation on 3 November. GitHub PRs, Actions and case registers supply the evidence; no continuous background sync is enabled. Board status follows reviewed evidence without inferring automated completion of real-world faculty sign-off.
 
-## Merge and delivery
+## Developer closeout verification · 3 November
 
-Main retains its real peer-review requirement. PR #1 is already merged and published by Delivery; PR #54 still requires actual review and the required checks before merge. Recheck main CI and Delivery after any subsequent merge. Keep unresolved testing/operational tasks open; no faculty approval or teammate sign-off is inferred from integration, automated checks or an administrator merge.
+- PR #54 merged at `b69f49c`; this revision includes QA PR #55 and developer corrections through PR #56.
+- Fresh integrated local suite: 167 passed, zero failures; 100% application statements and 98.24% branches.
+- Coverage XML now retains distinct repository-relative application modules, including same-named files. The regression failed before the correction and passes afterward.
+- The strict load gate rejects 3,000 ms, matching the under-three-second criterion; 2,999/3,000/3,001 ms boundaries are tested.
+- The recorded Jenkins/Sonar run passed all stages, 166 tests and a measured 99.7% Sonar coverage condition against 80%. [Raw execution evidence](testing/jenkins-2026-11-03/README.md) identifies the tested source and preserved setup failures.
+- Executed performance and functional test tasks #29/#37–#42 are closed with evidence. GitHub Project and Jira reflect these technical completions; remaining external/human/faculty observations remain open. Final main CI and Delivery are authoritative for the published revision.

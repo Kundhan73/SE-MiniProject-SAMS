@@ -6,10 +6,12 @@ addopts = "-ra"
 
 [tool.coverage.run]
 branch = true
-source = ["accounts", "courses", "attendance", "reports", "notifications", "audit", "core"]
+source = ["."]
+relative_files = true
 omit = ["*/migrations/*", "*/management/*", "*/apps.py"]
 
 [tool.coverage.report]
+include = ["accounts/*", "courses/*", "attendance/*", "reports/*", "notifications/*", "audit/*", "core/*"]
 show_missing = true
 fail_under = 80
 

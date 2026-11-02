@@ -35,7 +35,7 @@ result = {
     "failures": int(aggregate["Failure Count"]),
     "p95_ms": float(aggregate["95%"]),
     "workload_complete": complete,
-    "latency_target_met": float(aggregate["95%"]) <= 3000,
+    "latency_target_met": float(aggregate["95%"]) < 3000,
     "per_endpoint": [
         {
             key: row[key]

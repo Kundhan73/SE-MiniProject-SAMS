@@ -36,7 +36,7 @@ GitHub Actions publishes to GHCR only after successful CI on a push to main. PR 
 
 The repository currently supplies continuous delivery, not a remote deployment that has already run. A server/domain was not provided. Pull the reviewed image on the chosen host, run migrations, replace the application container, then check health and the three role workflows. Use the previous SHA-tagged image for application rollback. Review migration compatibility before rolling back; restore a database backup when a schema rollback is required.
 
-Jenkins can run the included Jenkinsfile with Python, Docker and (optionally) `sonar-scanner` on its agent. Set `SONAR_HOST_URL` and a Jenkins secret-text credential named `sams-sonar-token` to enable the SonarQube quality gate. GitHub Actions is usable without that external infrastructure. No successful Jenkins or SonarQube run is claimed without an actual server execution.
+Jenkins runs the included Jenkinsfile with Python, Docker and `sonar-scanner` on its agent. `SONAR_HOST_URL` and a Jenkins secret-text credential named `sams-sonar-token` are required; missing configuration fails instead of skipping analysis. [Jenkins validation and setup](JENKINS_VALIDATION.md) describes the disposable hosted execution and permanent-server requirements.
 
 ## Data protection and maintenance
 
