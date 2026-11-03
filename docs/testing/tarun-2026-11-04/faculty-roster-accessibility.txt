@@ -1,0 +1,940 @@
+Browser tab: 2, Title: "Workspace · SAMS", URL: "http://localhost:8003/".
+1 AXWebArea Workspace · SAMS, URL: localhost:8003/
+	2 container
+		3 link Description: SAMS●, Value: localhost:8003/
+		4 text CAMPUS WORKSPACE
+		5 container Main navigation
+			6 button Overview 01
+				7 text Overview
+				8 text 01
+			9 button Take attendance 02
+				10 text Take attendance
+				11 text 02
+			12 button Corrections 03
+				13 text Corrections
+				14 text 03
+			15 button Reports 04
+				16 text Reports
+				17 text 04
+			18 button Notifications 06
+				19 text Notifications
+				20 text 06
+		21 text FACULTY Faculty 1 FAC001
+		22 button Sign out ↗
+	23 container
+		24 text STUDENT ATTENDANCE MANAGEMENT
+		25 text 3 November 2026
+		26 text YOUR ACADEMIC PULSE
+		27 heading Take attendance, Value: 1, ID: page-title
+			35 text Take attendance
+		29 text ● Live workspace
+		36 container
+			37 heading CS341 / F · 18:00, Value: 2
+				38 text CS341 / F · 18:00
+			39 text Ready
+			40 text Student 001
+			41 text STU001
+			42 container
+				43 text Status
+				44 pop up button (collapsed, settable) Description: Attendance status for Student 001 (STU001), Value: Present, ID: mark-165-102, Secondary Actions: Expand
+					45 menu
+						46 (selected) Present
+						47 Absent
+						48 On Duty
+			49 text Student 002
+			50 text STU002
+			51 container
+				52 text Status
+				53 pop up button (collapsed, settable) Description: Attendance status for Student 002 (STU002), Value: Present, ID: mark-165-103, Secondary Actions: Expand
+					54 menu
+						55 (selected) Present
+						56 Absent
+						57 On Duty
+			58 text Student 003
+			59 text STU003
+			60 container
+				61 text Status
+				62 pop up button (collapsed, settable) Description: Attendance status for Student 003 (STU003), Value: Present, ID: mark-165-104, Secondary Actions: Expand
+					63 menu
+						64 (selected) Present
+						65 Absent
+						66 On Duty
+			67 text Student 004
+			68 text STU004
+			69 container
+				70 text Status
+				71 pop up button (collapsed, settable) Description: Attendance status for Student 004 (STU004), Value: Present, ID: mark-165-105, Secondary Actions: Expand
+					72 menu
+						73 (selected) Present
+						74 Absent
+						75 On Duty
+			76 text Student 005
+			77 text STU005
+			78 container
+				79 text Status
+				80 pop up button (collapsed, settable) Description: Attendance status for Student 005 (STU005), Value: Present, ID: mark-165-106, Secondary Actions: Expand
+					81 menu
+						82 (selected) Present
+						83 Absent
+						84 On Duty
+			85 text Student 006
+			86 text STU006
+			87 container
+				88 text Status
+				89 pop up button (collapsed, settable) Description: Attendance status for Student 006 (STU006), Value: Present, ID: mark-165-107, Secondary Actions: Expand
+					90 menu
+						91 (selected) Present
+						92 Absent
+						93 On Duty
+			94 text Student 007
+			95 text STU007
+			96 container
+				97 text Status
+				98 pop up button (collapsed, settable) Description: Attendance status for Student 007 (STU007), Value: Present, ID: mark-165-108, Secondary Actions: Expand
+					99 menu
+						100 (selected) Present
+						101 Absent
+						102 On Duty
+			103 text Student 008
+			104 text STU008
+			105 container
+				106 text Status
+				107 pop up button (collapsed, settable) Description: Attendance status for Student 008 (STU008), Value: Present, ID: mark-165-109, Secondary Actions: Expand
+					108 menu
+						109 (selected) Present
+						110 Absent
+						111 On Duty
+			112 text Student 009
+			113 text STU009
+			114 container
+				115 text Status
+				116 pop up button (collapsed, settable) Description: Attendance status for Student 009 (STU009), Value: Present, ID: mark-165-110, Secondary Actions: Expand
+					117 menu
+						118 (selected) Present
+						119 Absent
+						120 On Duty
+			121 text Student 010
+			122 text STU010
+			123 container
+				124 text Status
+				125 pop up button (collapsed, settable) Description: Attendance status for Student 010 (STU010), Value: Present, ID: mark-165-111, Secondary Actions: Expand
+					126 menu
+						127 (selected) Present
+						128 Absent
+						129 On Duty
+			130 text Student 011
+			131 text STU011
+			132 container
+				133 text Status
+				134 pop up button (collapsed, settable) Description: Attendance status for Student 011 (STU011), Value: Present, ID: mark-165-112, Secondary Actions: Expand
+					135 menu
+						136 (selected) Present
+						137 Absent
+						138 On Duty
+			139 text Student 012
+			140 text STU012
+			141 container
+				142 text Status
+				143 pop up button (collapsed, settable) Description: Attendance status for Student 012 (STU012), Value: Present, ID: mark-165-113, Secondary Actions: Expand
+					144 menu
+						145 (selected) Present
+						146 Absent
+						147 On Duty
+			148 text Student 013
+			149 text STU013
+			150 container
+				151 text Status
+				152 pop up button (collapsed, settable) Description: Attendance status for Student 013 (STU013), Value: Present, ID: mark-165-114, Secondary Actions: Expand
+					153 menu
+						154 (selected) Present
+						155 Absent
+						156 On Duty
+			157 text Student 014
+			158 text STU014
+			159 container
+				160 text Status
+				161 pop up button (collapsed, settable) Description: Attendance status for Student 014 (STU014), Value: Present, ID: mark-165-115, Secondary Actions: Expand
+					162 menu
+						163 (selected) Present
+						164 Absent
+						165 On Duty
+			166 text Student 015
+			167 text STU015
+			168 container
+				169 text Status
+				170 pop up button (collapsed, settable) Description: Attendance status for Student 015 (STU015), Value: Present, ID: mark-165-116, Secondary Actions: Expand
+					171 menu
+						172 (selected) Present
+						173 Absent
+						174 On Duty
+			175 text Student 016
+			176 text STU016
+			177 container
+				178 text Status
+				179 pop up button (collapsed, settable) Description: Attendance status for Student 016 (STU016), Value: Present, ID: mark-165-117, Secondary Actions: Expand
+					180 menu
+						181 (selected) Present
+						182 Absent
+						183 On Duty
+			184 text Student 017
+			185 text STU017
+			186 container
+				187 text Status
+				188 pop up button (collapsed, settable) Description: Attendance status for Student 017 (STU017), Value: Present, ID: mark-165-118, Secondary Actions: Expand
+					189 menu
+						190 (selected) Present
+						191 Absent
+						192 On Duty
+			193 text Student 018
+			194 text STU018
+			195 container
+				196 text Status
+				197 pop up button (collapsed, settable) Description: Attendance status for Student 018 (STU018), Value: Present, ID: mark-165-119, Secondary Actions: Expand
+					198 menu
+						199 (selected) Present
+						200 Absent
+						201 On Duty
+			202 text Student 019
+			203 text STU019
+			204 container
+				205 text Status
+				206 pop up button (collapsed, settable) Description: Attendance status for Student 019 (STU019), Value: Present, ID: mark-165-120, Secondary Actions: Expand
+					207 menu
+						208 (selected) Present
+						209 Absent
+						210 On Duty
+			211 text Student 020
+			212 text STU020
+			213 container
+				214 text Status
+				215 pop up button (collapsed, settable) Description: Attendance status for Student 020 (STU020), Value: Present, ID: mark-165-121, Secondary Actions: Expand
+					216 menu
+						217 (selected) Present
+						218 Absent
+						219 On Duty
+			220 text Student 021
+			221 text STU021
+			222 container
+				223 text Status
+				224 pop up button (collapsed, settable) Description: Attendance status for Student 021 (STU021), Value: Present, ID: mark-165-122, Secondary Actions: Expand
+					225 menu
+						226 (selected) Present
+						227 Absent
+						228 On Duty
+			229 text Student 022
+			230 text STU022
+			231 container
+				232 text Status
+				233 pop up button (collapsed, settable) Description: Attendance status for Student 022 (STU022), Value: Present, ID: mark-165-123, Secondary Actions: Expand
+					234 menu
+						235 (selected) Present
+						236 Absent
+						237 On Duty
+			238 text Student 023
+			239 text STU023
+			240 container
+				241 text Status
+				242 pop up button (collapsed, settable) Description: Attendance status for Student 023 (STU023), Value: Present, ID: mark-165-124, Secondary Actions: Expand
+					243 menu
+						244 (selected) Present
+						245 Absent
+						246 On Duty
+			247 text Student 024
+			248 text STU024
+			249 container
+				250 text Status
+				251 pop up button (collapsed, settable) Description: Attendance status for Student 024 (STU024), Value: Present, ID: mark-165-125, Secondary Actions: Expand
+					252 menu
+						253 (selected) Present
+						254 Absent
+						255 On Duty
+			256 text Student 025
+			257 text STU025
+			258 container
+				259 text Status
+				260 pop up button (collapsed, settable) Description: Attendance status for Student 025 (STU025), Value: Present, ID: mark-165-126, Secondary Actions: Expand
+					261 menu
+						262 (selected) Present
+						263 Absent
+						264 On Duty
+			265 text Student 026
+			266 text STU026
+			267 container
+				268 text Status
+				269 pop up button (collapsed, settable) Description: Attendance status for Student 026 (STU026), Value: Present, ID: mark-165-127, Secondary Actions: Expand
+					270 menu
+						271 (selected) Present
+						272 Absent
+						273 On Duty
+			274 text Student 027
+			275 text STU027
+			276 container
+				277 text Status
+				278 pop up button (collapsed, settable) Description: Attendance status for Student 027 (STU027), Value: Present, ID: mark-165-128, Secondary Actions: Expand
+					279 menu
+						280 (selected) Present
+						281 Absent
+						282 On Duty
+			283 text Student 028
+			284 text STU028
+			285 container
+				286 text Status
+				287 pop up button (collapsed, settable) Description: Attendance status for Student 028 (STU028), Value: Present, ID: mark-165-129, Secondary Actions: Expand
+					288 menu
+						289 (selected) Present
+						290 Absent
+						291 On Duty
+			292 text Student 029
+			293 text STU029
+			294 container
+				295 text Status
+				296 pop up button (collapsed, settable) Description: Attendance status for Student 029 (STU029), Value: Present, ID: mark-165-130, Secondary Actions: Expand
+					297 menu
+						298 (selected) Present
+						299 Absent
+						300 On Duty
+			301 text Student 030
+			302 text STU030
+			303 container
+				304 text Status
+				305 pop up button (collapsed, settable) Description: Attendance status for Student 030 (STU030), Value: Present, ID: mark-165-131, Secondary Actions: Expand
+					306 menu
+						307 (selected) Present
+						308 Absent
+						309 On Duty
+			310 text Student 031
+			311 text STU031
+			312 container
+				313 text Status
+				314 pop up button (collapsed, settable) Description: Attendance status for Student 031 (STU031), Value: Present, ID: mark-165-132, Secondary Actions: Expand
+					315 menu
+						316 (selected) Present
+						317 Absent
+						318 On Duty
+			319 text Student 032
+			320 text STU032
+			321 container
+				322 text Status
+				323 pop up button (collapsed, settable) Description: Attendance status for Student 032 (STU032), Value: Present, ID: mark-165-133, Secondary Actions: Expand
+					324 menu
+						325 (selected) Present
+						326 Absent
+						327 On Duty
+			328 text Student 033
+			329 text STU033
+			330 container
+				331 text Status
+				332 pop up button (collapsed, settable) Description: Attendance status for Student 033 (STU033), Value: Present, ID: mark-165-134, Secondary Actions: Expand
+					333 menu
+						334 (selected) Present
+						335 Absent
+						336 On Duty
+			337 text Student 034
+			338 text STU034
+			339 container
+				340 text Status
+				341 pop up button (collapsed, settable) Description: Attendance status for Student 034 (STU034), Value: Present, ID: mark-165-135, Secondary Actions: Expand
+					342 menu
+						343 (selected) Present
+						344 Absent
+						345 On Duty
+			346 text Student 035
+			347 text STU035
+			348 container
+				349 text Status
+				350 pop up button (collapsed, settable) Description: Attendance status for Student 035 (STU035), Value: Present, ID: mark-165-136, Secondary Actions: Expand
+					351 menu
+						352 (selected) Present
+						353 Absent
+						354 On Duty
+			355 text Student 036
+			356 text STU036
+			357 container
+				358 text Status
+				359 pop up button (collapsed, settable) Description: Attendance status for Student 036 (STU036), Value: Present, ID: mark-165-137, Secondary Actions: Expand
+					360 menu
+						361 (selected) Present
+						362 Absent
+						363 On Duty
+			364 text Student 037
+			365 text STU037
+			366 container
+				367 text Status
+				368 pop up button (collapsed, settable) Description: Attendance status for Student 037 (STU037), Value: Present, ID: mark-165-138, Secondary Actions: Expand
+					369 menu
+						370 (selected) Present
+						371 Absent
+						372 On Duty
+			373 text Student 038
+			374 text STU038
+			375 container
+				376 text Status
+				377 pop up button (collapsed, settable) Description: Attendance status for Student 038 (STU038), Value: Present, ID: mark-165-139, Secondary Actions: Expand
+					378 menu
+						379 (selected) Present
+						380 Absent
+						381 On Duty
+			382 text Student 039
+			383 text STU039
+			384 container
+				385 text Status
+				386 pop up button (collapsed, settable) Description: Attendance status for Student 039 (STU039), Value: Present, ID: mark-165-140, Secondary Actions: Expand
+					387 menu
+						388 (selected) Present
+						389 Absent
+						390 On Duty
+			391 text Student 040
+			392 text STU040
+			393 container
+				394 text Status
+				395 pop up button (collapsed, settable) Description: Attendance status for Student 040 (STU040), Value: Present, ID: mark-165-141, Secondary Actions: Expand
+					396 menu
+						397 (selected) Present
+						398 Absent
+						399 On Duty
+			400 text Student 041
+			401 text STU041
+			402 container
+				403 text Status
+				404 pop up button (collapsed, settable) Description: Attendance status for Student 041 (STU041), Value: Present, ID: mark-165-142, Secondary Actions: Expand
+					405 menu
+						406 (selected) Present
+						407 Absent
+						408 On Duty
+			409 text Student 042
+			410 text STU042
+			411 container
+				412 text Status
+				413 pop up button (collapsed, settable) Description: Attendance status for Student 042 (STU042), Value: Present, ID: mark-165-143, Secondary Actions: Expand
+					414 menu
+						415 (selected) Present
+						416 Absent
+						417 On Duty
+			418 text Student 043
+			419 text STU043
+			420 container
+				421 text Status
+				422 pop up button (collapsed, settable) Description: Attendance status for Student 043 (STU043), Value: Present, ID: mark-165-144, Secondary Actions: Expand
+					423 menu
+						424 (selected) Present
+						425 Absent
+						426 On Duty
+			427 text Student 044
+			428 text STU044
+			429 container
+				430 text Status
+				431 pop up button (collapsed, settable) Description: Attendance status for Student 044 (STU044), Value: Present, ID: mark-165-145, Secondary Actions: Expand
+					432 menu
+						433 (selected) Present
+						434 Absent
+						435 On Duty
+			436 text Student 045
+			437 text STU045
+			438 container
+				439 text Status
+				440 pop up button (collapsed, settable) Description: Attendance status for Student 045 (STU045), Value: Present, ID: mark-165-146, Secondary Actions: Expand
+					441 menu
+						442 (selected) Present
+						443 Absent
+						444 On Duty
+			445 text Student 046
+			446 text STU046
+			447 container
+				448 text Status
+				449 pop up button (collapsed, settable) Description: Attendance status for Student 046 (STU046), Value: Present, ID: mark-165-147, Secondary Actions: Expand
+					450 menu
+						451 (selected) Present
+						452 Absent
+						453 On Duty
+			454 text Student 047
+			455 text STU047
+			456 container
+				457 text Status
+				458 pop up button (collapsed, settable) Description: Attendance status for Student 047 (STU047), Value: Present, ID: mark-165-148, Secondary Actions: Expand
+					459 menu
+						460 (selected) Present
+						461 Absent
+						462 On Duty
+			463 text Student 048
+			464 text STU048
+			465 container
+				466 text Status
+				467 pop up button (collapsed, settable) Description: Attendance status for Student 048 (STU048), Value: Present, ID: mark-165-149, Secondary Actions: Expand
+					468 menu
+						469 (selected) Present
+						470 Absent
+						471 On Duty
+			472 text Student 049
+			473 text STU049
+			474 container
+				475 text Status
+				476 pop up button (collapsed, settable) Description: Attendance status for Student 049 (STU049), Value: Present, ID: mark-165-150, Secondary Actions: Expand
+					477 menu
+						478 (selected) Present
+						479 Absent
+						480 On Duty
+			481 text Student 050
+			482 text STU050
+			483 container
+				484 text Status
+				485 pop up button (collapsed, settable) Description: Attendance status for Student 050 (STU050), Value: Present, ID: mark-165-151, Secondary Actions: Expand
+					486 menu
+						487 (selected) Present
+						488 Absent
+						489 On Duty
+			490 text Student 051
+			491 text STU051
+			492 container
+				493 text Status
+				494 pop up button (collapsed, settable) Description: Attendance status for Student 051 (STU051), Value: Present, ID: mark-165-152, Secondary Actions: Expand
+					495 menu
+						496 (selected) Present
+						497 Absent
+						498 On Duty
+			499 text Student 052
+			500 text STU052
+			501 container
+				502 text Status
+				503 pop up button (collapsed, settable) Description: Attendance status for Student 052 (STU052), Value: Present, ID: mark-165-153, Secondary Actions: Expand
+					504 menu
+						505 (selected) Present
+						506 Absent
+						507 On Duty
+			508 text Student 053
+			509 text STU053
+			510 container
+				511 text Status
+				512 pop up button (collapsed, settable) Description: Attendance status for Student 053 (STU053), Value: Present, ID: mark-165-154, Secondary Actions: Expand
+					513 menu
+						514 (selected) Present
+						515 Absent
+						516 On Duty
+			517 text Student 054
+			518 text STU054
+			519 container
+				520 text Status
+				521 pop up button (collapsed, settable) Description: Attendance status for Student 054 (STU054), Value: Present, ID: mark-165-155, Secondary Actions: Expand
+					522 menu
+						523 (selected) Present
+						524 Absent
+						525 On Duty
+			526 text Student 055
+			527 text STU055
+			528 container
+				529 text Status
+				530 pop up button (collapsed, settable) Description: Attendance status for Student 055 (STU055), Value: Present, ID: mark-165-156, Secondary Actions: Expand
+					531 menu
+						532 (selected) Present
+						533 Absent
+						534 On Duty
+			535 text Student 056
+			536 text STU056
+			537 container
+				538 text Status
+				539 pop up button (collapsed, settable) Description: Attendance status for Student 056 (STU056), Value: Present, ID: mark-165-157, Secondary Actions: Expand
+					540 menu
+						541 (selected) Present
+						542 Absent
+						543 On Duty
+			544 text Student 057
+			545 text STU057
+			546 container
+				547 text Status
+				548 pop up button (collapsed, settable) Description: Attendance status for Student 057 (STU057), Value: Present, ID: mark-165-158, Secondary Actions: Expand
+					549 menu
+						550 (selected) Present
+						551 Absent
+						552 On Duty
+			553 text Student 058
+			554 text STU058
+			555 container
+				556 text Status
+				557 pop up button (collapsed, settable) Description: Attendance status for Student 058 (STU058), Value: Present, ID: mark-165-159, Secondary Actions: Expand
+					558 menu
+						559 (selected) Present
+						560 Absent
+						561 On Duty
+			562 text Student 059
+			563 text STU059
+			564 container
+				565 text Status
+				566 pop up button (collapsed, settable) Description: Attendance status for Student 059 (STU059), Value: Present, ID: mark-165-160, Secondary Actions: Expand
+					567 menu
+						568 (selected) Present
+						569 Absent
+						570 On Duty
+			571 text Student 060
+			572 text STU060
+			573 container
+				574 text Status
+				575 pop up button (collapsed, settable) Description: Attendance status for Student 060 (STU060), Value: Present, ID: mark-165-161, Secondary Actions: Expand
+					576 menu
+						577 (selected) Present
+						578 Absent
+						579 On Duty
+			580 text Student 061
+			581 text STU061
+			582 container
+				583 text Status
+				584 pop up button (collapsed, settable) Description: Attendance status for Student 061 (STU061), Value: Present, ID: mark-165-162, Secondary Actions: Expand
+					585 menu
+						586 (selected) Present
+						587 Absent
+						588 On Duty
+			589 text Student 062
+			590 text STU062
+			591 container
+				592 text Status
+				593 pop up button (collapsed, settable) Description: Attendance status for Student 062 (STU062), Value: Present, ID: mark-165-163, Secondary Actions: Expand
+					594 menu
+						595 (selected) Present
+						596 Absent
+						597 On Duty
+			598 text Student 063
+			599 text STU063
+			600 container
+				601 text Status
+				602 pop up button (collapsed, settable) Description: Attendance status for Student 063 (STU063), Value: Present, ID: mark-165-164, Secondary Actions: Expand
+					603 menu
+						604 (selected) Present
+						605 Absent
+						606 On Duty
+			607 text Student 064
+			608 text STU064
+			609 container
+				610 text Status
+				611 pop up button (collapsed, settable) Description: Attendance status for Student 064 (STU064), Value: Present, ID: mark-165-165, Secondary Actions: Expand
+					612 menu
+						613 (selected) Present
+						614 Absent
+						615 On Duty
+			616 text Student 065
+			617 text STU065
+			618 container
+				619 text Status
+				620 pop up button (collapsed, settable) Description: Attendance status for Student 065 (STU065), Value: Present, ID: mark-165-166, Secondary Actions: Expand
+					621 menu
+						622 (selected) Present
+						623 Absent
+						624 On Duty
+			625 text Student 066
+			626 text STU066
+			627 container
+				628 text Status
+				629 pop up button (collapsed, settable) Description: Attendance status for Student 066 (STU066), Value: Present, ID: mark-165-167, Secondary Actions: Expand
+					630 menu
+						631 (selected) Present
+						632 Absent
+						633 On Duty
+			634 text Student 067
+			635 text STU067
+			636 container
+				637 text Status
+				638 pop up button (collapsed, settable) Description: Attendance status for Student 067 (STU067), Value: Present, ID: mark-165-168, Secondary Actions: Expand
+					639 menu
+						640 (selected) Present
+						641 Absent
+						642 On Duty
+			643 text Student 068
+			644 text STU068
+			645 container
+				646 text Status
+				647 pop up button (collapsed, settable) Description: Attendance status for Student 068 (STU068), Value: Present, ID: mark-165-169, Secondary Actions: Expand
+					648 menu
+						649 (selected) Present
+						650 Absent
+						651 On Duty
+			652 text Student 069
+			653 text STU069
+			654 container
+				655 text Status
+				656 pop up button (collapsed, settable) Description: Attendance status for Student 069 (STU069), Value: Present, ID: mark-165-170, Secondary Actions: Expand
+					657 menu
+						658 (selected) Present
+						659 Absent
+						660 On Duty
+			661 text Student 070
+			662 text STU070
+			663 container
+				664 text Status
+				665 pop up button (collapsed, settable) Description: Attendance status for Student 070 (STU070), Value: Present, ID: mark-165-171, Secondary Actions: Expand
+					666 menu
+						667 (selected) Present
+						668 Absent
+						669 On Duty
+			670 text Student 071
+			671 text STU071
+			672 container
+				673 text Status
+				674 pop up button (collapsed, settable) Description: Attendance status for Student 071 (STU071), Value: Present, ID: mark-165-172, Secondary Actions: Expand
+					675 menu
+						676 (selected) Present
+						677 Absent
+						678 On Duty
+			679 text Student 072
+			680 text STU072
+			681 container
+				682 text Status
+				683 pop up button (collapsed, settable) Description: Attendance status for Student 072 (STU072), Value: Present, ID: mark-165-173, Secondary Actions: Expand
+					684 menu
+						685 (selected) Present
+						686 Absent
+						687 On Duty
+			688 text Student 073
+			689 text STU073
+			690 container
+				691 text Status
+				692 pop up button (collapsed, settable) Description: Attendance status for Student 073 (STU073), Value: Present, ID: mark-165-174, Secondary Actions: Expand
+					693 menu
+						694 (selected) Present
+						695 Absent
+						696 On Duty
+			697 text Student 074
+			698 text STU074
+			699 container
+				700 text Status
+				701 pop up button (collapsed, settable) Description: Attendance status for Student 074 (STU074), Value: Present, ID: mark-165-175, Secondary Actions: Expand
+					702 menu
+						703 (selected) Present
+						704 Absent
+						705 On Duty
+			706 text Student 075
+			707 text STU075
+			708 container
+				709 text Status
+				710 pop up button (collapsed, settable) Description: Attendance status for Student 075 (STU075), Value: Present, ID: mark-165-176, Secondary Actions: Expand
+					711 menu
+						712 (selected) Present
+						713 Absent
+						714 On Duty
+			715 text Student 076
+			716 text STU076
+			717 container
+				718 text Status
+				719 pop up button (collapsed, settable) Description: Attendance status for Student 076 (STU076), Value: Present, ID: mark-165-177, Secondary Actions: Expand
+					720 menu
+						721 (selected) Present
+						722 Absent
+						723 On Duty
+			724 text Student 077
+			725 text STU077
+			726 container
+				727 text Status
+				728 pop up button (collapsed, settable) Description: Attendance status for Student 077 (STU077), Value: Present, ID: mark-165-178, Secondary Actions: Expand
+					729 menu
+						730 (selected) Present
+						731 Absent
+						732 On Duty
+			733 text Student 078
+			734 text STU078
+			735 container
+				736 text Status
+				737 pop up button (collapsed, settable) Description: Attendance status for Student 078 (STU078), Value: Present, ID: mark-165-179, Secondary Actions: Expand
+					738 menu
+						739 (selected) Present
+						740 Absent
+						741 On Duty
+			742 text Student 079
+			743 text STU079
+			744 container
+				745 text Status
+				746 pop up button (collapsed, settable) Description: Attendance status for Student 079 (STU079), Value: Present, ID: mark-165-180, Secondary Actions: Expand
+					747 menu
+						748 (selected) Present
+						749 Absent
+						750 On Duty
+			751 text Student 080
+			752 text STU080
+			753 container
+				754 text Status
+				755 pop up button (collapsed, settable) Description: Attendance status for Student 080 (STU080), Value: Present, ID: mark-165-181, Secondary Actions: Expand
+					756 menu
+						757 (selected) Present
+						758 Absent
+						759 On Duty
+			760 text Student 081
+			761 text STU081
+			762 container
+				763 text Status
+				764 pop up button (collapsed, settable) Description: Attendance status for Student 081 (STU081), Value: Present, ID: mark-165-182, Secondary Actions: Expand
+					765 menu
+						766 (selected) Present
+						767 Absent
+						768 On Duty
+			769 text Student 082
+			770 text STU082
+			771 container
+				772 text Status
+				773 pop up button (collapsed, settable) Description: Attendance status for Student 082 (STU082), Value: Present, ID: mark-165-183, Secondary Actions: Expand
+					774 menu
+						775 (selected) Present
+						776 Absent
+						777 On Duty
+			778 text Student 083
+			779 text STU083
+			780 container
+				781 text Status
+				782 pop up button (collapsed, settable) Description: Attendance status for Student 083 (STU083), Value: Present, ID: mark-165-184, Secondary Actions: Expand
+					783 menu
+						784 (selected) Present
+						785 Absent
+						786 On Duty
+			787 text Student 084
+			788 text STU084
+			789 container
+				790 text Status
+				791 pop up button (collapsed, settable) Description: Attendance status for Student 084 (STU084), Value: Present, ID: mark-165-185, Secondary Actions: Expand
+					792 menu
+						793 (selected) Present
+						794 Absent
+						795 On Duty
+			796 text Student 085
+			797 text STU085
+			798 container
+				799 text Status
+				800 pop up button (collapsed, settable) Description: Attendance status for Student 085 (STU085), Value: Present, ID: mark-165-186, Secondary Actions: Expand
+					801 menu
+						802 (selected) Present
+						803 Absent
+						804 On Duty
+			805 text Student 086
+			806 text STU086
+			807 container
+				808 text Status
+				809 pop up button (collapsed, settable) Description: Attendance status for Student 086 (STU086), Value: Present, ID: mark-165-187, Secondary Actions: Expand
+					810 menu
+						811 (selected) Present
+						812 Absent
+						813 On Duty
+			814 text Student 087
+			815 text STU087
+			816 container
+				817 text Status
+				818 pop up button (collapsed, settable) Description: Attendance status for Student 087 (STU087), Value: Present, ID: mark-165-188, Secondary Actions: Expand
+					819 menu
+						820 (selected) Present
+						821 Absent
+						822 On Duty
+			823 text Student 088
+			824 text STU088
+			825 container
+				826 text Status
+				827 pop up button (collapsed, settable) Description: Attendance status for Student 088 (STU088), Value: Present, ID: mark-165-189, Secondary Actions: Expand
+					828 menu
+						829 (selected) Present
+						830 Absent
+						831 On Duty
+			832 text Student 089
+			833 text STU089
+			834 container
+				835 text Status
+				836 pop up button (collapsed, settable) Description: Attendance status for Student 089 (STU089), Value: Present, ID: mark-165-190, Secondary Actions: Expand
+					837 menu
+						838 (selected) Present
+						839 Absent
+						840 On Duty
+			841 text Student 090
+			842 text STU090
+			843 container
+				844 text Status
+				845 pop up button (collapsed, settable) Description: Attendance status for Student 090 (STU090), Value: Present, ID: mark-165-191, Secondary Actions: Expand
+					846 menu
+						847 (selected) Present
+						848 Absent
+						849 On Duty
+			850 text Student 091
+			851 text STU091
+			852 container
+				853 text Status
+				854 pop up button (collapsed, settable) Description: Attendance status for Student 091 (STU091), Value: Present, ID: mark-165-192, Secondary Actions: Expand
+					855 menu
+						856 (selected) Present
+						857 Absent
+						858 On Duty
+			859 text Student 092
+			860 text STU092
+			861 container
+				862 text Status
+				863 pop up button (collapsed, settable) Description: Attendance status for Student 092 (STU092), Value: Present, ID: mark-165-193, Secondary Actions: Expand
+					864 menu
+						865 (selected) Present
+						866 Absent
+						867 On Duty
+			868 text Student 093
+			869 text STU093
+			870 container
+				871 text Status
+				872 pop up button (collapsed, settable) Description: Attendance status for Student 093 (STU093), Value: Present, ID: mark-165-194, Secondary Actions: Expand
+					873 menu
+						874 (selected) Present
+						875 Absent
+						876 On Duty
+			877 text Student 094
+			878 text STU094
+			879 container
+				880 text Status
+				881 pop up button (collapsed, settable) Description: Attendance status for Student 094 (STU094), Value: Present, ID: mark-165-195, Secondary Actions: Expand
+					882 menu
+						883 (selected) Present
+						884 Absent
+						885 On Duty
+			886 text Student 095
+			887 text STU095
+			888 container
+				889 text Status
+				890 pop up button (collapsed, settable) Description: Attendance status for Student 095 (STU095), Value: Present, ID: mark-165-196, Secondary Actions: Expand
+					891 menu
+						892 (selected) Present
+						893 Absent
+						894 On Duty
+			895 text Student 096
+			896 text STU096
+			897 container
+				898 text Status
+				899 pop up button (collapsed, settable) Description: Attendance status for Student 096 (STU096), Value: Present, ID: mark-165-197, Secondary Actions: Expand
+					900 menu
+						901 (selected) Present
+						902 Absent
+						903 On Duty
+			904 text Student 097
+			905 text STU097
+			906 container
+				907 text Status
+				908 pop up button (collapsed, settable) Description: Attendance status for Student 097 (STU097), Value: Present, ID: mark-165-198, Secondary Actions: Expand
+					909 menu
+						910 (selected) Present
+						911 Absent
+						912 On Duty
+			913 text Student 098
+			914 text STU098
+			915 container
+				916 text Status
+				917 pop up button (collapsed, settable) Description: Attendance status for Student 098 (STU098), Value: Present, ID: mark-165-199, Secondary Actions: Expand
+					918 menu
+						919 (selected) Present
+						920 Absent
+						921 On Duty
+			922 text Student 099
+			923 text STU099
+			924 container
+				925 text Status
+				926 pop up button (collapsed, settable) Description: Attendance status for Student 099 (STU099), Value: Present, ID: mark-165-200, Secondary Actions: Expand
+					927 menu
+						928 (selected) Present
+						929 Absent
+						930 On Duty
+			931 text Student 100
+			932 text STU100
+			933 container
+				934 text Status
+				935 pop up button (collapsed, settable) Description: Attendance status for Student 100 (STU100), Value: Present, ID: mark-165-201, Secondary Actions: Expand
+					936 menu
+						937 (selected) Present
+						938 Absent
+						939 On Duty
+			940 container
+				941 text 100 students · all default to Present
+				942 button Submit attendance
+		34 text PES University · Software Engineering Mini-Project SAMS / 2026
+
+The focused UI element is 9 button Take attendance 02
